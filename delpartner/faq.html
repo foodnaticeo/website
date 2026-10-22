@@ -1,0 +1,425 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FAQ's | Foodnati</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #fff;
+  color: #111;
+}
+
+/* NAVBAR */
+.foodnati-navbar {
+  width: 100%;
+  height: 82px;
+  background: #fff;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.foodnati-nav-container {
+  width: 100%;
+  max-width: 1180px;
+  margin: auto;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.foodnati-logo {
+  font-size: 32px;
+  font-weight: 800;
+  color: #E82B65;
+  text-decoration: none;
+  letter-spacing: -1px;
+}
+
+.foodnati-nav-links {
+  display: flex;
+  align-items: center;
+  gap: 38px;
+}
+
+.foodnati-nav-links a {
+  font-size: 17px;
+  color: #222;
+  text-decoration: none;
+  transition: color .2s;
+}
+
+.foodnati-nav-links a:hover,
+.foodnati-nav-links a.active {
+  color: #E82B65;
+}
+
+.foodnati-menu-btn {
+  display: none;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  padding: 8px;
+}
+
+.foodnati-menu-btn span {
+  display: block;
+  width: 25px;
+  height: 2px;
+  margin: 5px 0;
+  background: #111;
+}
+
+/* FAQ SECTION */
+.foodnati-faq-section {
+  width: 100%;
+  padding: 85px 20px 100px;
+  scroll-margin-top: 90px;
+}
+
+.foodnati-faq-container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.foodnati-faq-container h1 {
+  font-size: 34px;
+  font-weight: 700;
+  text-align: center;
+  margin: 0 0 14px;
+}
+
+.foodnati-faq-subtitle {
+  font-size: 17px;
+  color: #888;
+  text-align: center;
+  line-height: 1.5;
+  margin: 0 0 42px;
+}
+
+.foodnati-faq-item {
+  border-bottom: 1px solid #e8e8e8;
+}
+
+.foodnati-faq-question {
+  width: 100%;
+  padding: 23px 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  background: transparent;
+  border: none;
+  text-align: left;
+  font-family: inherit;
+  font-size: 19px;
+  font-weight: 500;
+  color: #222;
+  cursor: pointer;
+}
+
+.foodnati-faq-question:hover,
+.foodnati-faq-item.active .foodnati-faq-question {
+  color: #E82B65;
+}
+
+.foodnati-faq-arrow {
+  font-size: 27px;
+  font-weight: 300;
+  color: #E82B65;
+  flex-shrink: 0;
+  transition: transform .3s ease;
+}
+
+.foodnati-faq-item.active .foodnati-faq-arrow {
+  transform: rotate(45deg);
+}
+
+.foodnati-faq-answer {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows .3s ease;
+}
+
+.foodnati-faq-answer > div {
+  overflow: hidden;
+  font-size: 16px;
+  line-height: 1.7;
+  color: #777;
+}
+
+.foodnati-faq-item.active .foodnati-faq-answer {
+  grid-template-rows: 1fr;
+}
+
+.foodnati-faq-item.active .foodnati-faq-answer > div {
+  padding-bottom: 23px;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .foodnati-navbar {
+    height: 68px;
+  }
+
+  .foodnati-nav-container {
+    padding: 0 18px;
+  }
+
+  .foodnati-logo {
+    font-size: 27px;
+  }
+
+  .foodnati-menu-btn {
+    display: block;
+  }
+
+  .foodnati-nav-links {
+    display: none;
+    position: absolute;
+    top: 68px;
+    left: 0;
+    right: 0;
+    background: #fff;
+    padding: 20px;
+    border-bottom: 1px solid #eee;
+    box-shadow: 0 8px 15px rgba(0,0,0,.05);
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 22px;
+  }
+
+  .foodnati-nav-links.open {
+    display: flex;
+  }
+
+  .foodnati-faq-section {
+    padding: 55px 18px 70px;
+    scroll-margin-top: 75px;
+  }
+
+  .foodnati-faq-container h1 {
+    font-size: 26px;
+  }
+
+  .foodnati-faq-subtitle {
+    font-size: 14px;
+    margin-bottom: 28px;
+  }
+
+  .foodnati-faq-question {
+    font-size: 16px;
+    padding: 19px 2px;
+  }
+
+  .foodnati-faq-answer > div {
+    font-size: 14px;
+  }
+
+  .foodnati-faq-arrow {
+    font-size: 24px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- TOP NAVBAR -->
+<header class="foodnati-navbar">
+  <nav class="foodnati-nav-container" aria-label="Main navigation">
+
+    <a href="index.html" class="foodnati-logo">
+      Foodnati
+    </a>
+
+    <button
+      class="foodnati-menu-btn"
+      id="foodnatiMenuBtn"
+      type="button"
+      aria-label="Toggle navigation"
+      aria-controls="foodnatiNavLinks"
+      aria-expanded="false"
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <div class="foodnati-nav-links" id="foodnatiNavLinks">
+      <a href="index.html">Home</a>
+      <a href="#faqs" class="active">FAQ's</a>
+    </div>
+
+  </nav>
+</header>
+
+<!-- FAQ SECTION -->
+<section class="foodnati-faq-section" id="faqs">
+  <div class="foodnati-faq-container">
+
+    <h1>Frequently Asked Questions</h1>
+
+    <p class="foodnati-faq-subtitle">
+      Everything you need to know about joining Foodnati.
+    </p>
+
+    <div class="foodnati-faq-item">
+      <button class="foodnati-faq-question" type="button">
+        How can I join Foodnati as a delivery partner?
+        <span class="foodnati-faq-arrow">+</span>
+      </button>
+      <div class="foodnati-faq-answer">
+        <div>
+          Fill out the registration form on our website.
+          Our team will guide you through the next steps.
+        </div>
+      </div>
+    </div>
+
+    <div class="foodnati-faq-item">
+      <button class="foodnati-faq-question" type="button">
+        What documents are required?
+        <span class="foodnati-faq-arrow">+</span>
+      </button>
+      <div class="foodnati-faq-answer">
+        <div>
+          You may need an Aadhaar card, PAN card,
+          bank account details, and a valid driving
+          licence if using a motor vehicle.
+        </div>
+      </div>
+    </div>
+
+    <div class="foodnati-faq-item">
+      <button class="foodnati-faq-question" type="button">
+        Can I work part-time?
+        <span class="foodnati-faq-arrow">+</span>
+      </button>
+      <div class="foodnati-faq-answer">
+        <div>
+          Flexible working options may be available
+          depending on your location and delivery demand.
+        </div>
+      </div>
+    </div>
+
+    <div class="foodnati-faq-item">
+      <button class="foodnati-faq-question" type="button">
+        How much can I earn per delivery?
+        <span class="foodnati-faq-arrow">+</span>
+      </button>
+      <div class="foodnati-faq-answer">
+        <div>
+          Earnings depend on delivery distance,
+          applicable incentives, and the current
+          partner payment structure.
+        </div>
+      </div>
+    </div>
+
+    <div class="foodnati-faq-item">
+      <button class="foodnati-faq-question" type="button">
+        When will I receive my payments?
+        <span class="foodnati-faq-arrow">+</span>
+      </button>
+      <div class="foodnati-faq-answer">
+        <div>
+          Payment schedules will be explained during
+          onboarding. Check with our team for the
+          applicable payout cycle.
+        </div>
+      </div>
+    </div>
+
+    <div class="foodnati-faq-item">
+      <button class="foodnati-faq-question" type="button">
+        Do I need my own vehicle?
+        <span class="foodnati-faq-arrow">+</span>
+      </button>
+      <div class="foodnati-faq-answer">
+        <div>
+          Vehicle requirements depend on the delivery
+          options available in your area.
+        </div>
+      </div>
+    </div>
+
+    <div class="foodnati-faq-item">
+      <button class="foodnati-faq-question" type="button">
+        How do I receive delivery orders?
+        <span class="foodnati-faq-arrow">+</span>
+      </button>
+      <div class="foodnati-faq-answer">
+        <div>
+          Delivery requests will appear in the
+          Foodnati Delivery Partner app when
+          you are available to accept orders.
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<script>
+/* MOBILE NAVIGATION */
+const menuBtn = document.getElementById("foodnatiMenuBtn");
+const navLinks = document.getElementById("foodnatiNavLinks");
+
+menuBtn.addEventListener("click", function() {
+  const isOpen = navLinks.classList.toggle("open");
+  menuBtn.setAttribute("aria-expanded", String(isOpen));
+});
+
+navLinks.querySelectorAll("a").forEach(function(link) {
+  link.addEventListener("click", function() {
+    navLinks.classList.remove("open");
+    menuBtn.setAttribute("aria-expanded", "false");
+  });
+});
+
+/* FAQ DROPDOWN */
+document.querySelectorAll(".foodnati-faq-question")
+  .forEach(function(button) {
+
+    button.setAttribute("aria-expanded", "false");
+
+    button.addEventListener("click", function() {
+      const item = this.parentElement;
+      const isActive = item.classList.contains("active");
+
+      document.querySelectorAll(".foodnati-faq-item")
+        .forEach(function(faq) {
+          faq.classList.remove("active");
+          faq.querySelector(".foodnati-faq-question")
+            .setAttribute("aria-expanded", "false");
+        });
+
+      if (!isActive) {
+        item.classList.add("active");
+        this.setAttribute("aria-expanded", "true");
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
