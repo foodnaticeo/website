@@ -1,0 +1,876 @@
+
+/* OUR PROMISE BLACK SECTION */
+
+.methai-promise-section {
+  position: relative;
+  width: 100%;
+  min-height: 550px;
+  background: #000000;
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+
+  padding: 105px 20px 90px;
+}
+
+/* TOP WHITE CURVE */
+
+.methai-promise-section::before {
+  content: "";
+  position: absolute;
+  top: -65px;
+  left: -10%;
+  width: 120%;
+  height: 115px;
+  background: #ffffff;
+  border-radius: 0 0 50% 50%;
+  z-index: 2;
+}
+
+/* BOTTOM WHITE CURVE */
+
+.methai-promise-section::after {
+  content: "";
+  position: absolute;
+  bottom: -65px;
+  left: -10%;
+  width: 120%;
+  height: 115px;
+  background: #ffffff;
+  border-radius: 50% 50% 0 0;
+  z-index: 2;
+}
+
+/* HEADING */
+
+.methai-promise-heading {
+  position: relative;
+  z-index: 3;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 48px;
+  font-weight: 700;
+  color: #ffffff;
+  text-align: center;
+  letter-spacing: -1px;
+  line-height: 1.2;
+  margin: 0;
+}
+
+/* THREE ITEMS SIDE BY SIDE */
+
+.methai-promise-items {
+  position: relative;
+  z-index: 3;
+
+  width: 100%;
+  max-width: 900px;
+  margin: 65px auto 0;
+
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: start;
+  gap: 35px;
+}
+
+/* EACH ITEM */
+
+.methai-promise-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 18px;
+  text-align: center;
+}
+
+/* PNG ICONS */
+
+.methai-promise-item img {
+  display: block;
+  width: 105px;
+  height: 105px;
+  object-fit: contain;
+}
+
+/* ITEM TEXT */
+
+.methai-promise-item h3 {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 21px;
+  font-weight: 600;
+  line-height: 1.3;
+  color: #ffffff;
+  margin: 0;
+}
+
+/* MOBILE VIEW */
+
+@media (max-width: 600px) {
+
+  .methai-promise-section {
+    min-height: 350px;
+    padding: 75px 12px 75px;
+  }
+
+  .methai-promise-section::before {
+    top: -35px;
+    height: 65px;
+  }
+
+  .methai-promise-section::after {
+    bottom: -35px;
+    height: 65px;
+  }
+
+  .methai-promise-heading {
+    font-size: 32px;
+  }
+
+  /* KEEP 3 ITEMS SIDE BY SIDE */
+
+  .methai-promise-items {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+    margin-top: 45px;
+  }
+
+  .methai-promise-item {
+    gap: 12px;
+  }
+
+  .methai-promise-item img {
+    width: 65px;
+    height: 65px;
+  }
+
+  .methai-promise-item h3 {
+    font-size: 12px;
+    line-height: 1.4;
+  }
+}
+
+/* SINGLE LINE COMPARISON */
+
+.methai-price-line {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  margin: 55px auto 20px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+
+/* SINGLE LINE TEXT */
+
+.methai-price-line p {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 24px;
+  font-weight: 600;
+  color: #ffffff;
+  margin: 0;
+  white-space: nowrap;
+  text-align: center;
+}
+
+.methai-name {
+  color: #E82B65;
+  font-weight: 800;
+}
+
+.changing-price {
+  color: #ffffff;
+  font-weight: 800;
+}
+
+/* EYES */
+
+.mini-eyes {
+  display: flex;
+  gap: 5px;
+  flex-shrink: 0;
+}
+
+.mini-eyes .eye {
+  position: relative;
+  width: 23px;
+  height: 30px;
+  background: #ffffff;
+  border-radius: 50%;
+}
+
+.mini-eyes .eye::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 9px;
+  height: 11px;
+  background: #000000;
+  border-radius: 50%;
+}
+
+/* FRONT LOOKING */
+
+.eyes-front .eye::after {
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* LEFT LOOKING */
+
+.eyes-left .eye::after {
+  left: 3px;
+  transform: translateY(-50%);
+}
+
+/* MOBILE VIEW */
+
+@media (max-width: 600px) {
+
+  .methai-price-line {
+    gap: 6px;
+    margin-top: 40px;
+  }
+
+  .methai-price-line p {
+    font-size: clamp(9px, 2.9vw, 13px);
+    letter-spacing: -0.3px;
+  }
+
+  .mini-eyes {
+    gap: 3px;
+  }
+
+  .mini-eyes .eye {
+    width: 12px;
+    height: 17px;
+  }
+
+  .mini-eyes .eye::after {
+    width: 5px;
+    height: 6px;
+  }
+
+  .eyes-left .eye::after {
+    left: 2px;
+  }
+}
+
+/* GOLD PRICE SLIDER */
+
+.methai-price-slider {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 55px auto 20px;
+}
+
+/* VISIBLE SLIDER WINDOW */
+
+.price-slider-window {
+  height: 45px;
+  overflow: hidden;
+}
+
+/* SLIDING TRACK */
+
+.price-slider-track {
+  display: flex;
+  flex-direction: column;
+  animation: priceSlideUp 5s infinite;
+}
+
+/* SINGLE LINE TEXT */
+
+.price-slide {
+  height: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  white-space: nowrap;
+}
+
+.price-slide > span {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 26px;
+  font-weight: 700;
+  color: #D4AF37;
+  line-height: 1.2;
+}
+
+/* GOLD EYES */
+
+.price-eyes {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.price-eyes .eye {
+  position: relative;
+  display: block;
+  width: 24px;
+  height: 31px;
+  background: #D4AF37;
+  border-radius: 50%;
+}
+
+/* BLACK PUPILS */
+
+.price-eyes .eye::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 10px;
+  height: 12px;
+  background: #000000;
+  border-radius: 50%;
+}
+
+/* OUR APP - FRONT LOOK */
+
+.eyes-straight .eye::after {
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* OTHER APPS - LEFT LOOK */
+
+.eyes-looking-left .eye::after {
+  left: 3px;
+  transform: translateY(-50%);
+}
+
+/* SLIDE UP ANIMATION */
+
+@keyframes priceSlideUp {
+  0%, 40% {
+    transform: translateY(0);
+  }
+
+  50%, 90% {
+    transform: translateY(-45px);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+/* TABLET VIEW */
+
+@media (min-width: 601px) and (max-width: 900px) {
+
+  .price-slide > span {
+    font-size: 22px;
+  }
+}
+
+/* MOBILE VIEW */
+
+@media (max-width: 600px) {
+
+  .methai-price-slider {
+    margin: 40px auto 20px;
+  }
+
+  .price-slider-window {
+    height: 32px;
+  }
+
+  .price-slide {
+    height: 32px;
+    gap: 8px;
+  }
+
+  .price-slide > span {
+    font-size: clamp(12px, 4vw, 17px);
+    font-weight: 700;
+  }
+
+  .price-eyes {
+    gap: 3px;
+  }
+
+  .price-eyes .eye {
+    width: 17px;
+    height: 23px;
+  }
+
+  .price-eyes .eye::after {
+    width: 7px;
+    height: 9px;
+  }
+
+  .eyes-looking-left .eye::after {
+    left: 2px;
+  }
+
+  @keyframes priceSlideUp {
+    0%, 40% {
+      transform: translateY(0);
+    }
+
+    50%, 90% {
+      transform: translateY(-32px);
+    }
+
+    100% {
+      transform: translateY(0);
+    }
+  }
+}
+
+/* REDUCED MOTION */
+
+@media (prefers-reduced-motion: reduce) {
+  .price-slider-track {
+    animation: none;
+  }
+}
+
+/* ==================================
+   METHAI FULL BLACK FOOTER
+================================== */
+
+.methai-footer {
+  width: 100%;
+  background: #000000;
+  color: #ffffff;
+  padding: 75px 0 25px;
+  box-sizing: border-box;
+}
+
+.methai-footer *,
+.methai-footer *::before,
+.methai-footer *::after {
+  box-sizing: border-box;
+}
+
+/* MAIN CONTAINER */
+
+.methai-footer-container {
+  width: 100%;
+  max-width: 1500px;
+  margin: 0 auto;
+  padding: 0 7%;
+}
+
+/* METHAI BRAND */
+
+.methai-footer-brand {
+  margin-bottom: 55px;
+}
+
+.methai-footer-brand h2 {
+  font-family: 'Kalam', cursive;
+  font-size: 45px;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0;
+  line-height: 1.2;
+}
+
+/* FOUR COLUMNS */
+
+.methai-footer-links {
+  display: grid;
+  grid-template-columns:
+    1fr 1.2fr 1fr 1fr;
+  gap: 35px;
+  align-items: start;
+}
+
+/* COLUMN */
+
+.methai-footer-column {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 15px;
+  min-width: 0;
+}
+
+/* HEADINGS */
+
+.methai-footer-column h3 {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 12px;
+  line-height: 1.4;
+}
+
+/* LINKS */
+
+.methai-footer-column > a {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: #bcbcbc;
+  text-decoration: none;
+  line-height: 1.6;
+  transition: color 0.2s ease;
+}
+
+.methai-footer-column > a:hover {
+  color: #ffffff;
+}
+
+/* SOCIAL MEDIA ICONS */
+
+.methai-social-icons {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.methai-social-icons a {
+  width: 38px;
+  height: 38px;
+  border: 1px solid #555555;
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #ffffff;
+  font-size: 17px;
+  text-decoration: none;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.methai-social-icons a:hover {
+  background: #E82B65;
+  border-color: #E82B65;
+}
+
+/* APP DOWNLOAD BADGES */
+
+.methai-footer-apps {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.methai-footer-apps a {
+  display: block;
+  text-decoration: none;
+}
+
+.methai-footer-apps img {
+  display: block;
+  width: 155px;
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+/* COPYRIGHT */
+
+.methai-footer-bottom {
+  width: 100%;
+  margin-top: 75px;
+  padding-top: 22px;
+  border-top: 1px solid #303030;
+}
+
+.methai-footer-bottom p {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  color: #888888;
+  margin: 0;
+  text-align: left;
+}
+
+/* ==================================
+   TABLET VIEW
+================================== */
+
+@media (min-width: 601px) and (max-width: 1000px) {
+
+  .methai-footer-container {
+    padding: 0 6%;
+  }
+
+  .methai-footer-links {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 45px;
+    row-gap: 45px;
+  }
+
+  .methai-footer-apps img {
+    width: 145px;
+  }
+
+}
+
+/* ==================================
+   MOBILE VIEW
+================================== */
+
+@media (max-width: 600px) {
+
+  .methai-footer {
+    padding: 50px 0 22px;
+  }
+
+  /* LEFT AND RIGHT GAP */
+
+  .methai-footer-container {
+    padding: 0 22px;
+  }
+
+  /* BRAND */
+
+  .methai-footer-brand {
+    margin-bottom: 38px;
+  }
+
+  .methai-footer-brand h2 {
+    font-size: 37px;
+  }
+
+  /* TWO COLUMN LAYOUT */
+
+  .methai-footer-links {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+    column-gap: 18px;
+    row-gap: 38px;
+  }
+
+  /* EACH COLUMN */
+
+  .methai-footer-column {
+    gap: 12px;
+  }
+
+  .methai-footer-column h3 {
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 6px;
+    line-height: 1.4;
+  }
+
+  .methai-footer-column > a {
+    font-size: 12px;
+    line-height: 1.5;
+  }
+
+  /* SOCIAL MEDIA */
+
+  .methai-social-icons {
+    gap: 10px;
+  }
+
+  .methai-social-icons a {
+    width: 34px;
+    height: 34px;
+    font-size: 15px;
+  }
+
+  /* DOWNLOAD BADGES */
+
+  .methai-footer-apps {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    margin-top: 12px;
+  }
+
+  .methai-footer-apps img {
+    width: 125px;
+  }
+
+  /* COPYRIGHT */
+
+  .methai-footer-bottom {
+    margin-top: 50px;
+    padding-top: 18px;
+  }
+
+  .methai-footer-bottom p {
+    font-size: 11px;
+  }
+
+}
+/* METHAI — mobile-only layered scrolling sections.
+   Add AFTER your existing CSS, before </head>.
+   Desktop/tablet styling is untouched. */
+
+/* =========================================
+   METHAI MOBILE STACKING SECTIONS
+   SAFARI + CHROME
+   DESKTOP UNCHANGED
+========================================= */
+
+@media screen and (max-width: 600px) {
+
+  /* IMPORTANT: DON'T CLIP BODY SCROLL */
+
+  html {
+    overflow-x: visible !important;
+    overflow-y: visible !important;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    overflow: visible !important;
+    width: 100%;
+    margin: 0;
+  }
+
+  /* STICKY STACKING SECTIONS */
+
+  body > .video-section,
+  body > .welcome-section,
+  body > .waiting-section,
+  body > .methai-promise-section,
+  body > .methai-download-section,
+  body > .methai-footer {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    isolation: isolate;
+  }
+
+  /* STACKING ORDER */
+
+  body > .video-section {
+    z-index: 1;
+  }
+
+  body > .welcome-section {
+    z-index: 2;
+  }
+
+  body > .waiting-section {
+    z-index: 3;
+  }
+
+  body > .methai-promise-section {
+    z-index: 4;
+  }
+
+  body > .methai-download-section {
+    z-index: 5;
+  }
+
+  body > .methai-footer {
+    z-index: 6;
+  }
+
+  /* ROUNDED TOP CORNERS */
+
+  body > .welcome-section,
+  body > .waiting-section,
+  body > .methai-promise-section,
+  body > .methai-download-section,
+  body > .methai-footer {
+    margin-top: -26px;
+    border-radius: 30px 30px 0 0;
+  }
+
+  /* WELCOME */
+
+ 
+@media screen and (max-width: 600px) {
+
+  /* Hide first stack until user scrolls */
+  body > .welcome-section {
+    background: #ffffff;
+    margin-top: 0 !important;
+    padding-top: 76px;
+  }
+
+  /* Other sections keep their overlap */
+  body > .waiting-section,
+  body > .methai-promise-section,
+  body > .methai-download-section,
+  body > .methai-footer {
+    margin-top: -26px;
+  }
+
+}
+
+
+  /* WAITING */
+
+  body > .waiting-section {
+    padding-top: 66px;
+  }
+
+  /* OUR PROMISE */
+
+  body > .methai-promise-section {
+    padding-top: 95px;
+  }
+
+  body > .methai-promise-section::before,
+  body > .methai-promise-section::after {
+    display: none;
+  }
+
+  /* DOWNLOAD */
+
+  body > .methai-download-section {
+    background: #ffffff;
+    padding-top: 56px;
+  }
+
+  /* FOOTER */
+
+  body > .methai-footer {
+    background: #000000;
+    padding-top: 72px;
+    padding-bottom: max(
+      22px,
+      env(safe-area-inset-bottom)
+    );
+  }
+
+  /* PREVENT CONTENT OVERFLOW */
+
+  .methai-footer-container,
+  .waiting-features,
+  .methai-download-card {
+    max-width: 100%;
+  }
+
+}
+
+/* REDUCED MOTION */
+
+@media screen and (max-width: 600px)
+and (prefers-reduced-motion: reduce) {
+
+  body > .video-section,
+  body > .welcome-section,
+  body > .waiting-section,
+  body > .methai-promise-section,
+  body > .methai-download-section,
+  body > .methai-footer {
+    position: relative;
+    top: auto;
+  }
+
+}
