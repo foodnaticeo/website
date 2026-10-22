@@ -1,0 +1,1279 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Foodnati - Delivery Partner</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #ffffff;
+    }
+
+    /* NAVBAR */
+    .methai-navbar {
+      width: 100%;
+      height: 86px;
+      background: #ffffff;
+      border-bottom: 1px solid #eeeeee;
+      display: flex;
+      align-items: center;
+    }
+
+    .methai-nav-container {
+      width: 100%;
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .methai-nav-logo {
+      font-family: 'Fredoka', sans-serif;
+      font-size: 35px;
+      font-weight: 700;
+      color: #17243B;
+      text-decoration: none;
+      line-height: 1;
+    }
+
+    .methai-nav-faq {
+      font-size: 16px;
+      font-weight: 400;
+      color: #111111;
+      text-decoration: none;
+    }
+
+    @media (max-width: 768px) {
+      .methai-navbar {
+        height: 70px;
+      }
+
+      .methai-nav-container {
+        padding: 0 20px;
+      }
+
+      .methai-nav-logo {
+        font-size: 30px;
+      }
+
+      .methai-nav-faq {
+        font-size: 15px;
+      }
+    }
+
+    /* RIDER HERO */
+    .methai-rider-section {
+      width: 100%;
+      padding: 58px 20px;
+      background: #ffffff;
+    }
+
+    .methai-rider-hero {
+      position: relative;
+      max-width: 1180px;
+      min-height: 580px;
+      margin: 0 auto;
+      border-radius: 9px;
+      overflow: hidden;
+      background-image:
+        linear-gradient(
+          to top,
+          rgba(0, 0, 0, 0.8) 0%,
+          rgba(0, 0, 0, 0.15) 55%,
+          transparent 100%
+        ),
+        url("image45.png");
+      background-size: cover;
+      background-position: center;
+    }
+
+    /* LEFT CONTENT */
+    .methai-rider-content {
+      position: absolute;
+      bottom: 48px;
+      left: 7%;
+      width: 53%;
+      color: #ffffff;
+    }
+
+    .methai-rider-content h1 {
+      font-family: Arial, sans-serif;
+      font-size: 43px;
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 12px;
+    }
+
+    .methai-rider-content p {
+      font-family: Arial, sans-serif;
+      font-size: 25px;
+      font-weight: 600;
+      line-height: 1.35;
+    }
+
+    /* REGISTRATION FORM */
+    .methai-rider-form {
+      position: absolute;
+      top: 44px;
+      right: 44px;
+      width: 342px;
+      background: #ffffff;
+      padding: 22px 19px;
+      border-radius: 6px;
+    }
+
+    .methai-rider-form h2 {
+      font-size: 23px;
+      font-weight: 700;
+      color: #111111;
+      margin: 0 0 12px;
+    }
+
+    .methai-form-description {
+      font-size: 16px;
+      line-height: 1.25;
+      color: #888888;
+      margin-bottom: 12px;
+    }
+
+    .methai-rider-form form {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .methai-rider-form input[type="tel"],
+    .methai-rider-form input[type="text"],
+    .methai-rider-form select {
+      width: 100%;
+      height: 45px;
+      padding: 0 12px;
+      border: 1px solid #d4d4d4;
+      border-radius: 8px;
+      background: #ffffff;
+      color: #222222;
+      font-size: 14px;
+      outline: none;
+    }
+
+    .methai-rider-form input:focus,
+    .methai-rider-form select:focus {
+      border-color: #E82B65;
+    }
+
+    /* CONSENT */
+    .methai-consent {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 13px;
+      line-height: 1.4;
+      color: #444444;
+      cursor: pointer;
+    }
+
+    .methai-consent input {
+      width: 20px;
+      height: 20px;
+      flex-shrink: 0;
+      accent-color: #E82B65;
+    }
+
+    /* BUTTON */
+    .methai-rider-button {
+      width: 100%;
+      height: 48px;
+      border: none;
+      border-radius: 7px;
+      background: #E82B65;
+      color: #ffffff;
+      font-size: 19px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .methai-rider-button:hover {
+      background: #d51e56;
+    }
+
+    .methai-app-options {
+      margin-top: 18px;
+      text-align: center;
+      font-size: 13px;
+      color: #666666;
+    }
+
+    /* MOBILE HERO */
+    @media (max-width: 768px) {
+      .methai-rider-section {
+        padding: 20px 12px;
+      }
+
+      .methai-rider-hero {
+        min-height: 0;
+        display: flex;
+        flex-direction: column;
+        background-position: center top;
+        background-size: auto 380px;
+        background-repeat: no-repeat;
+        background-color: #ffffff;
+        overflow: hidden;
+      }
+
+      .methai-rider-content {
+        position: relative;
+        left: auto;
+        bottom: auto;
+        width: 100%;
+        min-height: 380px;
+        padding: 245px 20px 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+      }
+
+      .methai-rider-content h1 {
+        font-size: 29px;
+      }
+
+      .methai-rider-content p {
+        font-size: 16px;
+        font-weight: 500;
+      }
+
+      .methai-rider-form {
+        position: relative;
+        top: auto;
+        right: auto;
+        width: 100%;
+        padding: 24px 18px;
+        border: 1px solid #eeeeee;
+        border-radius: 0 0 9px 9px;
+      }
+
+      .methai-rider-form h2 {
+        font-size: 22px;
+      }
+    }
+
+    /* JOIN SECTION */
+    .methai-join-section {
+      width: 100%;
+      background: #ffffff;
+      padding: 80px 20px;
+      font-family: Arial, sans-serif;
+    }
+
+    /* STATISTICS */
+    .methai-stats {
+      max-width: 1000px;
+      margin: 0 auto 110px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      align-items: center;
+    }
+
+    .methai-stat {
+      text-align: center;
+      position: relative;
+      padding: 0 15px;
+    }
+
+    .methai-stat:not(:last-child)::after {
+      content: "";
+      position: absolute;
+      right: 0;
+      top: 42px;
+      width: 1px;
+      height: 60px;
+      background: #dddddd;
+    }
+
+    .methai-stat-icon {
+      font-size: 45px;
+      margin-bottom: 12px;
+    }
+
+    .methai-stat h3 {
+      font-size: 26px;
+      font-weight: 500;
+      color: #E82B65;
+      margin: 0 0 5px;
+    }
+
+    .methai-stat p {
+      font-size: 18px;
+      color: #888888;
+      margin: 0;
+    }
+
+    /* WHY JOIN */
+    .methai-join-container {
+      max-width: 1180px;
+      margin: 0 auto;
+    }
+
+    .methai-join-title {
+      font-size: 38px;
+      font-weight: 700;
+      color: #111111;
+      margin: 0 0 15px;
+    }
+
+    .methai-join-description {
+      font-size: 20px;
+      line-height: 1.5;
+      color: #222222;
+      margin: 0 0 45px;
+    }
+
+    .methai-join-content {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .methai-join-image img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 16px;
+    }
+
+    /* BENEFITS */
+    .methai-benefits {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    .methai-benefit {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+
+    .methai-benefit-check {
+      width: 22px;
+      height: 22px;
+      border: 2px solid #54c878;
+      color: #54c878;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 14px;
+      flex-shrink: 0;
+      margin-top: 5px;
+    }
+
+    .methai-benefit h3 {
+      font-size: 30px;
+      line-height: 1.2;
+      font-weight: 700;
+      color: #111111;
+      margin: 0 0 10px;
+    }
+
+    .methai-benefit p {
+      font-size: 17px;
+      line-height: 1.4;
+      color: #888888;
+      margin: 0;
+    }
+
+    .methai-weekly-earnings {
+      white-space: nowrap;
+      font-size: clamp(12px, 1.1vw, 17px);
+    }
+
+    @media (max-width: 768px) {
+      .methai-weekly-earnings { white-space: normal; font-size: 15px; }
+    }
+
+    /* MOBILE RESPONSIVE */
+    @media (max-width: 768px) {
+      .methai-join-section {
+        padding: 45px 18px;
+      }
+
+      .methai-stats {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 35px 10px;
+        margin-bottom: 70px;
+      }
+
+      .methai-stat:not(:last-child)::after {
+        display: none;
+      }
+
+      .methai-stat-icon {
+        font-size: 35px;
+      }
+
+      .methai-stat h3 {
+        font-size: 22px;
+      }
+
+      .methai-stat p {
+        font-size: 14px;
+      }
+
+      .methai-join-title {
+        font-size: 30px;
+      }
+
+      .methai-join-description {
+        font-size: 16px;
+        margin-bottom: 28px;
+      }
+
+      .methai-join-content {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+
+      .methai-benefits {
+        gap: 25px;
+      }
+
+      .methai-benefit h3 {
+        font-size: 24px;
+      }
+
+      .methai-benefit p {
+        font-size: 15px;
+      }
+    }
+
+.methai-stat-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 85px;
+  margin-bottom: 12px;
+}
+
+.methai-stat-icon img {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+}
+
+@media (max-width: 768px) {
+  .methai-stat-icon {
+    height: 65px;
+  }
+
+  .methai-stat-icon img {
+    width: 60px;
+    height: 60px;
+  }
+}
+
+  </style>
+</head>
+
+<body>
+
+  <!-- FOODNATI NAVBAR -->
+  <header class="methai-navbar">
+    <nav class="methai-nav-container">
+      <a href="/" class="methai-nav-logo">Foodnati</a>
+      <a href="#faqs" class="methai-nav-faq">FAQ's</a>
+    </nav>
+  </header>
+
+  <!-- FOODNATI DELIVERY HERO -->
+  <section class="methai-rider-section">
+    <div class="methai-rider-hero">
+
+      <div class="methai-rider-content">
+        <h1>Your Journey. Your Earnings.</h1>
+        <p>
+          Flexible hours. Weekly payouts. More opportunities.
+        </p>
+      </div>
+
+      <!-- REGISTRATION BOX -->
+      <div class="methai-rider-form">
+        <h2>Become a Foodnati Rider</h2>
+
+        <p class="methai-form-description">
+          Join our delivery team and start earning weekly.
+        </p>
+
+        <form id="methaiRiderForm">
+          <input
+            type="tel"
+            name="phone"
+            placeholder="Please enter phone number"
+            pattern="[0-9]{10}"
+            maxlength="10"
+            required
+          >
+
+          <input
+            type="text"
+            name="name"
+            placeholder="Please enter name"
+            required
+          >
+
+          <select name="city" required>
+            <option value="" disabled selected>Select city</option>
+            <option value="Tanuku">Tanuku</option>
+            <option value="Tadepalligudem">Tadepalligudem</option>
+            <option value="Bhimavaram">Bhimavaram</option>
+            <option value="Palakollu">Palakollu</option>
+          </select>
+
+          <label class="methai-consent">
+            <input type="checkbox" required>
+            <span>
+              I hereby consent to receiving communications
+              from Foodnati for relevant opportunities.
+            </span>
+          </label>
+
+          <button type="submit" class="methai-rider-button">
+            Get app link
+          </button>
+        </form>
+
+        <div class="methai-app-options">
+          <span>Join Foodnati Delivery Partners</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOODNATI DELIVERY PARTNER BENEFITS -->
+  <section class="methai-join-section">
+
+    <!-- STATISTICS -->
+    
+<div class="methai-stats">
+
+  <div class="methai-stat">
+    <div class="methai-stat-icon">
+      <img src="image11.png" alt="Restaurants">
+    </div>
+    <h3>Growing</h3>
+    <p>Restaurant Network</p>
+  </div>
+
+  <div class="methai-stat">
+    <div class="methai-stat-icon">
+      <img src="image10.png" alt="Delivery Partners">
+    </div>
+    <h3>Join Us</h3>
+    <p>Delivery Partners</p>
+  </div>
+
+  <div class="methai-stat">
+    <div class="methai-stat-icon">
+      <img src="image12.png" alt="Food Deliveries">
+    </div>
+    <h3>Fast</h3>
+    <p>Food Deliveries</p>
+  </div>
+
+  <div class="methai-stat">
+    <div class="methai-stat-icon">
+      <img src="image15.png" alt="Weekly Payments">
+    </div>
+    <h3>Weekly</h3>
+    <p>Payment Opportunities</p>
+  </div>
+
+</div>
+
+
+    <!-- WHY JOIN -->
+    <div class="methai-join-container">
+      <h2 class="methai-join-title">
+        Why join Foodnati?
+      </h2>
+
+      <p class="methai-join-description">
+        At Foodnati, we value your time and hard work.
+        Join our delivery team and enjoy flexible earning opportunities.
+      </p>
+
+      <div class="methai-join-content">
+
+        <!-- LEFT IMAGE -->
+        <div class="methai-join-image">
+          <img src="image22.png" alt="Foodnati Delivery Partners">
+        </div>
+
+        <!-- RIGHT BENEFITS -->
+        <div class="methai-benefits">
+
+          <div class="methai-benefit">
+            <span class="methai-benefit-check">✓</span>
+            <div>
+              <h3>Get Paid Weekly</h3>
+              <p class="methai-weekly-earnings">Receive your weekly earnings directly into your bank account.</p>
+            </div>
+          </div>
+
+          <div class="methai-benefit">
+            <span class="methai-benefit-check">✓</span>
+            <div>
+              <h3>Flexible Working Hours</h3>
+              <p>
+                Choose your delivery hours according
+                to your convenience.
+              </p>
+            </div>
+          </div>
+
+          <div class="methai-benefit">
+            <span class="methai-benefit-check">✓</span>
+            <div>
+              <h3>Earn on Every Delivery</h3>
+              <p>
+                Get earning opportunities for
+                every successful delivery.
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+<!-- FOODNATI JOIN IN 3 STEPS -->
+<section class="foodnati-steps-section">
+  <div class="foodnati-steps-banner">
+    <h2>Join Foodnati in 3 Easy Steps</h2>
+  </div>
+
+  <div class="foodnati-steps-grid">
+    <div class="foodnati-step-card">
+      <div class="foodnati-step-icon pink">
+        <svg viewBox="0 0 64 64" fill="none">
+          <rect x="19" y="7" width="26" height="49" rx="5"
+                stroke="currentColor" stroke-width="3"/>
+          <path d="M26 14h12M29 49h6"
+                stroke="currentColor" stroke-width="3"
+                stroke-linecap="round"/>
+          <path d="M32 23v16m-6-6 6 6 6-6"
+                stroke="currentColor" stroke-width="3"
+                stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <h3>Step 1</h3>
+      <p>Download Foodnati Partner App</p>
+    </div>
+
+    <div class="foodnati-step-card">
+      <div class="foodnati-step-icon green">
+        <svg viewBox="0 0 64 64" fill="none">
+          <rect x="9" y="14" width="46" height="37" rx="4"
+                stroke="currentColor" stroke-width="3"/>
+          <path d="M9 24h46"
+                stroke="currentColor" stroke-width="3"/>
+          <path d="m27 30 13 8-13 8V30Z"
+                stroke="currentColor" stroke-width="3"
+                stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <h3>Step 2</h3>
+      <p>Complete Online Training</p>
+    </div>
+
+    <div class="foodnati-step-card">
+      <div class="foodnati-step-icon orange">
+        <svg viewBox="0 0 64 64" fill="none">
+          <path d="M14 43c0-12 8-21 18-21s18 9 18 21H14Z"
+                stroke="currentColor" stroke-width="3"/>
+          <path d="M10 48h44M32 15v7"
+                stroke="currentColor" stroke-width="3"
+                stroke-linecap="round"/>
+          <circle cx="32" cy="12" r="3"
+                  stroke="currentColor" stroke-width="3"/>
+        </svg>
+      </div>
+      <h3>Step 3</h3>
+      <p>Start Delivering &amp; Earning</p>
+    </div>
+  </div>
+</section>
+
+<style>
+.foodnati-steps-section {
+  width: 100%;
+  padding: 50px 20px 45px;
+  background: #fff;
+  font-family: Arial, sans-serif;
+}
+
+
+.foodnati-steps-banner {
+  max-width: 1180px;
+  height: 355px;
+  margin: 0 auto;
+  border-radius: 9px;
+  background:
+    linear-gradient(rgba(0,0,0,.58), rgba(0,0,0,.58)),
+    url("image50.png");
+  background-size: cover;
+  background-position: center 25%;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 105px 20px 0;
+}
+
+
+.foodnati-steps-banner h2 {
+  color: white;
+  font-size: 38px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.foodnati-steps-grid {
+  position: relative;
+  z-index: 2;
+  max-width: 950px;
+  margin: -180px auto 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.foodnati-step-card {
+  min-height: 255px;
+  background: white;
+  border-radius: 10px;
+  padding: 25px 15px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0,0,0,.035);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.foodnati-step-icon {
+  width: 105px;
+  height: 105px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.foodnati-step-icon svg {
+  width: 53px;
+  height: 53px;
+}
+
+.foodnati-step-icon.pink {
+  background: #fff2f5;
+  color: #E82B65;
+}
+
+.foodnati-step-icon.green {
+  background: #e9fff0;
+  color: #38a65c;
+}
+
+.foodnati-step-icon.orange {
+  background: #fff0e3;
+  color: #e69a35;
+}
+
+.foodnati-step-card h3 {
+  font-size: 25px;
+  font-weight: 700;
+  color: #111;
+  margin: 0 0 22px;
+}
+
+.foodnati-step-card p {
+  font-size: 16px;
+  line-height: 1.4;
+  color: #222;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .foodnati-steps-section {
+    padding: 30px 12px 35px;
+  }
+
+  .foodnati-steps-banner {
+    height: 290px;
+    padding: 65px 15px 0;
+  }
+
+  .foodnati-steps-banner h2 {
+    font-size: 26px;
+  }
+
+  .foodnati-steps-grid {
+    grid-template-columns: 1fr;
+    max-width: 420px;
+    margin-top: -105px;
+    gap: 15px;
+  }
+
+  .foodnati-step-card {
+    min-height: 215px;
+    padding: 22px;
+  }
+
+  .foodnati-step-icon {
+    width: 85px;
+    height: 85px;
+    margin-bottom: 16px;
+  }
+
+  .foodnati-step-card h3 {
+    font-size: 23px;
+    margin-bottom: 12px;
+  }
+
+  .foodnati-step-card p {
+    font-size: 15px;
+  }
+}
+
+.methai-footer {
+  background: #000000;
+  padding: 65px 20px 25px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.methai-footer-container {
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+.methai-footer-brand h2 {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 38px;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 35px;
+}
+
+.methai-footer-links {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 35px;
+}
+
+.methai-footer-column {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.methai-footer-column h3 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 8px;
+}
+
+.methai-footer-column a {
+  font-size: 14px;
+  color: #cccccc;
+  text-decoration: none;
+}
+
+.methai-footer-column a:hover {
+  color: #E82B65;
+}
+
+.methai-social-icons {
+  display: flex;
+  gap: 18px;
+  margin-bottom: 15px;
+}
+
+.methai-social-icons i {
+  font-size: 22px;
+  color: #ffffff;
+}
+
+.methai-footer-apps {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.methai-footer-apps img {
+  width: 145px;
+  height: auto;
+  display: block;
+}
+
+.methai-footer-bottom {
+  border-top: 1px solid #333333;
+  margin-top: 45px;
+  padding-top: 22px;
+  text-align: center;
+}
+
+.methai-footer-bottom p {
+  font-size: 13px;
+  color: #aaaaaa;
+}
+
+@media (max-width: 768px) {
+  .methai-footer {
+    padding: 45px 20px 25px;
+  }
+
+  .methai-footer-brand h2 {
+    font-size: 32px;
+  }
+
+  .methai-footer-links {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 30px 18px;
+  }
+
+  .methai-footer-column h3 {
+    font-size: 16px;
+  }
+
+  .methai-footer-column a {
+    font-size: 13px;
+  }
+
+  .methai-footer-apps img {
+    width: 125px;
+  }
+}
+
+</style>
+
+<!-- FOODNATI MORE INFO SECTION -->
+<section class="foodnati-more-section">
+  <div class="foodnati-more-container">
+
+    <!-- LEFT IMAGE -->
+    <div class="foodnati-more-image">
+      <img src="4th.jpg" alt="Foodnati Delivery Partners">
+    </div>
+
+    <!-- RIGHT CONTENT -->
+    <div class="foodnati-more-content">
+      <h2>Want to know more?</h2>
+
+      <p>
+        Learn about the process and benefits of
+        joining Foodnati. Still have questions?
+      </p>
+
+      <div class="foodnati-more-buttons">
+        <a href="#faqs" class="foodnati-faq-btn">
+          Check FAQ's
+        </a>
+
+        <a href="mailto:support@foodnati.com"
+           class="foodnati-contact-btn">
+          Contact us
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- FOODNATI FOOTER -->
+<footer class="methai-footer">
+  <div class="methai-footer-container">
+
+    <div class="methai-footer-brand">
+      <h2>Foodnati</h2>
+    </div>
+
+    <div class="methai-footer-links">
+
+      <div class="methai-footer-column">
+        <h3>For Restaurants</h3>
+        <a href="respartner/index.html">Partner With Us</a>
+        <a href="#">App For You</a>
+      </div>
+
+      <div class="methai-footer-column">
+        <h3>For Delivery Partners</h3>
+        <a href="#">App For You</a>
+        <a href="#">Partner With Us</a>
+      </div>
+
+      <div class="methai-footer-column">
+        <h3>Learn More</h3>
+        <a href="#">Terms &amp; Conditions</a>
+        <a href="#">Support</a>
+        <a href="#">Report a Bug</a>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Security</a>
+      </div>
+
+      <div class="methai-footer-column methai-footer-social">
+        <h3>Social Media</h3>
+
+        <div class="methai-social-icons">
+          <a href="#" aria-label="Instagram">
+            <i class="fa-brands fa-instagram"></i>
+          </a>
+          <a href="#" aria-label="LinkedIn">
+            <i class="fa-brands fa-linkedin-in"></i>
+          </a>
+          <a href="#" aria-label="Facebook">
+            <i class="fa-brands fa-facebook-f"></i>
+          </a>
+        </div>
+
+        <div class="methai-footer-apps">
+          <a href="#">
+            <img src="google.avif" alt="Google Play">
+          </a>
+          <a href="#">
+            <img src="app.avif" alt="App Store">
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="methai-footer-bottom">
+      <p>© 2026 Foodnati. All rights reserved.</p>
+    </div>
+
+  </div>
+</footer>
+
+
+<style>
+/* MORE INFO SECTION */
+.foodnati-more-section {
+  width: 100%;
+  background: #ffffff;
+  padding: 25px 20px 125px;
+  font-family: Arial, sans-serif;
+}
+
+.foodnati-more-container {
+  max-width: 1180px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 0.8fr;
+  align-items: center;
+  gap: 115px;
+}
+
+
+.foodnati-more-image {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: 16px;
+  margin-top: 40px;
+}
+
+.foodnati-more-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+
+/* RIGHT CONTENT */
+.foodnati-more-content h2 {
+  font-size: 33px;
+  font-weight: 500;
+  color: #111111;
+  margin: 0 0 20px;
+}
+
+.foodnati-more-content p {
+  font-size: 20px;
+  line-height: 1.35;
+  color: #888888;
+  margin: 0 0 20px;
+}
+
+.foodnati-more-buttons {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.foodnati-faq-btn,
+.foodnati-contact-btn {
+  padding: 11px 28px;
+  min-height: 50px;
+  border-radius: 9px;
+  font-size: 23px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.2s;
+}
+
+.foodnati-faq-btn {
+  background: #E82B65;
+  border: 1px solid #E82B65;
+  color: white;
+}
+
+.foodnati-contact-btn {
+  background: white;
+  border: 1px solid #E82B65;
+  color: #E82B65;
+}
+
+.foodnati-faq-btn:hover {
+  background: #d51f59;
+}
+
+.foodnati-contact-btn:hover {
+  background: #fff1f6;
+}
+
+/* FOOTER */
+.foodnati-footer {
+  background: #f8f8f8;
+  padding: 55px 20px 65px;
+  font-family: Arial, sans-serif;
+}
+
+.foodnati-footer-container {
+  max-width: 1080px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+}
+
+.foodnati-footer h3 {
+  font-size: 20px;
+  font-weight: 500;
+  color: #111;
+  margin: 0 0 18px;
+}
+
+.foodnati-footer a {
+  display: block;
+  color: #333;
+  text-decoration: none;
+  font-size: 14px;
+  margin-bottom: 9px;
+}
+
+.foodnati-social {
+  display: flex;
+  gap: 12px;
+}
+
+.foodnati-social a {
+  font-size: 22px;
+}
+
+/* MOBILE RESPONSIVE */
+@media (max-width: 768px) {
+  .foodnati-more-section {
+    padding: 20px 18px 75px;
+  }
+
+  .foodnati-more-container {
+    grid-template-columns: 1fr;
+    gap: 35px;
+  }
+
+  .foodnati-more-content h2 {
+    font-size: 28px;
+    margin-bottom: 15px;
+  }
+
+  .foodnati-more-content p {
+    font-size: 16px;
+    margin-bottom: 22px;
+  }
+
+  .foodnati-more-buttons {
+    gap: 12px;
+  }
+
+  .foodnati-faq-btn,
+  .foodnati-contact-btn {
+    font-size: 17px;
+    padding: 10px 20px;
+    min-height: 45px;
+  }
+
+  .foodnati-footer-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+  }
+}
+
+@media (max-width: 420px) {
+  .foodnati-footer-container {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+
+
+  <script>
+    const riderForm = document.getElementById("methaiRiderForm");
+    const appLinkButton = riderForm.querySelector(".methai-rider-button");
+    let resetButtonTimer;
+
+    riderForm.addEventListener("submit", function(e) {
+      e.preventDefault();
+      if (!riderForm.reportValidity()) return;
+
+      clearTimeout(resetButtonTimer);
+      appLinkButton.textContent = "✓";
+      appLinkButton.setAttribute("aria-label", "Button tapped");
+      appLinkButton.disabled = true;
+
+      resetButtonTimer = setTimeout(function() {
+        appLinkButton.textContent = "Get app link";
+        appLinkButton.removeAttribute("aria-label");
+        appLinkButton.disabled = false;
+      }, 1500);
+    });
+  </script>
+
+</body>
+</html>
