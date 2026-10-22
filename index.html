@@ -1,0 +1,1872 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Foodnati</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Poppins:wght@400;500;600;700;800;900&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      width: 100%;
+      margin: 0;
+      background: #fff;
+      font-family: 'Poppins', sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* VIDEO SECTION */
+    .video-section {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      height: 100svh;
+      background: #000;
+      overflow: hidden;
+    }
+
+    .video-section video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* VIDEO BOTTOM TEXT */
+    .video-text {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      width: 100%;
+      padding: 0 20px;
+      text-align: center;
+      color: #ffffff;
+      text-shadow: 0 3px 15px rgba(0, 0, 0, 0.5);
+    }
+
+    .video-heading {
+      font-family: 'Fredoka', sans-serif;
+      font-size: 39px;
+      font-weight: 700;
+      line-height: 1.2;
+      margin: 0;
+    }
+
+    .video-subheading {
+      font-family: 'Poppins', sans-serif;
+      font-size: 48px;
+      font-weight: 600;
+      letter-spacing: -1px;
+      line-height: 1.2;
+      margin-top: 8px;
+    }
+
+    .video-description {
+      font-family: 'Poppins', sans-serif;
+      font-size: 20px;
+      font-weight: 500;
+      letter-spacing: 0.2px;
+      line-height: 1.6;
+      margin-top: 15px;
+    }
+
+    /* APP STORE BUTTONS */
+    .app-downloads {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 15px;
+      margin-top: 25px;
+    }
+
+    .app-downloads a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.3s ease;
+    }
+
+    .app-downloads a:hover {
+      transform: scale(1.05);
+    }
+
+    .app-downloads img {
+      width: 170px;
+      height: auto;
+      display: block;
+    }
+
+    /* SCROLL DOWN */
+    .scroll-down {
+      display: inline-flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      margin-top: 25px;
+      color: #ffffff;
+      font-family: 'Poppins', sans-serif;
+      font-size: 15px;
+      font-weight: 500;
+      letter-spacing: 0;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .scroll-arrows {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+      animation: arrowMove 1.5s ease-in-out infinite;
+    }
+
+    .scroll-arrows svg {
+      width: 10px;
+      height: 6px;
+      display: block;
+      overflow: visible;
+    }
+
+    @keyframes arrowMove {
+      0%, 100% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+
+      50% {
+        transform: translateY(5px);
+        opacity: 0.6;
+      }
+    }
+
+    /* SECOND SECTION */
+    .welcome-section {
+      position: relative;
+      width: 100%;
+      min-height: 100vh;
+      min-height: 100svh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #ffffff;
+      padding: 30px 20px;
+      overflow: hidden;
+    }
+
+    .welcome-content {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      max-width: 900px;
+      text-align: center;
+      transform: translateY(-80px);
+    }
+
+    /* BETTER FOOD HEADING */
+    .welcome-heading {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 48px;
+      font-weight: 600;
+      letter-spacing: -1.5px;
+      line-height: 1.3;
+      color: #E75480;
+      text-align: center;
+      text-transform: none;
+    }
+
+    /* DESCRIPTION */
+    .welcome-description {
+      max-width: 720px;
+      margin: 22px auto 0;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 20px;
+      font-weight: 500;
+      line-height: 1.7;
+      letter-spacing: 0;
+      color: #555555;
+      text-align: center;
+    }
+
+    /* RESPONSIVE IMAGE BELOW DESCRIPTION */
+    .welcome-image {
+      width: 100%;
+      margin: 30px auto 0;
+      text-align: center;
+    }
+
+    .welcome-image .desktop-image {
+      display: block;
+      width: 100%;
+      max-width: 550px;
+      height: auto;
+      margin: 0 auto;
+    }
+
+    .welcome-image .mobile-image {
+      display: none;
+    }
+
+    /* SIDE FOOD IMAGES */
+    .side-food {
+      position: absolute;
+      z-index: 1;
+      display: block;
+      height: auto;
+      object-fit: contain;
+      pointer-events: none;
+    }
+
+    /* DESKTOP - SAME */
+    .food-left {
+      width: 230px;
+      left: 9%;
+      top: 42%;
+    }
+
+    .food-right-top {
+      width: 210px;
+      right: 5%;
+      top: 12%;
+    }
+
+    .food-right-bottom {
+      width: 220px;
+      right: 5%;
+      bottom: 12%;
+    }
+
+    /* PINK CURVED LINES */
+    .food-line {
+      position: absolute;
+      z-index: 0;
+      width: 34%;
+      height: 100%;
+      top: 0;
+      pointer-events: none;
+    }
+
+    .food-line-left {
+      left: 0;
+    }
+
+    .food-line-right {
+      right: 0;
+    }
+
+    .food-line svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    /* TABLET - SAME */
+    @media (min-width: 601px) and (max-width: 1100px) {
+      .food-left {
+        width: 145px;
+        left: 5%;
+      }
+
+      .food-right-top {
+        width: 140px;
+        right: 1%;
+      }
+
+      .food-right-bottom {
+        width: 150px;
+        right: 1%;
+      }
+    }
+
+    /* MOBILE RESPONSIVE */
+    @media (max-width: 600px) {
+      .video-text {
+        bottom: 25px;
+      }
+
+      .video-heading {
+        font-size: 38px;
+      }
+
+      .video-subheading {
+        font-size: 34px;
+        font-weight: 600;
+        letter-spacing: -0.5px;
+      }
+
+      .video-description {
+        font-size: 17px;
+        line-height: 1.5;
+        margin-top: 12px;
+      }
+
+      .app-downloads {
+        gap: 10px;
+        margin-top: 20px;
+      }
+
+      .app-downloads img {
+        width: 145px;
+      }
+
+      .scroll-down {
+        margin-top: 20px;
+        font-size: 13px;
+        gap: 6px;
+      }
+
+      .scroll-arrows svg {
+        width: 9px;
+        height: 5px;
+      }
+
+      /* REMOVE EXTRA TOP GAP */
+      .welcome-section {
+        min-height: auto;
+        display: block;
+        padding: 55px 12px 45px;
+      }
+
+      .welcome-content {
+        width: 100%;
+        max-width: 100%;
+        transform: none;
+      }
+
+      .welcome-heading {
+        font-size: 32px;
+        font-weight: 600;
+        letter-spacing: -0.7px;
+        line-height: 1.4;
+        position: relative;
+        z-index: 2;
+      }
+
+      .welcome-description {
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 1.7;
+        margin: 18px auto 0;
+        max-width: 290px;
+        position: relative;
+        z-index: 2;
+      }
+
+      .welcome-image {
+        margin-top: 25px;
+      }
+
+      /* HIDE PC IMAGE */
+      .welcome-image .desktop-image {
+        display: none;
+      }
+
+      /* SHOW MOBILE IMAGE */
+      .welcome-image .mobile-image {
+        display: block;
+        width: 100%;
+        max-width: 340px;
+        height: auto;
+        margin: 0 auto;
+      }
+
+      /* 3.PNG - LEFT SIDE OF TEXT */
+      .food-left {
+        width: 65px;
+        left: -15px;
+        top: 135px;
+      }
+
+      /* 4.JPG - RIGHT TOP OF TEXT */
+      .food-right-top {
+        width: 65px;
+        right: -15px;
+        top: 45px;
+      }
+
+      /* 5.PNG - RIGHT SIDE OF DESCRIPTION */
+      .food-right-bottom {
+        width: 70px;
+        right: -15px;
+        top: 230px;
+        bottom: auto;
+        z-index: 1;
+      }
+
+      /* NO PINK LINES ON MOBILE */
+      .food-line {
+        display: none;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      .scroll-arrows {
+        animation: none;
+      }
+    }
+    
+/* ONLY 3 SIDE FOOD IMAGES ANIMATION */
+
+/* LEFT IMAGE - INITIAL POSITION */
+.welcome-section .food-left {
+  opacity: 0;
+  transform: translateX(-120px);
+  transition: transform 1.2s ease, opacity 1.2s ease;
+}
+
+/* RIGHT IMAGES - INITIAL POSITION */
+.welcome-section .food-right-top,
+.welcome-section .food-right-bottom {
+  opacity: 0;
+  transform: translateX(120px);
+  transition: transform 1.2s ease, opacity 1.2s ease;
+}
+
+/* ANIMATE ONLY FOOD IMAGES */
+.welcome-section.show-animation .food-left,
+.welcome-section.show-animation .food-right-top,
+.welcome-section.show-animation .food-right-bottom {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* SMALL DELAY FOR RIGHT IMAGES */
+.welcome-section .food-right-top {
+  transition-delay: 0.15s;
+}
+
+.welcome-section .food-right-bottom {
+  transition-delay: 0.3s;
+}
+
+/* NO ANIMATION FOR OTHER CONTENT */
+.welcome-section .welcome-heading,
+.welcome-section .welcome-description,
+.welcome-section .desktop-image,
+.welcome-section .mobile-image {
+  opacity: 1;
+  transform: none;
+  transition: none;
+}
+
+/* REDUCED MOTION */
+@media (prefers-reduced-motion: reduce) {
+  .welcome-section .side-food {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* THIRD SECTION */
+
+
+.waiting-section {
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100svh;
+
+  background: linear-gradient(
+    to bottom,
+    #FFF0F5 0%,
+    #FFF0F5 65%,
+    #FFF8FB 82%,
+    #FFFFFF 100%
+  );
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 65px 20px 50px;
+}
+
+
+.waiting-heading {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 42px;
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: -1px;
+  color: #C2185B;
+  text-align: center;
+  margin: 0;
+}
+
+/* MOBILE VIEW */
+@media (max-width: 600px) {
+  .waiting-section {
+    padding: 45px 15px 40px;
+  }
+
+  .waiting-heading {
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.4;
+    letter-spacing: -0.5px;
+  }
+}
+
+.waiting-description {
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 19px;
+  font-weight: 500;
+  line-height: 1.7;
+  color: #555555;
+  text-align: center;
+  margin: 20px auto 0;
+}
+
+/* MOBILE */
+@media (max-width: 600px) {
+  .waiting-description {
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 1.7;
+    margin-top: 16px;
+    padding: 0 10px;
+  }
+}
+
+/* MOBILE APP IMAGE - VERY LIGHT BOTTOM FADE */
+
+.waiting-image {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 25px;
+}
+
+.waiting-image img {
+  display: block;
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+  object-fit: contain;
+
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    black 0%,
+    black 90%,
+    transparent 100%
+  );
+
+  mask-image: linear-gradient(
+    to bottom,
+    black 0%,
+    black 90%,
+    transparent 100%
+  );
+}
+
+/* MOBILE VIEW */
+@media (max-width: 600px) {
+  .waiting-image {
+    margin-top: 20px;
+  }
+
+  .waiting-image img {
+    max-width: 220px;
+  }
+}
+/* MAIN FEATURES LAYOUT */
+
+.waiting-features {
+  width: 100%;
+  max-width: 1100px;
+  margin: 30px auto 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 300px minmax(0, 1fr);
+  align-items: center;
+  gap: 30px;
+}
+
+/* LEFT & RIGHT - 4 BOXES EACH */
+
+.feature-left,
+.feature-right {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  align-items: start;
+}
+
+/* LEFT STAIRCASE */
+
+.feature-left .feature-box:nth-child(1) {
+  transform: translateY(-45px);
+}
+
+.feature-left .feature-box:nth-child(2) {
+  transform: translateY(15px);
+}
+
+.feature-left .feature-box:nth-child(3) {
+  transform: translateY(-15px);
+}
+
+.feature-left .feature-box:nth-child(4) {
+  transform: translateY(45px);
+}
+
+/* RIGHT STAIRCASE - OPPOSITE STYLE */
+
+.feature-right .feature-box:nth-child(1) {
+  transform: translateY(15px);
+}
+
+.feature-right .feature-box:nth-child(2) {
+  transform: translateY(-45px);
+}
+
+.feature-right .feature-box:nth-child(3) {
+  transform: translateY(45px);
+}
+
+.feature-right .feature-box:nth-child(4) {
+  transform: translateY(-15px);
+}
+
+/* ALL FEATURE BOXES */
+
+.feature-box {
+  width: 100%;
+  min-height: 110px;
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 12px 8px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  text-align: center;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.06);
+}
+
+.feature-box i {
+  font-size: 25px;
+  color: #C2185B;
+}
+
+.feature-box span {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.3;
+  color: #333333;
+}
+
+/* CENTER MOBILE IMAGE */
+
+.waiting-image {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 0;
+}
+
+.waiting-image img {
+  display: block;
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+  object-fit: contain;
+
+  /* LIGHT BOTTOM FADE */
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    black 0%,
+    black 90%,
+    transparent 100%
+  );
+
+  mask-image: linear-gradient(
+    to bottom,
+    black 0%,
+    black 90%,
+    transparent 100%
+  );
+}
+
+/* SCHEDULE BOX - CENTER OF IMAGE */
+
+.schedule-box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  width: 105px;
+  height: 105px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.08);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  text-align: center;
+  z-index: 3;
+}
+
+.schedule-box i {
+  font-size: 25px;
+  color: #C2185B;
+}
+
+.schedule-box span {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.3;
+  color: #333333;
+}
+
+/* TABLET VIEW */
+
+@media (min-width: 601px) and (max-width: 900px) {
+
+  .waiting-features {
+    grid-template-columns: minmax(0, 1fr) 240px minmax(0, 1fr);
+    gap: 12px;
+  }
+
+  .feature-left,
+  .feature-right {
+    gap: 8px;
+  }
+
+  .feature-box {
+    min-height: 85px;
+    padding: 8px 4px;
+  }
+
+  .feature-box i {
+    font-size: 20px;
+  }
+
+  .feature-box span {
+    font-size: 11px;
+  }
+
+  .waiting-image img {
+    max-width: 240px;
+  }
+}
+
+/* MOBILE VIEW */
+
+@media (max-width: 600px) {
+
+  .waiting-features {
+    grid-template-columns: minmax(0, 1fr) 160px minmax(0, 1fr);
+    gap: 5px;
+    margin-top: 25px;
+  }
+
+  .feature-left,
+  .feature-right {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 5px;
+  }
+
+  .feature-box {
+    min-height: 65px;
+    padding: 6px 2px;
+    gap: 5px;
+    border-radius: 8px;
+  }
+
+  .feature-box i {
+    font-size: 15px;
+  }
+
+  .feature-box span {
+    font-size: 9px;
+    line-height: 1.2;
+    overflow-wrap: anywhere;
+  }
+
+  /* LEFT MOBILE STAIRCASE */
+
+  .feature-left .feature-box:nth-child(1) {
+    transform: translateY(-25px);
+  }
+
+  .feature-left .feature-box:nth-child(2) {
+    transform: translateY(10px);
+  }
+
+  .feature-left .feature-box:nth-child(3) {
+    transform: translateY(-10px);
+  }
+
+  .feature-left .feature-box:nth-child(4) {
+    transform: translateY(25px);
+  }
+
+  /* RIGHT MOBILE STAIRCASE */
+
+  .feature-right .feature-box:nth-child(1) {
+    transform: translateY(10px);
+  }
+
+  .feature-right .feature-box:nth-child(2) {
+    transform: translateY(-25px);
+  }
+
+  .feature-right .feature-box:nth-child(3) {
+    transform: translateY(25px);
+  }
+
+  .feature-right .feature-box:nth-child(4) {
+    transform: translateY(-10px);
+  }
+
+  /* CENTER IMAGE */
+
+  .waiting-image img {
+    max-width: 160px;
+  }
+
+  /* CENTER SCHEDULE BOX */
+
+  .schedule-box {
+    width: 70px;
+    height: 70px;
+    border-radius: 9px;
+    gap: 5px;
+  }
+
+  .schedule-box i {
+    font-size: 18px;
+  }
+
+  .schedule-box span {
+    font-size: 10px;
+  }
+}
+
+/* EXTRA SMALL PHONES */
+
+@media (max-width: 360px) {
+
+  .waiting-features {
+    grid-template-columns: minmax(0, 1fr) 140px minmax(0, 1fr);
+    gap: 3px;
+  }
+
+  .waiting-image img {
+    max-width: 140px;
+  }
+
+  .feature-box i {
+    font-size: 13px;
+  }
+
+  .feature-box span {
+    font-size: 8px;
+  }
+}
+
+
+/* MOBILE VIEW ONLY */
+@media (max-width: 600px) {
+
+  /* HIDE MOBILE IMAGE + SCHEDULE BOX */
+  .waiting-image,
+  .schedule-box {
+    display: none !important;
+  }
+
+  /* LEFT 4 + RIGHT 4 BOXES */
+  .waiting-features {
+    width: 100%;
+    max-width: 420px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 14px;
+    margin: 45px auto 0;
+    padding: 0 8px;
+  }
+
+  /* EACH SIDE: 2 COLUMNS, 2 ROWS */
+  .feature-left,
+  .feature-right {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    align-items: center;
+  }
+
+  /* FEATURE BOX DESIGN */
+  .feature-box {
+    width: 100%;
+    min-height: 100px;
+    padding: 12px 5px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.06);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    text-align: center;
+  }
+
+  .feature-box i {
+    font-size: 22px;
+    color: #C2185B;
+  }
+
+  .feature-box span {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    line-height: 1.3;
+    color: #333333;
+    overflow-wrap: anywhere;
+  }
+
+  /* LEFT STAIRCASE */
+  .feature-left .feature-box:nth-child(1) {
+    transform: translateY(-25px);
+  }
+
+  .feature-left .feature-box:nth-child(2) {
+    transform: translateY(10px);
+  }
+
+  .feature-left .feature-box:nth-child(3) {
+    transform: translateY(-10px);
+  }
+
+  .feature-left .feature-box:nth-child(4) {
+    transform: translateY(25px);
+  }
+
+  /* RIGHT STAIRCASE */
+  .feature-right .feature-box:nth-child(1) {
+    transform: translateY(10px);
+  }
+
+  .feature-right .feature-box:nth-child(2) {
+    transform: translateY(-25px);
+  }
+
+  .feature-right .feature-box:nth-child(3) {
+    transform: translateY(25px);
+  }
+
+  .feature-right .feature-box:nth-child(4) {
+    transform: translateY(-10px);
+  }
+}
+
+/* EXTRA SMALL MOBILE */
+@media (max-width: 360px) {
+  .waiting-features {
+    gap: 8px;
+    padding: 0 4px;
+  }
+
+  .feature-left,
+  .feature-right {
+    gap: 7px;
+  }
+
+  .feature-box {
+    min-height: 85px;
+    padding: 8px 3px;
+  }
+
+  .feature-box i {
+    font-size: 19px;
+  }
+
+  .feature-box span {
+    font-size: 10px;
+  }
+}
+
+/* DOWNLOAD SECTION */
+
+.methai-download-section {
+  width: 100%;
+  background: #ffffff;
+  padding: 55px 6%;
+}
+
+/* MAIN CARD */
+
+.methai-download-card {
+  position: relative;
+  width: 100%;
+  max-width: 1050px;
+  height: 420px;
+  margin: 0 auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  background: linear-gradient(
+    160deg,
+    #ffffff 0%,
+    #FFF0F5 100%
+  );
+
+  border: 3px solid #FFE5EB;
+  border-radius: 35px;
+  overflow: hidden;
+
+  box-shadow: 0 6px 15px rgba(0,0,0,0.05);
+}
+
+/* DECORATIVE CIRCLES */
+
+.methai-download-card::before,
+.methai-download-card::after {
+  content: "";
+  position: absolute;
+  width: 450px;
+  height: 450px;
+  border: 1px solid rgba(232,43,101,0.12);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.methai-download-card::before {
+  right: -150px;
+  bottom: -300px;
+}
+
+.methai-download-card::after {
+  right: -240px;
+  bottom: -350px;
+}
+
+/* LEFT CONTENT */
+
+.methai-download-content {
+  position: relative;
+  z-index: 2;
+  width: 55%;
+  padding-left: 8%;
+}
+
+.methai-download-content h2 {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 32px;
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -1px;
+  color: #202020;
+  margin: 0 0 13px;
+}
+
+.methai-download-content p {
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.4;
+  color: #626B80;
+  margin: 0 0 28px;
+}
+
+/* APP BUTTONS */
+
+.methai-download-buttons {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.methai-download-buttons a {
+  display: block;
+}
+
+.methai-download-buttons img {
+  display: block;
+  width: 140px;
+  height: auto;
+  object-fit: contain;
+}
+
+/* PHONE POSITION */
+
+.methai-download-phone {
+  position: absolute;
+  right: 10%;
+  top: 45px;
+  width: 310px;
+  height: 500px;
+  z-index: 2;
+}
+
+/* PHONE FRAME */
+
+.methai-phone-frame {
+  position: relative;
+  width: 100%;
+  height: 100%;
+
+  background: #111111;
+  border: 4px solid #555965;
+  border-radius: 45px;
+  padding: 11px;
+
+  box-shadow:
+    inset 0 0 0 2px #20242B,
+    0 0 0 1px #A4A8AF;
+}
+
+/* PHONE SCREEN */
+
+.methai-phone-screen {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: #ffffff;
+  border-radius: 32px;
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 85px;
+}
+
+/* PHONE NOTCH */
+
+.methai-phone-notch {
+  position: absolute;
+  top: 11px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  width: 115px;
+  height: 25px;
+  background: #000000;
+  border-radius: 0 0 15px 15px;
+  z-index: 5;
+}
+
+/* QR HEADING */
+
+.methai-phone-screen h3 {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.4;
+  color: #626B80;
+  text-align: center;
+  margin: 0 0 20px;
+}
+
+/* QR BOX */
+
+.methai-qr-box {
+  width: 185px;
+  height: 185px;
+  background: #ffffff;
+  border: 1px solid #FFB9C8;
+  border-radius: 12px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+
+.methai-qr-box img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* TABLET VIEW */
+
+@media (min-width: 701px) and (max-width: 1000px) {
+
+  .methai-download-content {
+    padding-left: 6%;
+  }
+
+  .methai-download-content h2 {
+    font-size: 27px;
+  }
+
+  .methai-download-content p {
+    font-size: 15px;
+  }
+
+  .methai-download-buttons img {
+    width: 115px;
+  }
+
+  .methai-download-phone {
+    width: 260px;
+    height: 450px;
+    right: 5%;
+  }
+
+  .methai-phone-screen h3 {
+    font-size: 14px;
+  }
+
+  .methai-qr-box {
+    width: 155px;
+    height: 155px;
+  }
+}
+
+/* MOBILE VIEW */
+
+@media (max-width: 700px) {
+
+  .methai-download-section {
+    padding: 35px 12px;
+  }
+
+  .methai-download-card {
+    height: 560px;
+    border-width: 2px;
+    border-radius: 23px;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .methai-download-content {
+    width: 100%;
+    padding: 35px 12px 0;
+    text-align: center;
+  }
+
+  .methai-download-content h2 {
+    font-size: 24px;
+    letter-spacing: -0.5px;
+    margin-bottom: 10px;
+  }
+
+  .methai-download-content p {
+    font-size: 13px;
+    line-height: 1.5;
+    margin-bottom: 20px;
+  }
+
+  .methai-download-buttons {
+    justify-content: center;
+    gap: 9px;
+  }
+
+  .methai-download-buttons img {
+    width: 115px;
+  }
+
+  /* SMALLER PHONE */
+
+  .methai-download-phone {
+    position: absolute;
+    width: 215px;
+    height: 385px;
+    top: 240px;
+    right: auto;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .methai-phone-frame {
+    border-radius: 35px;
+    padding: 8px;
+    border-width: 3px;
+  }
+
+  .methai-phone-screen {
+    border-radius: 25px;
+    padding-top: 65px;
+  }
+
+  .methai-phone-notch {
+    top: 8px;
+    width: 90px;
+    height: 20px;
+    border-radius: 0 0 12px 12px;
+  }
+
+  .methai-phone-screen h3 {
+    font-size: 12px;
+    margin-bottom: 15px;
+  }
+
+  .methai-qr-box {
+    width: 135px;
+    height: 135px;
+    border-radius: 10px;
+    padding: 7px;
+  }
+}
+
+/* METHAI WAITING SECTION - BALANCED MOBILE GAP */
+
+@media screen and (max-width: 600px) {
+
+  body > .waiting-section {
+    min-height: auto;
+    height: auto;
+    padding: 65px 15px 65px;
+  }
+
+  .waiting-heading {
+    margin: 0;
+  }
+
+  .waiting-description {
+    margin-top: 20px;
+  }
+
+  .waiting-features {
+    margin-top: 38px;
+  }
+
+}
+
+  
+/* Foodnati brand typography */
+.video-heading, .methai-footer-brand h2 { font-family: 'Fredoka', sans-serif; text-transform: none; }
+</style>
+  <link rel="stylesheet" href="new.css">
+
+</head>
+
+<body>
+
+  <!-- VIDEO SECTION -->
+  <section class="video-section">
+
+    <video autoplay muted loop playsinline>
+      <source src="video.mp4" type="video/mp4">
+    </video>
+
+    <div class="video-text">
+
+      <h1 class="video-heading">Foodnati</h1>
+
+      <p class="video-subheading">food delivery app</p>
+
+      <p class="video-description">
+        Experience fast &amp; easy online ordering<br>
+        on the Foodnati app
+      </p>
+
+      <!-- APP DOWNLOAD BUTTONS -->
+      <div class="app-downloads">
+
+        <a href="#" aria-label="Download on Google Play">
+          <img src="app.avif" alt="Get it on Google Play">
+        </a>
+
+        <a href="#" aria-label="Download on App Store">
+          <img src="google.avif" alt="Download on the App Store">
+        </a>
+
+      </div>
+
+      <!-- SCROLL DOWN -->
+      <a href="#welcome" class="scroll-down">
+
+        <span>Scroll down</span>
+
+        <span class="scroll-arrows" aria-hidden="true">
+
+          <svg viewBox="0 0 28 15" fill="none">
+            <path
+              d="M3 3 L14 13 L25 3"
+              stroke="white"
+              stroke-width="3"
+              stroke-linecap="round"
+              stroke-linejoin="round"/>
+          </svg>
+
+          <svg viewBox="0 0 28 15" fill="none">
+            <path
+              d="M3 3 L14 13 L25 3"
+              stroke="white"
+              stroke-width="3"
+              stroke-linecap="round"
+              stroke-linejoin="round"/>
+          </svg>
+
+        </span>
+
+      </a>
+
+    </div>
+
+  </section>
+
+  <!-- BETTER FOOD SECTION -->
+  <section class="welcome-section" id="welcome">
+
+    <!-- LEFT PINK CURVED LINE -->
+    <div class="food-line food-line-left" aria-hidden="true">
+      <svg viewBox="0 0 500 900" preserveAspectRatio="none">
+        <path
+          d="M-40 30
+             C80 40, 110 170, 230 120
+             S410 0, 300 65
+             C160 150, 100 250, 190 340
+             S390 480, 300 650
+             C210 820, 90 880, -30 820"
+          fill="none"
+          stroke="#FFB6C9"
+          stroke-width="1.3"/>
+      </svg>
+    </div>
+
+    <!-- RIGHT PINK CURVED LINE -->
+    <div class="food-line food-line-right" aria-hidden="true">
+      <svg viewBox="0 0 500 900" preserveAspectRatio="none">
+        <path
+          d="M520 70
+             C370 90, 300 0, 190 45
+             C50 100, 120 250, 260 370
+             S440 570, 330 700
+             C230 820, 310 900, 420 780
+             S500 660, 540 680"
+          fill="none"
+          stroke="#FFB6C9"
+          stroke-width="1.3"/>
+      </svg>
+    </div>
+
+    <!-- LEFT FOOD IMAGE -->
+    <img
+      src="foods/3.png"
+      class="side-food food-left"
+      alt="Delicious food">
+
+    <!-- RIGHT TOP FOOD IMAGE -->
+    <img
+      src="foods/4.png"
+      class="side-food food-right-top"
+      alt="Fresh food">
+
+    <!-- RIGHT BOTTOM FOOD IMAGE -->
+    <img
+      src="foods/5.png"
+      class="side-food food-right-bottom"
+      alt="Tasty food">
+
+    <!-- CENTER CONTENT -->
+    <div class="welcome-content">
+
+      <h2 class="welcome-heading">
+        Better food for<br>
+        more people
+      </h2>
+
+      <p class="welcome-description">
+        Discover delicious meals from your favourite restaurants,<br>
+        freshly prepared and delivered straight<br>
+        to your doorstep.
+      </p>
+
+      <!-- PC AND MOBILE IMAGES -->
+      <div class="welcome-image">
+
+        <img
+          src="1.png"
+          class="desktop-image"
+          alt="Foodnati food delivery">
+
+        <img
+          src="2.png"
+          class="mobile-image"
+          alt="Foodnati food delivery">
+
+      </div>
+
+    </div>
+
+  </section>
+
+<!-- THIRD SECTION -->
+<section class="waiting-section" id="waiting">
+
+  <h2 class="waiting-heading">
+    What’s waiting for you<br>
+    on the app?
+  </h2>
+
+<p class="waiting-description">
+  Our app is packed with features that<br>
+  enable you to experience food<br>
+  delivery like never before
+</p>
+ 
+<!-- METHAI APP FEATURES -->
+<div class="waiting-features">
+
+  <!-- LEFT SIDE - 4 BOXES -->
+  <div class="feature-left">
+
+    <div class="feature-box">
+      <i class="fa-solid fa-tags"></i>
+      <span>Exciting<br>Offers</span>
+    </div>
+
+    <div class="feature-box">
+      <i class="fa-solid fa-motorcycle"></i>
+      <span>Fast<br>Delivery</span>
+    </div>
+
+    <div class="feature-box">
+      <i class="fa-solid fa-location-dot"></i>
+      <span>Live Order<br>Tracking</span>
+    </div>
+
+    <div class="feature-box">
+      <i class="fa-solid fa-credit-card"></i>
+      <span>Easy<br>Payments</span>
+    </div>
+
+  </div>
+
+  <!-- CENTER MOBILE IMAGE -->
+  <div class="waiting-image">
+
+    <img src="mobile.avif" alt="Foodnati App Preview">
+
+    <!-- SCHEDULE BOX -->
+    <div class="schedule-box">
+      <i class="fa-regular fa-calendar-check"></i>
+      <span>Schedule<br>your order</span>
+    </div>
+
+  </div>
+
+  <!-- RIGHT SIDE - 4 BOXES -->
+  <div class="feature-right">
+
+    <div class="feature-box">
+      <i class="fa-solid fa-utensils"></i>
+      <span>Fresh<br>Food</span>
+    </div>
+
+    <div class="feature-box">
+      <i class="fa-solid fa-clock"></i>
+      <span>Order<br>Anytime</span>
+    </div>
+
+    <div class="feature-box">
+      <i class="fa-solid fa-store"></i>
+      <span>Local<br>Restaurants</span>
+    </div>
+
+    <div class="feature-box">
+      <i class="fa-solid fa-heart"></i>
+      <span>Made with<br>Love</span>
+    </div>
+
+  </div>
+
+</div>
+
+</section>
+
+
+<!-- OUR PROMISE SECTION -->
+<section class="methai-promise-section">
+
+  <h2 class="methai-promise-heading">
+    Our Promise
+  </h2>
+
+  <!-- PROMISE ITEMS -->
+  <div class="methai-promise-items">
+
+    <!-- FIRST -->
+    <div class="methai-promise-item">
+      <img src="ben/ddd.webp" alt="No Delivery Fee">
+      <h3>No Delivery Fee</h3>
+    </div>
+
+    <!-- SECOND -->
+    <div class="methai-promise-item">
+      <img src="ben/surge.webp" alt="No Surge Fees">
+      <h3>No Surge Fees</h3>
+    </div>
+
+    <!-- THIRD -->
+    <div class="methai-promise-item">
+      <img src="ben/packing.webp" alt="No Packing Fees">
+      <h3>No Packing Fees</h3>
+    </div>
+
+  </div>
+
+<!-- GOLD PRICE COMPARISON SLIDER -->
+<div class="methai-price-slider">
+
+  <div class="price-slider-window">
+
+    <div class="price-slider-track">
+
+      <!-- FIRST TEXT -->
+      <div class="price-slide">
+        <span>Our App 10–20% Lower</span>
+
+        <div class="price-eyes eyes-straight">
+          <span class="eye"></span>
+          <span class="eye"></span>
+        </div>
+      </div>
+
+      <!-- SECOND TEXT -->
+      <div class="price-slide">
+        <span>Other Apps 10–20% Higher</span>
+
+        <div class="price-eyes eyes-looking-left">
+          <span class="eye"></span>
+          <span class="eye"></span>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+</section>
+
+
+<!-- METHAI DOWNLOAD APP SECTION -->
+<section class="methai-download-section">
+
+  <div class="methai-download-card">
+
+    <!-- LEFT CONTENT -->
+    <div class="methai-download-content">
+
+      <h2>Download the app now!</h2>
+
+      <p>
+        Experience seamless online ordering<br>
+        only on the Foodnati app
+      </p>
+
+      <div class="methai-download-buttons">
+        <a href="#" aria-label="Google Play">
+          <img src="google.avif" alt="Google Play">
+        </a>
+
+        <a href="#" aria-label="App Store">
+          <img src="app.avif" alt="App Store">
+        </a>
+      </div>
+
+    </div>
+
+    <!-- RIGHT PHONE -->
+    <div class="methai-download-phone">
+
+      <div class="methai-phone-frame">
+
+        <div class="methai-phone-notch"></div>
+
+        <div class="methai-phone-screen">
+
+          <h3>
+            Scan the QR code to<br>
+            download the app
+          </h3>
+
+          <div class="methai-qr-box">
+            <img src="qr.png" alt="Foodnati QR Code">
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- METHAI FOOTER -->
+<footer class="methai-footer">
+
+  <div class="methai-footer-container">
+
+    <!-- METHAI BRAND -->
+    <div class="methai-footer-brand">
+      <h2>Foodnati</h2>
+    </div>
+
+    <!-- FOOTER CONTENT -->
+    <div class="methai-footer-links">
+
+      <!-- FOR RESTAURANTS -->
+      <div class="methai-footer-column">
+        <h3>For Restaurants</h3>
+
+        <a href="#">Partner With Us</a>
+        <a href="#">App For You</a>
+      </div>
+
+      <!-- FOR DELIVERY PARTNERS -->
+      <div class="methai-footer-column">
+        <h3>For Delivery Partners</h3>
+
+        <a href="#">App For You</a>
+        <a href="#">Partner With Us</a>
+      </div>
+
+      <!-- LEARN MORE -->
+      <div class="methai-footer-column">
+        <h3>Learn More</h3>
+
+        <a href="#">Terms & Conditions</a>
+        <a href="#">Support</a>
+        <a href="#">Report a Bug</a>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Security</a>
+      </div>
+
+      <!-- SOCIAL MEDIA -->
+      <div class="methai-footer-column methai-footer-social">
+
+        <h3>Social Media</h3>
+
+        <div class="methai-social-icons">
+
+          <!-- INSTAGRAM -->
+          <a href="#"
+             aria-label="Instagram"
+             target="_blank"
+             rel="noopener noreferrer">
+            <i class="fa-brands fa-instagram"></i>
+          </a>
+
+          <!-- LINKEDIN -->
+          <a href="#"
+             aria-label="LinkedIn"
+             target="_blank"
+             rel="noopener noreferrer">
+            <i class="fa-brands fa-linkedin-in"></i>
+          </a>
+
+          <!-- FACEBOOK -->
+          <a href="#"
+             aria-label="Facebook"
+             target="_blank"
+             rel="noopener noreferrer">
+            <i class="fa-brands fa-facebook-f"></i>
+          </a>
+
+        </div>
+
+        <!-- APP DOWNLOAD BADGES -->
+        <div class="methai-footer-apps">
+
+          <!-- GOOGLE PLAY -->
+          <a href="#" aria-label="Get it on Google Play">
+            <img src="google.avif"
+                 alt="Get it on Google Play">
+          </a>
+
+          <!-- APP STORE -->
+          <a href="#" aria-label="Download on the App Store">
+            <img src="app.avif"
+                 alt="Download on the App Store">
+          </a>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- FOOTER BOTTOM -->
+    <div class="methai-footer-bottom">
+      <p>© 2026 Foodnati. All rights reserved.</p>
+    </div>
+
+  </div>
+
+</footer>
+
+</body>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  const section = document.querySelector(".welcome-section");
+
+  if (!section) return;
+
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    section.classList.add("show-animation");
+    return;
+  }
+
+  if (!("IntersectionObserver" in window)) {
+    section.classList.add("show-animation");
+    return;
+  }
+
+  const observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        section.classList.add("show-animation");
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.15
+  });
+
+  observer.observe(section);
+
+});
+</script>
+
+</html>
