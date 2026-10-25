@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- FOODNATI HOME PAGE -->
+  <url>
+    <loc>https://foodnati.com/</loc>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- FOODNATI RESTAURANT PARTNER -->
+  <url>
+    <loc>https://foodnati.com/respartner/index.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- FOODNATI DELIVERY PARTNER -->
+  <url>
+    <loc>https://foodnati.com/delpartner/index.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+</urlset>
