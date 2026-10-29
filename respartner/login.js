@@ -98,7 +98,7 @@
       .fnv2-resend-row{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:15px;font-size:13px;color:#7b7b89}
       .fnv2-resend{border:0;background:transparent;color:#d82b68;font-weight:700;cursor:pointer}
       .fnv2-resend:disabled{color:#9e9eaa;cursor:not-allowed}
-      .fnv2-error{min-height:18px;color:#d72d54;font-size:12px;margin-top:8px}.fnv2-title{color:#17243B;font-size:22px;margin:0 0 10px}.fnv2-desc{color:#707988;font-size:13px;line-height:1.5;margin:0 0 20px}
+      .fnv2-error{color:#d72d54;font-size:12px;margin-top:8px;line-height:1.45}.fnv2-error:empty{display:none}.fnv2-title{color:#17243B;font-size:22px;margin:0 0 10px}.fnv2-desc{color:#707988;font-size:13px;line-height:1.5;margin:0 0 20px}
       .fnv2-back{background:none;border:0;color:#d82b68;font-weight:700;cursor:pointer;margin-top:17px}.fnv2-result{text-align:center;padding:10px 0}.fnv2-check{display:grid;place-items:center;margin:0 auto 18px;width:62px;height:62px;border-radius:50%;background:#e8f8ed;color:#17a34a;font-size:33px}
       .fnv2-profile-wrap{display:inline-flex;align-items:center;position:relative;vertical-align:middle}
       .fnv2-profile-button{display:inline-flex!important;align-items:center!important;justify-content:center!important;width:auto!important;height:auto!important;min-width:0!important;min-height:0!important;padding:0!important;border:0!important;border-radius:0!important;background:transparent!important;color:#17243B!important;cursor:pointer!important;text-decoration:none!important;line-height:1!important;box-shadow:none!important}
@@ -186,6 +186,17 @@
     function closePopup() { if(resendTimer){clearInterval(resendTimer);resendTimer=null;} resetCaptcha(); open = false; modal.classList.remove('is-open'); document.body.classList.remove('fnv2-lock'); if (previousFocus && previousFocus.isConnected) previousFocus.focus(); }
     function openPopup() { previousFocus = document.activeElement; mobile=''; resetCaptcha(); showMobile(); open=true; modal.classList.add('is-open'); document.body.classList.add('fnv2-lock'); }
     const spinner = '<span class="fnv2-spinner" aria-hidden="true"></span>';
+    // Show validation errors only when present; clear them automatically.
+    const errorObserver = new MutationObserver(() => {
+      content.querySelectorAll('.fnv2-error').forEach(el => {
+        if (!el.textContent.trim()) return;
+        clearTimeout(el._fnClearTimer);
+        el._fnClearTimer = setTimeout(() => {
+          if (el.isConnected) el.textContent = '';
+        }, 4500);
+      });
+    });
+    errorObserver.observe(content, {subtree:true,childList:true,characterData:true});
     function showMobile() {
       content.innerHTML = '<label class="fnv2-label" for="fnv2Mobile">Mobile Number</label><div class="fnv2-field"><span class="fnv2-prefix">+91</span><input class="fnv2-input" id="fnv2Mobile" type="tel" inputmode="numeric" maxlength="10" placeholder="Enter mobile number" autocomplete="tel-national"></div><div class="fnv2-error" aria-live="polite"></div><button type="button" class="fnv2-btn fnv2-get">Get OTP</button>';
       const input = content.querySelector('input'); input.value=mobile;
