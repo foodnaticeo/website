@@ -3,7 +3,7 @@
   if (window.__foodnatiLoginV5) return;
   window.__foodnatiLoginV5 = true;
   const KEY = 'foodnati_partner_demo_session';
-  const API = 'https://datasending.onrender.com';
+  const FIREBASE_CONFIG_URL = 'https://cezooooo-backend.onrender.com/firebase-config';
   let auth = null;
   let firebaseReady = null;
   let confirmation = null;
@@ -26,8 +26,8 @@
     if (!firebaseReady) firebaseReady = (async () => {
       if (!window.firebase || !window.firebase.initializeApp) await loadFirebaseScript('https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js');
       if (!window.firebase.auth) await loadFirebaseScript('https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js');
-      const r = await fetch(API + '/firebase-config', {cache:'no-store'});
-      if (!r.ok) throw new Error('Firebase config unavailable (' + r.status + ')');
+      const r = await fetch(FIREBASE_CONFIG_URL, {cache:'no-store'});
+      if (!r.ok) throw new Error('Firebase config unavailable (' + r.status + ') at ' + FIREBASE_CONFIG_URL + '. Check OTP backend deployment.');
       const cfg = await r.json();
       if (!cfg.apiKey || !cfg.authDomain || !cfg.projectId) throw new Error('Invalid Firebase configuration');
       const existing = firebase.apps.find(a => a.options.projectId === cfg.projectId);
@@ -47,7 +47,7 @@
   function updateNavbarSafe() { if (typeof window.__foodnatiRefreshNavbar === 'function') window.__foodnatiRefreshNavbar(); }
   async function getPartnerToken() {
     const a = await ensureFirebase();
-    await a.authStateReady?.();
+    if (typeof a.authStateReady === 'function') { await a.authStateReady(); } else if (!a.currentUser) { await new Promise(resolve => { const unsubscribe = a.onAuthStateChanged(() => { unsubscribe(); resolve(); }, () => { unsubscribe(); resolve(); }); }); }
     const user = a.currentUser;
     if (!user || !/^\+91[6-9]\d{9}$/.test(user.phoneNumber || '')) throw new Error('Please log in using real SMS OTP.');
     return user.getIdToken();
