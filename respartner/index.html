@@ -1786,6 +1786,12 @@ background 0.2s ease,
 }
 
 
+/* Referral dropdown */
+.fn-referral-toggle{width:100%;display:flex;align-items:center;justify-content:space-between;border:0;background:transparent;padding:2px 0;color:#17243b;font-size:16px;font-weight:700;cursor:pointer;text-align:left}
+.fn-referral-toggle i{transition:transform .2s ease;color:#E82B65}
+.fn-referral-toggle[aria-expanded="true"] i{transform:rotate(180deg)}
+#fnReferralContent{padding-top:14px}
+#fnReferralContent[hidden]{display:none!important}
 /* Referral details */
 .fn-referral-card{background:#fff;border:1px solid #f6d2df;border-radius:15px;padding:18px;margin-top:16px}
 .fn-referral-card h3{font-size:16px;margin:0 0 7px;color:#17243b}
@@ -2665,12 +2671,14 @@ body.foodnati-application-mode>.partner-navbar{display:flex!important;position:f
 <a href="/commission-policy" target="_blank" rel="noopener"><span>Commission Policy</span><i class="fa-solid fa-chevron-right"></i></a>
 </div>
 <div class="fn-referral-card">
-<h3>Referred by (optional)</h3>
+<button type="button" id="fnReferralToggle" class="fn-referral-toggle" aria-expanded="false" aria-controls="fnReferralContent"><span>Referred by</span><i class="fa-solid fa-chevron-down" aria-hidden="true"></i></button>
+<div id="fnReferralContent" hidden>
 <p>Someone referred your restaurant? Add their details below.</p>
 <div class="fn-field"><label>Referrer name</label><input id="fnReferralName" autocomplete="off" maxlength="120" placeholder="Enter name"></div>
 <div class="fn-field"><label>Referrer mobile number</label><input id="fnReferralMobile" type="tel" inputmode="numeric" maxlength="10" placeholder="10-digit mobile number"></div>
 <button type="button" id="fnReferralSave" class="fn-btn fn-referral-save">Save referral</button>
 <div id="fnReferralMessage" class="fn-referral-message" aria-live="polite"></div>
+</div>
 </div>
 </aside>
 
@@ -2978,6 +2986,19 @@ window.closeFoodnatiApplication=()=>{
 window.addEventListener("resize",()=>{
  if(document.body.classList.contains("foodnati-application-mode"))navHeight();
 });
+
+/* Referral card expands only when requested. */
+const referralToggle=$('fnReferralToggle');
+const referralContent=$('fnReferralContent');
+if(referralToggle&&referralContent){
+ referralToggle.addEventListener('click',()=>{
+  const expanded=referralToggle.getAttribute('aria-expanded')==='true';
+  referralToggle.setAttribute('aria-expanded',String(!expanded));
+  referralContent.hidden=expanded;
+ });
+}
+/* Profile > Restaurant Partner opens the application. */
+window.addEventListener('foodnati:partner-profile',()=>showApplication(true));
 
 /* SAVE FORM DRAFT */
 function saveDraft(){
