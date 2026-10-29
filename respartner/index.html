@@ -1874,6 +1874,16 @@ background 0.2s ease,
 .partner-dropdown i {
   color: #E82B65;
 }
+/* Keep the navbar independent from hero visibility and always on top */
+body > .partner-navbar{position:fixed!important;top:0!important;left:0!important;right:0!important;display:flex!important;width:100%!important;transform:none!important}
+/* Keep brand visible on every scroll position */
+.partner-navbar,.partner-navbar.nav-scrolled{z-index:100000!important;visibility:visible!important;opacity:1!important}
+.partner-navbar .partner-brand,.partner-navbar .partner-logo,.partner-navbar .partner-brand-subtitle{visibility:visible!important;opacity:1!important}
+.partner-navbar.nav-scrolled .partner-logo,.partner-navbar.nav-scrolled .partner-brand-subtitle{color:#17243B!important}
+.fn-submitted-label{display:none;margin-top:10px;color:#15945d;font-size:13px;font-weight:700}
+.fn-submitted-label.visible{display:block}
+.fn-profile-submitted{display:none;padding:8px 12px;color:#15945d;font-weight:700;font-size:12px}
+.fn-profile-submitted.visible{display:block}
 </style>
 
 </head>
@@ -1919,6 +1929,8 @@ background 0.2s ease,
     </button>
 
     <div id="partnerDropdown" class="partner-dropdown" hidden>
+      <div id="fnProfileName" class="fn-profile-submitted" style="display:none;color:#17243B;font-weight:700"></div>
+      <div id="fnProfileSubmitted" class="fn-profile-submitted" role="status">✓ Already submitted</div>
       <a href="#" id="restaurantDashboard">
         <i class="fa-solid fa-store"></i>
         Restaurant Partner
@@ -2656,7 +2668,7 @@ body.foodnati-application-mode>.partner-navbar{display:flex!important;position:f
 <div class="fn-card">
 <div class="fn-card-head"><h2>Restaurant name</h2><p>Customers will see this name on Foodnati</p></div>
 <div class="fn-card-body">
-<div class="fn-field"><label>Restaurant name *</label><input id="fnName" autocomplete="organization"></div>
+<div class="fn-field"><label>Restaurant name *</label><input id="fnName" autocomplete="organization"><span id="fnSubmittedLabel" class="fn-submitted-label">✓ Already submitted</span></div>
 </div>
 </div>
 
@@ -2690,8 +2702,8 @@ body.foodnati-application-mode>.partner-navbar{display:flex!important;position:f
 <label>Specify restaurant type *</label>
 <input id="fnOtherType" placeholder="Enter your restaurant type">
 </div>
-<div class="fn-field"><label>Opening time</label><input id="fnOpen" type="time"></div>
-<div class="fn-field"><label>Closing time</label><input id="fnClose" type="time"></div>
+<div class="fn-field"><label>Opening time *</label><input id="fnOpen" type="time" required></div>
+<div class="fn-field"><label>Closing time *</label><input id="fnClose" type="time" required></div>
 </div>
 <div class="fn-field"><label>Description</label><textarea id="fnDescription"></textarea></div>
 </div>
@@ -2817,6 +2829,7 @@ const UPLOAD=API+"/api/restaurant/upload";
 const SESSION_KEY="foodnati_partner_demo_session";
 const HISTORY_KEY="foodnatiApplication";
 const DRAFT_KEY="foodnati_application_draft_v4";
+const SUBMITTED_PREFIX="foodnati_submitted_";
 
 const app=document.getElementById("foodnatiApplicationView");
 if(!app)return;
@@ -2845,6 +2858,29 @@ try{
 }catch{return "";}
 }
 
+function numberForProfile(){return mobile()?"+91 "+mobile():"";}
+function submittedRecord(){
+ const number=mobile();
+ if(!number)return null;
+ try{return JSON.parse(localStorage.getItem(SUBMITTED_PREFIX+number)||"null");}catch{return null;}
+}
+function refreshSubmissionStatus(){
+ const record=submittedRecord();
+ const label=$("fnSubmittedLabel");
+ const profile=$("fnProfileSubmitted");
+ const profileName=$("fnProfileName");
+ if(profileName){
+  const name=record?.restaurant_name?.trim()||"";
+  profileName.textContent=name;
+  profileName.style.display=name?"block":"none";
+ }
+ if(label)label.classList.toggle("visible",!!record);
+ if(profile)profile.classList.toggle("visible",!!record);
+ if(record){
+  submitted=true;
+  if(record.restaurant_name)$("fnName").value=record.restaurant_name;
+ }else submitted=false;
+}
 function message(text,type="error"){
  $("fnAlert").textContent=text;
  $("fnAlert").className="fn-alert "+type;
@@ -2855,6 +2891,14 @@ function clearMessage(){
 }
 
 /* NAVIGATION */
+// Keep the fixed navbar outside the hero section on every page and scroll position.
+function pinNavbarToBody(){
+ const nav=document.querySelector(".partner-navbar");
+ if(nav && nav.parentElement!==document.body){
+  document.body.insertBefore(nav,document.body.firstChild);
+ }
+}
+pinNavbarToBody();
 function prepareNavbar(){
  if(navbar)return;
  navbar=document.querySelector(".partner-navbar");
@@ -2882,13 +2926,14 @@ function showApplication(addHistory=true){
   history.pushState({...history.state,[HISTORY_KEY]:true},"",location.href);
 
  $("fnMobile").value=mobile();
+ refreshSubmissionStatus();
+ if(submitted){$("fnActions").classList.add("fn-hidden");app.querySelectorAll("[data-page]").forEach(el=>el.classList.add("fn-hidden"));$("fnSuccess").style.display="block";$("fnSuccessDetails").textContent="This restaurant application was already submitted.";}
  window.scrollTo(0,0);
 }
 
 function showHome(){
  document.body.classList.remove("foodnati-application-mode");
- if(navbar&&placeholder?.parentNode)
-  placeholder.parentNode.insertBefore(navbar,placeholder.nextSibling);
+ // Navbar remains attached to body so it cannot disappear with the hero section.
  window.scrollTo(0,0);
 }
 
@@ -3197,8 +3242,8 @@ async function uploadImages(){
    throw new Error(data.error||data.message||"Image upload failed.");
   }
 
-  const url=data.path||data.url||data.image_url||data.public_url||data.data?.url;
-  if(!url)throw new Error("Upload response did not contain a storage path.");
+  const url=data.url||data.public_url||data.image_url||data.data?.url;
+  if(!url || !/^https:\/\//i.test(url))throw new Error("Upload response did not contain a public image URL. Update the upload backend first.");
 
   urls.push(url);
  }
@@ -3213,6 +3258,8 @@ function validate(){
   if(!v("fnOwner"))return "Enter owner name.";
   if(!mobile())return "Please log in again.";
   if(!v("fnType"))return "Select restaurant type.";
+  if(!v("fnOpen"))return "Select opening time.";
+  if(!v("fnClose"))return "Select closing time.";
   if(v("fnType")==="Others"&&!v("fnOtherType"))
    return "Enter your restaurant type.";
  }
@@ -3360,6 +3407,8 @@ async function submitApplication(){
   }
 
   submitted=true;
+  try{localStorage.setItem(SUBMITTED_PREFIX+mobile(),JSON.stringify({restaurant_name:v("fnName"),mobile_number:mobile(),submitted_at:new Date().toISOString(),id:result.application?.id??result.application_id??result.id??null}));}catch(e){console.warn("Could not save local application status",e);}
+  refreshSubmissionStatus();
   localStorage.removeItem(DRAFT_KEY);
 
   const id=result.application_id??result.id??result.data?.id;
@@ -3415,11 +3464,12 @@ function init(){
  updateOtherType();
 
  $("fnMobile").value=mobile();
+ refreshSubmissionStatus();
  setLocationMode(locationMode);
 
  if(history.state?.[HISTORY_KEY])showApplication(false);
 
- renderStep();
+ if(!submitted)renderStep();
 }
 
 if(document.readyState==="loading"){
