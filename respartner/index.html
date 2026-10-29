@@ -1786,6 +1786,13 @@ background 0.2s ease,
 }
 
 
+/* Compact Referred by control */
+.fn-referral-card{padding:10px 12px!important;margin-top:12px!important;border-radius:11px!important}
+.fn-referral-toggle{font-size:13px!important;font-weight:650!important;min-height:28px!important;padding:2px 0!important;gap:8px!important}
+.fn-referral-toggle i{font-size:11px!important}
+#fnReferralContent{padding-top:10px!important}
+.fn-referral-save{width:auto!important;min-width:110px!important;padding:9px 15px!important;font-size:12px!important;border-radius:8px!important}
+
 /* Referral dropdown */
 .fn-referral-toggle{width:100%;display:flex;align-items:center;justify-content:space-between;border:0;background:transparent;padding:2px 0;color:#17243b;font-size:16px;font-weight:700;cursor:pointer;text-align:left}
 .fn-referral-toggle i{transition:transform .2s ease;color:#E82B65}
@@ -1917,7 +1924,12 @@ body > .partner-navbar,body > .partner-navbar.nav-scrolled{
 .fn-guide-copy{margin:0 0 13px;color:#64748b;font-size:12px;line-height:1.5}
 .fn-image-upload-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 .fn-restaurant-preview{width:100%;max-height:170px;object-fit:contain;border-radius:10px;margin-top:10px;display:none}
-.fn-restaurant-save{margin-top:10px;background:#e82b65;color:white}
+.fn-restaurant-save{background:#f5b6cd;color:#76233f}
+.fn-restaurant-choice-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.fn-restaurant-choice{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:#fff0f5;color:#a61b51;border:1px solid #f5b6cd;cursor:pointer}
+.fn-restaurant-choice:hover,.fn-restaurant-save:hover{background:#f7c5d8}
+.fn-restaurant-preview{max-width:280px;max-height:220px;object-fit:cover}
+@media(max-width:480px){.fn-restaurant-choice-row{gap:8px}.fn-restaurant-choice-row .fn-btn{padding:11px 12px;font-size:12px}}
 .fn-guide-dialog{border:0;border-radius:15px;padding:24px;max-width:min(440px,92vw);margin:auto;box-shadow:0 15px 65px #0003}
 .fn-guide-dialog::backdrop{background:#0008}
 .fn-guide-dialog h3{margin:0 0 10px;color:#17243b}.fn-guide-dialog p{font-size:14px;line-height:1.7;color:#475569}
@@ -2811,14 +2823,24 @@ body.foodnati-application-mode>.partner-navbar{display:flex!important;position:f
 <div class="fn-card">
 <div class="fn-card-head fn-guided-head"><div><h2>Food menu images</h2><p>Upload up to 5 restaurant menu images</p></div><button type="button" class="fn-guideline" id="fnGuideMenu" data-guide="menu">Guidelines</button></div>
 <div class="fn-card-body">
-<div class="fn-image-upload-row"><div><label class="fn-upload">
-<i class="fa-solid fa-cloud-arrow-up"></i>
-<strong>Choose menu images</strong>
-<span>JPG, PNG, WebP — up to 5 images, maximum 10 MB each</span>
-<input id="fnMenuFiles" type="file" accept="image/jpeg,image/png,image/webp" multiple>
-</label>
+<label class="fn-upload"><i class="fa-solid fa-cloud-arrow-up"></i><strong>Choose menu images</strong><span>JPG, PNG, WebP — up to 5 images, maximum 10 MB each</span><input id="fnMenuFiles" type="file" accept="image/jpeg,image/png,image/webp" multiple></label>
 <p id="fnImageCount" style="font-size:12px;color:#64748b;margin:12px 0 0">0 / 5 images selected</p>
-<div id="fnImages" class="fn-images"></div></div><div><label class="fn-upload" for="fnRestaurantImage"><i class="fa-solid fa-store"></i><strong>Restaurant image</strong><span>Upload restaurant photo (JPG, PNG, WebP; max 10 MB)</span><input id="fnRestaurantImage" type="file" accept="image/jpeg,image/png,image/webp"></label><img id="fnRestaurantPreview" class="fn-restaurant-preview" alt="Restaurant photo preview"><button type="button" id="fnRestaurantSave" class="fn-btn fn-restaurant-save">Save image</button><p id="fnRestaurantImageStatus" class="fn-guide-copy" aria-live="polite"></p></div></div>
+<div id="fnImages" class="fn-images"></div>
+</div>
+</div>
+
+<div class="fn-card">
+<div class="fn-card-head"><h2>Restaurant image</h2><p>Upload one restaurant photo (JPG, PNG, WebP; max 10 MB)</p></div>
+<div class="fn-card-body">
+<div class="fn-restaurant-choice-row">
+<label class="fn-btn fn-restaurant-choice" for="fnRestaurantImage"><i class="fa-regular fa-image"></i> Choose photo</label>
+<label class="fn-btn fn-restaurant-choice" for="fnRestaurantCamera"><i class="fa-solid fa-camera"></i> Use camera</label>
+<input id="fnRestaurantImage" type="file" accept="image/jpeg,image/png,image/webp" hidden>
+<input id="fnRestaurantCamera" type="file" accept="image/*" capture="environment" hidden>
+<button type="button" id="fnRestaurantSave" class="fn-btn fn-restaurant-save">Save image</button>
+</div>
+<img id="fnRestaurantPreview" class="fn-restaurant-preview" alt="Restaurant photo preview">
+<p id="fnRestaurantImageStatus" class="fn-guide-copy" aria-live="polite"></p>
 </div>
 </div>
 </section>
@@ -3260,14 +3282,14 @@ app.querySelectorAll('[data-guide]').forEach(button=>button.addEventListener('cl
 $('fnGuideClose').addEventListener('click',()=>$('fnGuideDialog').close());
 
 /* Restaurant photo is saved on application submission, alongside menu photos. */
-$('fnRestaurantImage').addEventListener('change',e=>{
+['fnRestaurantImage','fnRestaurantCamera'].forEach(inputId=>$(inputId).addEventListener('change',e=>{
  const file=e.target.files[0];if(!file)return;
  if(!['image/jpeg','image/png','image/webp'].includes(file.type)||file.size>10*1024*1024){message('Choose a JPG, PNG or WebP restaurant image under 10 MB.');e.target.value='';return;}
  if(restaurantImage?.preview)URL.revokeObjectURL(restaurantImage.preview);
  restaurantImage={file,preview:URL.createObjectURL(file)};
  const preview=$('fnRestaurantPreview');preview.src=restaurantImage.preview;preview.style.display='block';
- $('fnRestaurantImageStatus').textContent='Image selected. Click Save image to confirm.';
-});
+ $('fnRestaurantImageStatus').textContent='One image selected. Click Save image to confirm.';
+}));
 $('fnRestaurantSave').addEventListener('click',()=>{
  $('fnRestaurantImageStatus').textContent=restaurantImage?'Restaurant image saved in this form. It uploads when you submit the application.':'Choose a restaurant image first.';
 });
