@@ -3028,12 +3028,19 @@ function showApplication(addHistory=true){
  document.body.classList.add("foodnati-application-mode");
  navHeight();
 
- if(addHistory&&!history.state?.[HISTORY_KEY])
-  history.pushState({...history.state,[HISTORY_KEY]:true},"",location.href);
-
  $("fnMobile").value=mobile();
  refreshSubmissionStatus();
- if(submitted){$("fnActions").classList.add("fn-hidden");app.querySelectorAll("[data-page]").forEach(el=>el.classList.add("fn-hidden"));$("fnSuccess").style.display="block";$("fnSuccessDetails").textContent="This restaurant application was already submitted.";}
+ if(submitted){
+  // Application already submitted: do not reopen the completed application screen.
+  // Keep the restaurant name / green submitted status in the profile menu.
+  $("fnSuccess").style.display="none";
+  showHome();
+  return;
+ }
+ $("fnSuccess").style.display="none";
+ $("fnActions").classList.remove("fn-hidden");
+ if(addHistory&&!history.state?.[HISTORY_KEY])
+  history.pushState({...history.state,[HISTORY_KEY]:true},"",location.href);
  window.scrollTo(0,0);
 }
 
@@ -3317,12 +3324,13 @@ $("fnLocate").addEventListener("click",()=>{
 const fnGuides={
  name:{title:"Restaurant name guidelines",text:"Use your restaurant’s actual name as displayed on its signboard or menu. Follow these naming examples."},
  location:{title:"Restaurant location guidelines",text:"Please provide your exact restaurant location so delivery partners can find your pickup point and customers can receive accurate distance-based delivery fee estimates."},
- menu:{title:"Restaurant images guidelines",text:"Upload clear, original restaurant menu images so customers can easily read your food items and prices. Keep photos bright, sharp and fully visible. Avoid blurry images, unrelated pictures or promotional overlays."}
+ menu:{title:"Restaurant images guidelines",text:""}
 };
 app.querySelectorAll('[data-guide]').forEach(button=>button.addEventListener('click',()=>{
  const info=fnGuides[button.dataset.guide];
  $('fnGuideTitle').textContent=info.title;
  $('fnGuideText').textContent=info.text;
+ $('fnGuideText').hidden=button.dataset.guide==='menu';
  const examples=$('fnGuideExamples');
  examples.hidden=!(['name','location','menu'].includes(button.dataset.guide));
  if(button.dataset.guide==='menu'){
@@ -3534,6 +3542,7 @@ function payload(imageURLs,restaurantPhotoURL=""){
   owner_name:v("fnOwner"),
   mobile_number:mobile(),
   food_menu_images:imageURLs,
+  restaurant_image_url:restaurantPhotoURL||null,
   fssai_number:v("fnFssai")||null,
 
   location:{
