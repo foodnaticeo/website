@@ -2715,6 +2715,13 @@ body.foodnati-application-mode>.partner-navbar{display:flex!important;position:f
 .fn-guide-footer{flex:0 0 auto;background:#fff;border-top:1px solid #eef1f5;padding:13px 22px max(15px,env(safe-area-inset-bottom))}
 .fn-guide-footer .fn-guide-understood{margin:0;width:100%}
 @media(max-width:600px){.fn-guide-header{padding:18px 15px 0}.fn-guide-scroll{padding:15px 15px 10px}.fn-guide-footer{padding:12px 15px max(14px,env(safe-area-inset-bottom))}}
+
+/* Location guideline cards: Font Awesome icons and clear address tips */
+.fn-location-tip{display:flex;align-items:flex-start;gap:14px;padding:16px 0;border-bottom:1px dashed #dfe5ef}
+.fn-location-tip:last-child{border-bottom:0}
+.fn-location-tip>i{width:38px;height:38px;flex-shrink:0;display:grid;place-items:center;border-radius:11px;background:#fff0f5;color:#e82b65;font-size:17px}
+.fn-location-tip h4{margin:0 0 6px;font-size:14px;color:#17243b;line-height:1.4}
+.fn-location-tip p{margin:0;font-size:12px;color:#667085;line-height:1.65}
 </style>
 
 <div id="foodnatiApplicationView">
@@ -3308,7 +3315,7 @@ $("fnLocate").addEventListener("click",()=>{
 /* Guidelines: three stable IDs */
 const fnGuides={
  name:{title:"Restaurant name guidelines",text:"Use your restaurant’s actual name as displayed on its signboard or menu. Follow these naming examples."},
- location:{title:"Restaurant location guidelines",text:"Enter the full restaurant address, city, state and six-digit PIN code. You can also select the exact restaurant location using the map pin."},
+ location:{title:"Restaurant location guidelines",text:"Please provide your exact restaurant location so delivery partners can find your pickup point and customers can receive accurate distance-based delivery fee estimates."},
  menu:{title:"Food menu image guidelines",text:"Upload up to five clear menu photos (JPG, PNG or WebP). Restaurant image is a separate photo of your shop or storefront."}
 };
 app.querySelectorAll('[data-guide]').forEach(button=>button.addEventListener('click',()=>{
@@ -3316,8 +3323,24 @@ app.querySelectorAll('[data-guide]').forEach(button=>button.addEventListener('cl
  $('fnGuideTitle').textContent=info.title;
  $('fnGuideText').textContent=info.text;
  const examples=$('fnGuideExamples');
- examples.hidden=button.dataset.guide!=='name';
- if(!examples.hidden){
+ examples.hidden=!(['name','location'].includes(button.dataset.guide));
+ if(button.dataset.guide==='location'){
+  examples.replaceChildren();
+  const tips=[
+   ['fa-location-dot','Pin your exact restaurant entrance','Move the map pin to the correct restaurant pickup entrance, not just the middle of your street.'],
+   ['fa-road','Enter street and road details','Add your street name, road, area, locality and any nearby landmark.'],
+   ['fa-building','Include floor and shop number','Mention the building name, floor, shop or door number so delivery partners can locate you easily.'],
+   ['fa-map-location-dot','Verify city and PIN code','Check the full address, city, state and six-digit PIN code before submitting.'],
+   ['fa-motorcycle','Help calculate delivery distance','An accurate pickup pin helps estimate travel distance and delivery fees for customers. Actual fees depend on Foodnati pricing rules.']
+  ];
+  tips.forEach(([icon,title,detail])=>{
+   const section=document.createElement('section');section.className='fn-location-tip';
+   const symbol=document.createElement('i');symbol.className='fa-solid '+icon;symbol.setAttribute('aria-hidden','true');
+   const content=document.createElement('div');const h=document.createElement('h4');h.textContent=title;
+   const p=document.createElement('p');p.textContent=detail;content.append(h,p);section.append(symbol,content);examples.append(section);
+  });
+ }
+ if(button.dataset.guide==='name'){
   const rules=[
    ['Use your own original restaurant brand. Avoid copying well-known names.','Grill Garden','McBurger'],
    ['Do not include food delivery platform names in your restaurant name.','Tasty Junction','Swiggy Tasty Junction'],
