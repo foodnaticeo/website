@@ -2703,6 +2703,18 @@ body.foodnati-application-mode>.partner-navbar{display:flex!important;position:f
  .fn-images{grid-template-columns:repeat(2,1fr)}
  .fn-option{font-size:11px}
 }
+
+/* Guidelines: stationary header/footer; only content scrolls, without visible scrollbar */
+.fn-guide-dialog{padding:0!important;overflow:hidden!important;max-height:min(86dvh,760px)!important;flex-direction:column;overscroll-behavior:contain}
+.fn-guide-dialog[open]{display:flex}
+.fn-guide-header{flex:0 0 auto;padding:22px 22px 0;background:#fff}
+.fn-guide-header h3{margin:0}
+.fn-guide-header .fn-guide-dash{margin-bottom:0}
+.fn-guide-scroll{flex:1 1 auto;min-height:0;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:none;-ms-overflow-style:none;padding:17px 22px 12px}
+.fn-guide-scroll::-webkit-scrollbar{display:none;width:0;height:0}
+.fn-guide-footer{flex:0 0 auto;background:#fff;border-top:1px solid #eef1f5;padding:13px 22px max(15px,env(safe-area-inset-bottom))}
+.fn-guide-footer .fn-guide-understood{margin:0;width:100%}
+@media(max-width:600px){.fn-guide-header{padding:18px 15px 0}.fn-guide-scroll{padding:15px 15px 10px}.fn-guide-footer{padding:12px 15px max(14px,env(safe-area-inset-bottom))}}
 </style>
 
 <div id="foodnatiApplicationView">
@@ -2858,7 +2870,7 @@ body.foodnati-application-mode>.partner-navbar{display:flex!important;position:f
 </div>
 </section>
 
-<dialog id="fnGuideDialog" class="fn-guide-dialog" aria-labelledby="fnGuideTitle"><h3 id="fnGuideTitle">Guidelines</h3><div class="fn-guide-dash"></div><p id="fnGuideText"></p><div id="fnGuideExamples" class="fn-guide-examples" hidden></div><button type="button" id="fnGuideClose" class="fn-btn fn-primary fn-guide-understood">Understood</button></dialog>
+<dialog id="fnGuideDialog" class="fn-guide-dialog" aria-labelledby="fnGuideTitle"><div class="fn-guide-header"><h3 id="fnGuideTitle">Guidelines</h3><div class="fn-guide-dash"></div></div><div class="fn-guide-scroll"><p id="fnGuideText"></p><div id="fnGuideExamples" class="fn-guide-examples" hidden></div></div><div class="fn-guide-footer"><button type="button" id="fnGuideClose" class="fn-btn fn-primary fn-guide-understood">Understood</button></div></dialog>
 
 <!-- STEP 3: FINAL SUBMISSION -->
 <section data-page="2" class="fn-hidden">
