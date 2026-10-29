@@ -1933,7 +1933,17 @@ body > .partner-navbar,body > .partner-navbar.nav-scrolled{
 .fn-guide-dialog{border:0;border-radius:15px;padding:24px;max-width:min(440px,92vw);margin:auto;box-shadow:0 15px 65px #0003}
 .fn-guide-dialog::backdrop{background:#0008}
 .fn-guide-dialog h3{margin:0 0 10px;color:#17243b}.fn-guide-dialog p{font-size:14px;line-height:1.7;color:#475569}
-@media(max-width:600px){.fn-image-upload-row{grid-template-columns:1fr}.fn-guideline{font-size:12px}}
+/* Restaurant name guideline examples */
+.fn-guide-dialog{width:min(540px,94vw);max-width:min(540px,94vw);max-height:86dvh;overflow-y:auto;padding:23px 22px}
+.fn-guide-dash{border-top:1.5px dashed #d6deea;margin:12px 0 17px}
+.fn-guide-rule{padding:14px 0;border-bottom:1px solid #eef1f5}
+.fn-guide-rule h4{font-size:13px;line-height:1.55;color:#26354b;font-weight:650;margin:0 0 11px}
+.fn-guide-pair{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.fn-guide-example{display:flex;align-items:flex-start;gap:9px;padding:11px 10px;border-radius:9px;font-size:12px;line-height:1.4;overflow-wrap:anywhere}
+.fn-guide-example i{margin-top:2px;flex-shrink:0}
+.fn-guide-good{background:#eefaf3;color:#157b4d}.fn-guide-bad{background:#fff1f1;color:#b63b3b}
+.fn-guide-understood{display:block;width:100%;margin-top:19px;background:#e82b65;color:#fff}
+@media(max-width:600px){.fn-guide-dialog{padding:18px 15px}.fn-guide-pair{gap:7px}.fn-guide-example{font-size:11px;padding:9px 7px}.fn-image-upload-row{grid-template-columns:1fr}.fn-guideline{font-size:12px}}
 
 /* Smooth Referred by dropdown without blank space when collapsed */
 #fnReferralContent{overflow:hidden;max-height:0;opacity:0;transition:max-height .38s cubic-bezier(.22,1,.36,1),opacity .27s ease,padding .38s ease;}
@@ -2848,7 +2858,7 @@ body.foodnati-application-mode>.partner-navbar{display:flex!important;position:f
 </div>
 </section>
 
-<dialog id="fnGuideDialog" class="fn-guide-dialog"><h3 id="fnGuideTitle">Guidelines</h3><p id="fnGuideText"></p><button type="button" id="fnGuideClose" class="fn-btn fn-primary" style="margin-top:16px">Close</button></dialog>
+<dialog id="fnGuideDialog" class="fn-guide-dialog" aria-labelledby="fnGuideTitle"><h3 id="fnGuideTitle">Guidelines</h3><div class="fn-guide-dash"></div><p id="fnGuideText"></p><div id="fnGuideExamples" class="fn-guide-examples" hidden></div><button type="button" id="fnGuideClose" class="fn-btn fn-primary fn-guide-understood">Understood</button></dialog>
 
 <!-- STEP 3: FINAL SUBMISSION -->
 <section data-page="2" class="fn-hidden">
@@ -3285,7 +3295,7 @@ $("fnLocate").addEventListener("click",()=>{
 
 /* Guidelines: three stable IDs */
 const fnGuides={
- name:{title:"Restaurant name guidelines",text:"Enter the name displayed on your restaurant signboard. Use the correct spelling; avoid phone numbers, promotional text or misleading brand names."},
+ name:{title:"Restaurant name guidelines",text:"Use your restaurant’s actual name as displayed on its signboard or menu. Follow these naming examples."},
  location:{title:"Restaurant location guidelines",text:"Enter the full restaurant address, city, state and six-digit PIN code. You can also select the exact restaurant location using the map pin."},
  menu:{title:"Food menu image guidelines",text:"Upload up to five clear menu photos (JPG, PNG or WebP). Restaurant image is a separate photo of your shop or storefront."}
 };
@@ -3293,6 +3303,32 @@ app.querySelectorAll('[data-guide]').forEach(button=>button.addEventListener('cl
  const info=fnGuides[button.dataset.guide];
  $('fnGuideTitle').textContent=info.title;
  $('fnGuideText').textContent=info.text;
+ const examples=$('fnGuideExamples');
+ examples.hidden=button.dataset.guide!=='name';
+ if(!examples.hidden){
+  const rules=[
+   ['Use your own original restaurant brand. Avoid copying well-known names.','Grill Garden','McBurger'],
+   ['Do not include food delivery platform names in your restaurant name.','Tasty Junction','Swiggy Tasty Junction'],
+   ['Use a proper restaurant name instead of only a person’s name.','Anil’s Family Kitchen','Anil'],
+   ['Use clear, correct capitalisation.','Spice Corner','spice corner'],
+   ['Only use abbreviations when they appear on your signboard or menu.','Butter Bowl','BB’s'],
+   ['Avoid adding addresses unless they are part of your official brand.','Urban Dosa House','Urban Dosa House, Street 12'],
+   ['Avoid spelling mistakes and choose recognisable words.','Coffee Garden','Coffe Gardan']
+  ];
+  examples.replaceChildren();
+  rules.forEach(([rule,good,bad])=>{
+   const section=document.createElement('section');section.className='fn-guide-rule';
+   const heading=document.createElement('h4');heading.textContent=rule;
+   const row=document.createElement('div');row.className='fn-guide-pair';
+   [[good,true],[bad,false]].forEach(([value,valid])=>{
+    const item=document.createElement('div');item.className='fn-guide-example '+(valid?'fn-guide-good':'fn-guide-bad');
+    const mark=document.createElement('i');mark.className='fa-solid '+(valid?'fa-check':'fa-xmark');mark.setAttribute('aria-hidden','true');
+    const label=document.createElement('span');label.textContent=value;
+    item.append(mark,label);row.appendChild(item);
+   });
+   section.append(heading,row);examples.appendChild(section);
+  });
+ }
  const dialog=$('fnGuideDialog');if(typeof dialog.showModal==='function')dialog.showModal();else dialog.setAttribute('open','');
 }));
 $('fnGuideClose').addEventListener('click',()=>$('fnGuideDialog').close());
