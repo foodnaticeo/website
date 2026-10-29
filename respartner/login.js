@@ -11,6 +11,8 @@
   let sending = false;
   let verifying = false;
   let otpRequest = 0;
+  let resendUntil = 0;
+  let resendTimer = null;
   function loadFirebaseScript(src) {
     return new Promise((resolve, reject) => {
       if (document.querySelector(`script[src="${src}"]`)) {
@@ -89,9 +91,15 @@
       .fnv2-field{height:52px;border:1.5px solid #dfe2e8;border-radius:11px;display:flex;align-items:center;overflow:hidden}
       .fnv2-field:focus-within{border-color:#17243B}.fnv2-prefix{padding:0 13px;border-right:1px solid #ddd;font-size:14px;font-weight:700}
       .fnv2-input{min-width:0;flex:1;width:100%;height:100%;border:0;outline:0;padding:0 14px;font-size:16px;background:transparent;color:#17243B}
-      .fnv2-otp{text-align:center;letter-spacing:8px;font-size:24px}.fnv2-btn{width:100%;height:49px;border:0;border-radius:10px;background:#17243B;color:white;font-size:15px;font-weight:700;cursor:pointer;margin-top:17px}
+      .fnv2-otp{text-align:center;letter-spacing:8px;font-size:24px}.fnv2-btn{width:100%;height:49px;border:0;border-radius:10px;background:#f5b6cd;color:#76233f;font-size:15px;font-weight:700;cursor:pointer;margin-top:17px}
+      .fnv2-btn:hover{background:#f1a2c0}.fnv2-btn:disabled{opacity:.72;cursor:not-allowed}
+      .fnv2-spinner{display:inline-block;width:20px;height:20px;border:2.5px solid #8b3656;border-top-color:transparent;border-radius:50%;animation:fnv2spin .7s linear infinite;vertical-align:middle}
+      @keyframes fnv2spin{to{transform:rotate(360deg)}}
+      .fnv2-resend-row{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:15px;font-size:13px;color:#7b7b89}
+      .fnv2-resend{border:0;background:transparent;color:#d82b68;font-weight:700;cursor:pointer}
+      .fnv2-resend:disabled{color:#9e9eaa;cursor:not-allowed}
       .fnv2-error{min-height:18px;color:#d72d54;font-size:12px;margin-top:8px}.fnv2-title{color:#17243B;font-size:22px;margin:0 0 10px}.fnv2-desc{color:#707988;font-size:13px;line-height:1.5;margin:0 0 20px}
-      .fnv2-back{background:none;border:0;color:#17243B;font-weight:700;cursor:pointer;margin-top:17px}.fnv2-result{text-align:center;padding:10px 0}.fnv2-check{display:grid;place-items:center;margin:0 auto 18px;width:62px;height:62px;border-radius:50%;background:#e8f8ed;color:#17a34a;font-size:33px}
+      .fnv2-back{background:none;border:0;color:#d82b68;font-weight:700;cursor:pointer;margin-top:17px}.fnv2-result{text-align:center;padding:10px 0}.fnv2-check{display:grid;place-items:center;margin:0 auto 18px;width:62px;height:62px;border-radius:50%;background:#e8f8ed;color:#17a34a;font-size:33px}
       .fnv2-profile-wrap{display:inline-flex;align-items:center;position:relative;vertical-align:middle}
       .fnv2-profile-button{display:inline-flex!important;align-items:center!important;justify-content:center!important;width:auto!important;height:auto!important;min-width:0!important;min-height:0!important;padding:0!important;border:0!important;border-radius:0!important;background:transparent!important;color:#17243B!important;cursor:pointer!important;text-decoration:none!important;line-height:1!important;box-shadow:none!important}
       .fnv2-dropdown{position:absolute;right:0;top:calc(100% + 12px);z-index:2147483644;background:white;width:240px;border:1px solid #edf0f3;border-radius:14px;box-shadow:0 14px 38px #17243b25;padding:9px;font-family:Arial,sans-serif;text-align:left}
@@ -175,8 +183,9 @@
       clearSession(); updateNavbar();
       window.dispatchEvent(new CustomEvent('foodnati:logout'));
     }
-    function closePopup() { resetCaptcha(); open = false; modal.classList.remove('is-open'); document.body.classList.remove('fnv2-lock'); if (previousFocus && previousFocus.isConnected) previousFocus.focus(); }
+    function closePopup() { if(resendTimer){clearInterval(resendTimer);resendTimer=null;} resetCaptcha(); open = false; modal.classList.remove('is-open'); document.body.classList.remove('fnv2-lock'); if (previousFocus && previousFocus.isConnected) previousFocus.focus(); }
     function openPopup() { previousFocus = document.activeElement; mobile=''; resetCaptcha(); showMobile(); open=true; modal.classList.add('is-open'); document.body.classList.add('fnv2-lock'); }
+    const spinner = '<span class="fnv2-spinner" aria-hidden="true"></span>';
     function showMobile() {
       content.innerHTML = '<label class="fnv2-label" for="fnv2Mobile">Mobile Number</label><div class="fnv2-field"><span class="fnv2-prefix">+91</span><input class="fnv2-input" id="fnv2Mobile" type="tel" inputmode="numeric" maxlength="10" placeholder="Enter mobile number" autocomplete="tel-national"></div><div class="fnv2-error" aria-live="polite"></div><button type="button" class="fnv2-btn fnv2-get">Get OTP</button>';
       const input = content.querySelector('input'); input.value=mobile;
@@ -187,7 +196,7 @@
         mobile = input.value;
         const btn = content.querySelector('.fnv2-get');
         const error = content.querySelector('.fnv2-error');
-        sending = true; btn.disabled = true; btn.textContent = 'Sending OTP...'; error.textContent = '';
+        sending = true; btn.disabled = true; btn.innerHTML = spinner; error.textContent = '';
         try {
           const a = await ensureFirebase();
           resetCaptcha();
@@ -205,7 +214,35 @@
       if(open) input.focus();
     }
     function showOTP() {
-      content.innerHTML = `<h2 class="fnv2-title">Verify OTP</h2><p class="fnv2-desc">Enter the 6-digit OTP for +91 ${mobile}.</p><label class="fnv2-label" for="fnv2OTP">Enter OTP</label><div class="fnv2-field"><input class="fnv2-input fnv2-otp" id="fnv2OTP" type="text" inputmode="numeric" maxlength="6" autocomplete="one-time-code" placeholder="••••••"></div><div class="fnv2-error" aria-live="polite"></div><button type="button" class="fnv2-btn fnv2-verify">Verify & Continue</button><button type="button" class="fnv2-back">Change mobile number</button>`;
+      content.innerHTML = `<h2 class="fnv2-title">Verify OTP</h2><p class="fnv2-desc">Enter the 6-digit OTP for +91 ${mobile}.</p><label class="fnv2-label" for="fnv2OTP">Enter OTP</label><div class="fnv2-field"><input class="fnv2-input fnv2-otp" id="fnv2OTP" type="text" inputmode="numeric" maxlength="6" autocomplete="one-time-code" placeholder="••••••"></div><div class="fnv2-error" aria-live="polite"></div><button type="button" class="fnv2-btn fnv2-verify">Verify & Continue</button><div class="fnv2-resend-row"><button type="button" class="fnv2-resend" disabled>Resend OTP</button><span class="fnv2-countdown">59s</span></div><button type="button" class="fnv2-back">Change mobile number</button>`;
+      const resend=content.querySelector('.fnv2-resend');
+      const countdown=content.querySelector('.fnv2-countdown');
+      if(resendTimer)clearInterval(resendTimer);
+      resendUntil=Date.now()+59000;
+      const updateResend=()=>{
+        if(!resend.isConnected){clearInterval(resendTimer);resendTimer=null;return;}
+        const left=Math.max(0,Math.ceil((resendUntil-Date.now())/1000));
+        countdown.textContent=left?left+'s':'';
+        resend.disabled=left>0||sending;
+      };
+      updateResend();resendTimer=setInterval(updateResend,500);
+      resend.addEventListener('click',async()=>{
+        if(sending||Date.now()<resendUntil)return;
+        sending=true;resend.disabled=true;resend.innerHTML=spinner;
+        const error=content.querySelector('.fnv2-error');error.textContent='';
+        try{
+          const a=await ensureFirebase();
+          resetCaptcha();
+          const request=otpRequest;
+          captcha=new firebase.auth.RecaptchaVerifier('fnv2-recaptcha',{size:'invisible'},a.app);
+          const result=await a.signInWithPhoneNumber('+91'+mobile,captcha);
+          if(request!==otpRequest)return;
+          confirmation=result;
+          resendUntil=Date.now()+59000;
+          content.querySelector('#fnv2OTP').value='';
+        }catch(e){error.textContent=otpError(e);resetCaptcha();resendUntil=Date.now()+59000;}
+        finally{sending=false;if(resend.isConnected){resend.textContent='Resend OTP';updateResend();}}
+      });
       const input=content.querySelector('input'); input.focus(); input.addEventListener('input',()=>input.value=input.value.replace(/\D/g,'').slice(0,6));
       const verify = async () => {
         if (verifying) return;
@@ -213,7 +250,7 @@
         if (!confirmation) { content.querySelector('.fnv2-error').textContent = 'Request a new OTP.'; return; }
         const btn = content.querySelector('.fnv2-verify');
         const error = content.querySelector('.fnv2-error');
-        verifying = true; btn.disabled = true; btn.textContent = 'Verifying...'; error.textContent = '';
+        verifying = true; btn.disabled = true; btn.innerHTML = spinner; error.textContent = '';
         try {
           const result = await confirmation.confirm(input.value);
           const verifiedPhone = result.user?.phoneNumber || '';
