@@ -1811,7 +1811,69 @@ background 0.2s ease,
   background: #17243B;
   color: #fff;
 }
+.partner-account {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
 
+.partner-profile {
+  position: relative;
+}
+
+.partner-profile[hidden],
+.partner-dropdown[hidden] {
+  display: none !important;
+}
+
+.profile-icon-btn {
+  width: 42px;
+  height: 42px;
+  border: 1px solid #E82B65;
+  border-radius: 50%;
+  background: white;
+  color: #E82B65;
+  font-size: 19px;
+  cursor: pointer;
+}
+
+.partner-dropdown {
+  position: absolute;
+  top: 52px;
+  right: 0;
+  width: 210px;
+  padding: 8px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 8px 30px #0002;
+  z-index: 99999;
+}
+
+.partner-dropdown a,
+.partner-dropdown button {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 13px;
+  border: 0;
+  background: transparent;
+  color: #17243B;
+  font-size: 14px;
+  text-decoration: none;
+  cursor: pointer;
+  text-align: left;
+  border-radius: 8px;
+}
+
+.partner-dropdown a:hover,
+.partner-dropdown button:hover {
+  background: #fff0f5;
+}
+
+.partner-dropdown i {
+  color: #E82B65;
+}
 </style>
 
 </head>
@@ -1842,11 +1904,34 @@ background 0.2s ease,
 
     <!-- RIGHT LOGIN -->
 
-    <a href="login.html" class="partner-login">
+    <div class="partner-account" id="partnerAccount">
 
-      Login
+  <!-- LOGIN BUTTON -->
+  <a href="#" id="partnerLoginBtn" class="partner-login">
+    Login
+  </a>
 
-    </a>
+  <!-- PROFILE AFTER LOGIN -->
+  <div id="partnerProfile" class="partner-profile" hidden>
+
+    <button type="button" id="partnerProfileBtn" class="profile-icon-btn">
+      <i class="fa-regular fa-user"></i>
+    </button>
+
+    <div id="partnerDropdown" class="partner-dropdown" hidden>
+      <a href="#" id="restaurantDashboard">
+        <i class="fa-solid fa-store"></i>
+        Restaurant Partner
+      </a>
+
+      <button type="button" id="partnerLogoutBtn">
+        <i class="fa-solid fa-right-from-bracket"></i>
+        Logout
+      </button>
+    </div>
+
+  </div>
+</div>
 
   </nav>
 
@@ -1862,12 +1947,9 @@ background 0.2s ease,
 
     </h1>
 
-    <a href="register.html" class="partner-register">
-
-      Register your restaurant
-
-    </a>
-
+   <a href="#" id="partnerRegisterBtn" class="partner-register">
+  Register your restaurant
+</a>
   </div>
 
 <div class="partner-info-box">
@@ -2456,6 +2538,895 @@ document.querySelectorAll('.faq-question').forEach((button) => {
   }
   window.addEventListener('scroll', updateNavbar, { passive: true });
   updateNavbar();
+})();
+</script>
+<script src="login.js"></script>
+
+<!-- FOODNATI RESTAURANT APPLICATION -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<style>
+#foodnatiApplicationView,#foodnatiApplicationView *{box-sizing:border-box}
+#foodnatiApplicationView{display:none;min-height:100dvh;padding:calc(var(--fn-nav-height,90px) + 22px) 18px 55px;background:#f5f6fa;color:#202938;font-family:'DM Sans',Arial,sans-serif}
+body.foodnati-application-mode{margin:0!important;padding:0!important;background:#f5f6fa!important}
+body.foodnati-application-mode>*:not(.partner-navbar,#foodnatiApplicationView,script,style,link){display:none!important}
+body.foodnati-application-mode #foodnatiApplicationView{display:block!important}
+body.foodnati-application-mode>.partner-navbar{display:flex!important;position:fixed!important;top:0!important;left:0!important;right:0!important;width:100%!important;z-index:10000!important;background:white!important;visibility:visible!important;opacity:1!important;box-shadow:0 2px 10px #00000010}
+.fn-layout{max-width:1150px;margin:auto;display:grid;grid-template-columns:340px minmax(0,1fr);gap:24px;align-items:start}
+.fn-policy-card{background:#fff;border:1px solid #e8ebf1;border-radius:15px;padding:8px 18px;margin-top:16px}.fn-policy-card a{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px 3px;color:#34445d;text-decoration:none;font-size:13px;font-weight:650;border-bottom:1px solid #edf0f4}.fn-policy-card a:last-child{border-bottom:0}.fn-policy-card a:hover{color:#2563eb}.fn-policy-card i{color:#64748b}.fn-side,.fn-card{background:#fff;border:1px solid #e8ebf1;border-radius:18px;overflow:hidden}
+.fn-side-wrap{position:sticky;top:calc(var(--fn-nav-height,90px) + 15px)}
+.fn-side h3{margin:0;padding:22px;border-bottom:1px solid #edf0f4;font-size:18px}
+.fn-steps{padding:18px}
+.fn-step{display:flex;align-items:center;gap:14px;padding:17px 4px;color:#657185;font-size:14px;font-weight:650}
+.fn-step i{width:45px;height:45px;flex-shrink:0;display:grid;place-items:center;border:1px solid #dce2ec;border-radius:50%;font-size:17px}
+.fn-step.active{color:#2563eb}
+.fn-step.active i{background:#edf4ff;border-color:#2563eb}
+.fn-step.done{color:#14865d}
+.fn-step.done i{border-color:#14865d}
+.fn-title{font-size:32px;letter-spacing:-.6px;margin:0 0 23px;font-weight:750}
+.fn-card{margin-bottom:22px}
+.fn-card-head{padding:23px 24px;border-bottom:1px solid #edf0f4}
+.fn-card-head h2{font-size:21px;margin:0}
+.fn-card-head p{font-size:13px;color:#8a95a5;margin:7px 0 0}
+.fn-card-body{padding:22px 24px}
+.fn-grid{display:grid;grid-template-columns:1fr 1fr;gap:15px}
+.fn-field{display:flex;flex-direction:column;gap:7px;margin-bottom:15px;min-width:0;position:relative}
+.fn-field label{font-size:13px;font-weight:650;color:#46556b}
+.fn-field input,.fn-field select,.fn-field textarea{width:100%;min-height:50px;padding:12px 14px;border:1px solid #dfe4eb;border-radius:11px;background:#fff;color:#253247;font:inherit;font-size:14px;outline:none}
+.fn-field textarea{min-height:85px;resize:vertical}
+.fn-field input:focus,.fn-field select:focus,.fn-field textarea:focus{border-color:#2563eb;box-shadow:0 0 0 3px #2563eb12}
+.fn-field small{font-size:11px;color:#8490a0}
+.fn-btn{border:0;border-radius:10px;padding:13px 23px;font-size:14px;font-weight:700;cursor:pointer}
+.fn-primary{background:#2563eb;color:#fff}
+.fn-secondary{background:#fff;border:1px solid #dce2eb;color:#34445d}
+.fn-btn:disabled{opacity:.65;cursor:not-allowed}
+.fn-actions{display:flex;justify-content:flex-end;gap:12px;margin-top:15px}
+.fn-hidden{display:none!important}
+.fn-alert{display:none;margin:15px 0;padding:13px;border-radius:10px;font-size:13px;line-height:1.6;overflow-wrap:anywhere}
+.fn-alert.error{display:block;background:#fff0f0;color:#a32929}
+.fn-alert.success{display:block;background:#e9f9ef;color:#14734a}
+.fn-options{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:22px}
+.fn-option{padding:16px 10px;background:#fff;border:1px solid #dce2eb;border-radius:11px;cursor:pointer;color:#48566b;font-weight:650;font-size:13px}
+.fn-option i{margin-right:7px}
+.fn-option.active{border-color:#2563eb;background:#eff5ff;color:#2563eb}
+#fnMap{height:330px;width:100%;border-radius:12px;z-index:1}
+.fn-map-help{font-size:12px;color:#758298;margin:12px 0}
+.fn-upload{display:block;border:2px dashed #cbd7e8;border-radius:15px;padding:27px 14px;text-align:center;cursor:pointer;background:#fafcff}
+.fn-upload i{font-size:27px;color:#2563eb;margin-bottom:12px}
+.fn-upload strong{display:block;font-size:14px}
+.fn-upload span{display:block;font-size:12px;color:#8794a5;margin-top:7px}
+.fn-upload input{display:none}
+.fn-images{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:17px}
+.fn-image{position:relative;border:1px solid #e4e9f0;border-radius:11px;overflow:hidden}
+.fn-image img{width:100%;height:125px;object-fit:cover;display:block}
+.fn-image button{position:absolute;top:6px;right:6px;width:29px;height:29px;background:#fff;border:0;border-radius:50%;cursor:pointer;color:#b33}
+.fn-image p{padding:8px;margin:0;font-size:11px;overflow-wrap:anywhere}
+.fn-suggestions{position:absolute;top:100%;left:0;right:0;z-index:500;background:white;border:1px solid #dfe4ec;border-radius:11px;box-shadow:0 10px 25px #00000014;max-height:220px;overflow-y:auto;display:none}
+.fn-suggestions.show{display:block}
+.fn-suggestion{width:100%;padding:12px 14px;border:0;border-bottom:1px solid #f0f2f5;background:#fff;text-align:left;font-size:12px;color:#35445b;cursor:pointer}
+.fn-suggestion:hover{background:#f0f5ff}
+.fn-success{display:none;text-align:center;padding:40px 20px;background:#fff;border-radius:18px}
+.fn-success i{font-size:60px;color:#15966b;margin-bottom:15px}
+.fn-success h2{margin:10px 0;font-size:24px}
+.fn-success p{color:#748095;font-size:14px}
+@media(max-width:800px){
+ #foodnatiApplicationView{padding:calc(var(--fn-nav-height,90px) + 15px) 13px 45px}
+ .fn-layout{grid-template-columns:1fr;gap:18px}
+ .fn-side-wrap{position:static}
+ .fn-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;padding:12px}
+ .fn-step{flex-direction:column;text-align:center;font-size:11px;gap:8px}
+ .fn-step i{width:39px;height:39px}
+ .fn-title{font-size:26px}
+ .fn-card-head,.fn-card-body{padding:18px}
+}
+@media(max-width:460px){
+ .fn-grid{grid-template-columns:1fr}
+ .fn-images{grid-template-columns:repeat(2,1fr)}
+ .fn-option{font-size:11px}
+}
+</style>
+
+<div id="foodnatiApplicationView">
+<div class="fn-layout">
+
+<aside class="fn-side-wrap">
+<div class="fn-side">
+<h3>Complete your registration</h3>
+<div class="fn-steps">
+<div class="fn-step active" data-indicator="0"><i class="fa-solid fa-utensils"></i><span>Restaurant information</span></div>
+<div class="fn-step" data-indicator="1"><i class="fa-solid fa-location-dot"></i><span>Location & menu</span></div>
+<div class="fn-step" data-indicator="2"><i class="fa-solid fa-file-lines"></i><span>Documents & bank</span></div>
+</div>
+</div>
+<div class="fn-policy-card">
+<a href="/terms-and-conditions" target="_blank" rel="noopener"><span>Terms &amp; Conditions</span><i class="fa-solid fa-chevron-right"></i></a>
+<a href="/privacy-policy" target="_blank" rel="noopener"><span>Privacy Policy</span><i class="fa-solid fa-chevron-right"></i></a>
+<a href="/commission-policy" target="_blank" rel="noopener"><span>Commission Policy</span><i class="fa-solid fa-chevron-right"></i></a>
+</div>
+</aside>
+
+<main>
+
+<!-- STEP 1 -->
+<section data-page="0">
+<h1 class="fn-title">Restaurant information</h1>
+
+<div class="fn-card">
+<div class="fn-card-head"><h2>Restaurant name</h2><p>Customers will see this name on Foodnati</p></div>
+<div class="fn-card-body">
+<div class="fn-field"><label>Restaurant name *</label><input id="fnName" autocomplete="organization"></div>
+</div>
+</div>
+
+<div class="fn-card">
+<div class="fn-card-head"><h2>Owner details</h2></div>
+<div class="fn-card-body">
+<div class="fn-grid">
+<div class="fn-field"><label>Owner full name *</label><input id="fnOwner" autocomplete="name"></div>
+<div class="fn-field"><label>Registered mobile number *</label><input id="fnMobile" readonly><small>From Foodnati login</small></div>
+</div>
+</div>
+</div>
+
+<div class="fn-card">
+<div class="fn-card-head"><h2>Operational details</h2></div>
+<div class="fn-card-body">
+<div class="fn-grid">
+<div class="fn-field">
+<label>Restaurant type *</label>
+<select id="fnType">
+<option value="">Select restaurant type</option>
+<option value="Veg">Veg</option>
+<option value="Non-Veg">Non-Veg</option>
+<option value="Veg and Non-Veg">Veg & Non-Veg</option>
+<option value="Snacks">Snacks</option>
+<option value="Both">Both (Food & Snacks)</option>
+<option value="Others">Others</option>
+</select>
+</div>
+<div class="fn-field fn-hidden" id="fnOtherWrap">
+<label>Specify restaurant type *</label>
+<input id="fnOtherType" placeholder="Enter your restaurant type">
+</div>
+<div class="fn-field"><label>Opening time</label><input id="fnOpen" type="time"></div>
+<div class="fn-field"><label>Closing time</label><input id="fnClose" type="time"></div>
+</div>
+<div class="fn-field"><label>Description</label><textarea id="fnDescription"></textarea></div>
+</div>
+</div>
+</section>
+
+<!-- STEP 2 -->
+<section data-page="1" class="fn-hidden">
+<h1 class="fn-title">Location & menu</h1>
+
+<div class="fn-card">
+<div class="fn-card-head"><h2>Restaurant location</h2><p>Enter address manually or select from map</p></div>
+<div class="fn-card-body">
+
+<div class="fn-options">
+<button class="fn-option active" type="button" id="fnManualBtn"><i class="fa-solid fa-pen-to-square"></i> Enter manually</button>
+<button class="fn-option" type="button" id="fnMapBtn"><i class="fa-solid fa-map-location-dot"></i> Select from map</button>
+</div>
+
+<div id="fnManualPanel">
+<div class="fn-field">
+<label>Full address *</label>
+<input id="fnAddress" autocomplete="off" placeholder="Search street, area or address">
+<div class="fn-suggestions" id="fnAddressSuggestions"></div>
+</div>
+<div class="fn-grid">
+<div class="fn-field">
+<label>City *</label>
+<input id="fnCity" autocomplete="off" placeholder="Search city">
+<div class="fn-suggestions" id="fnCitySuggestions"></div>
+</div>
+<div class="fn-field"><label>State *</label><input id="fnState" value="Andhra Pradesh"></div>
+<div class="fn-field"><label>Pincode *</label><input id="fnPin" maxlength="6" inputmode="numeric"></div>
+</div>
+</div>
+
+<div id="fnMapPanel" class="fn-hidden">
+<div id="fnMap"></div>
+<p class="fn-map-help">Tap on the map or drag the pin to select your restaurant location.</p>
+<button type="button" class="fn-btn fn-secondary" id="fnLocate"><i class="fa-solid fa-location-crosshairs"></i> My location</button>
+<div class="fn-grid" style="margin-top:15px">
+<div class="fn-field"><label>Latitude</label><input id="fnLat" readonly></div>
+<div class="fn-field"><label>Longitude</label><input id="fnLng" readonly></div>
+</div>
+<div class="fn-field"><label>Detected address</label><textarea id="fnDetected" readonly></textarea></div>
+<div class="fn-field"><label>Building / street *</label><input id="fnMapStreet"></div>
+<div class="fn-grid">
+<div class="fn-field"><label>City *</label><input id="fnMapCity"></div>
+<div class="fn-field"><label>State *</label><input id="fnMapState" value="Andhra Pradesh"></div>
+<div class="fn-field"><label>Pincode *</label><input id="fnMapPin" maxlength="6" inputmode="numeric"></div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="fn-card">
+<div class="fn-card-head"><h2>Food menu images</h2><p>Upload up to 5 restaurant menu images</p></div>
+<div class="fn-card-body">
+<label class="fn-upload">
+<i class="fa-solid fa-cloud-arrow-up"></i>
+<strong>Choose menu images</strong>
+<span>JPG, PNG, WebP — up to 5 images, maximum 10 MB each</span>
+<input id="fnMenuFiles" type="file" accept="image/jpeg,image/png,image/webp" multiple>
+</label>
+<p id="fnImageCount" style="font-size:12px;color:#64748b;margin:12px 0 0">0 / 5 images selected</p>
+<div id="fnImages" class="fn-images"></div>
+</div>
+</div>
+</section>
+
+<!-- STEP 3: FINAL SUBMISSION -->
+<section data-page="2" class="fn-hidden">
+<h1 class="fn-title">Documents & bank</h1>
+
+<div class="fn-card">
+<div class="fn-card-head"><h2>Restaurant documents</h2></div>
+<div class="fn-card-body">
+<div class="fn-field"><label>FSSAI number</label><input id="fnFssai"></div>
+<div class="fn-field"><label>PAN number</label><input id="fnPan" maxlength="10"></div>
+<div class="fn-field"><label>GST number (if applicable)</label><input id="fnGST" maxlength="15"></div>
+</div>
+</div>
+
+<div class="fn-card">
+<div class="fn-card-head"><h2>Bank account</h2></div>
+<div class="fn-card-body">
+<div class="fn-field"><label>Account holder name</label><input id="fnHolder"></div>
+<div class="fn-grid">
+<div class="fn-field"><label>Bank name</label><input id="fnBank"></div>
+<div class="fn-field"><label>Branch</label><input id="fnBranch"></div>
+<div class="fn-field"><label>Account number</label><input id="fnAccount" autocomplete="off"></div>
+<div class="fn-field"><label>IFSC code</label><input id="fnIFSC" maxlength="11"></div>
+</div>
+</div>
+</div>
+</section>
+
+<div id="fnAlert" class="fn-alert" role="status" aria-live="polite"></div>
+
+<div class="fn-actions" id="fnActions">
+<button type="button" class="fn-btn fn-secondary fn-hidden" id="fnPrevious">Previous</button>
+<button type="button" class="fn-btn fn-primary" id="fnNext">Next</button>
+</div>
+
+<div class="fn-success" id="fnSuccess">
+<i class="fa-solid fa-circle-check"></i>
+<h2>Application submitted!</h2>
+<p id="fnSuccessDetails">Your restaurant application has been received.</p>
+</div>
+
+</main>
+</div>
+</div>
+
+<script>
+(function(){
+"use strict";
+
+const API="https://datasending.onrender.com";
+const APPLY=API+"/api/restaurant/apply";
+const UPLOAD=API+"/api/restaurant/upload";
+const SESSION_KEY="foodnati_partner_demo_session";
+const HISTORY_KEY="foodnatiApplication";
+const DRAFT_KEY="foodnati_application_draft_v4";
+
+const app=document.getElementById("foodnatiApplicationView");
+if(!app)return;
+
+const $=id=>document.getElementById(id);
+const v=id=>$(id).value.trim();
+
+let navbar=null,placeholder=null;
+let step=0,locationMode="manual";
+let map=null,marker=null,reverseId=0;
+let menuImages=[],submitting=false,submitted=false;
+
+const fields=[
+"fnName","fnOwner","fnType","fnOtherType","fnOpen","fnClose",
+"fnDescription","fnAddress","fnCity","fnState","fnPin",
+"fnLat","fnLng","fnDetected","fnMapStreet","fnMapCity",
+"fnMapState","fnMapPin","fnFssai","fnPan","fnGST",
+"fnHolder","fnBank","fnBranch","fnAccount","fnIFSC"
+];
+
+function mobile(){
+try{
+ const s=JSON.parse(localStorage.getItem(SESSION_KEY)||"null");
+ const n=String(s?.mobile||"");
+ return /^[6-9]\d{9}$/.test(n)?n:"";
+}catch{return "";}
+}
+
+function message(text,type="error"){
+ $("fnAlert").textContent=text;
+ $("fnAlert").className="fn-alert "+type;
+}
+function clearMessage(){
+ $("fnAlert").textContent="";
+ $("fnAlert").className="fn-alert";
+}
+
+/* NAVIGATION */
+function prepareNavbar(){
+ if(navbar)return;
+ navbar=document.querySelector(".partner-navbar");
+ if(!navbar)return;
+ placeholder=document.createComment("Original Foodnati navbar position");
+ navbar.parentNode.insertBefore(placeholder,navbar);
+}
+
+function navHeight(){
+ if(!navbar)return;
+ const height=navbar.getBoundingClientRect().height||90;
+ document.documentElement.style.setProperty("--fn-nav-height",height+"px");
+}
+
+function showApplication(addHistory=true){
+ prepareNavbar();
+
+ if(navbar&&navbar.parentElement!==document.body)
+  document.body.insertBefore(navbar,document.body.firstChild);
+
+ document.body.classList.add("foodnati-application-mode");
+ navHeight();
+
+ if(addHistory&&!history.state?.[HISTORY_KEY])
+  history.pushState({...history.state,[HISTORY_KEY]:true},"",location.href);
+
+ $("fnMobile").value=mobile();
+ window.scrollTo(0,0);
+}
+
+function showHome(){
+ document.body.classList.remove("foodnati-application-mode");
+ if(navbar&&placeholder?.parentNode)
+  placeholder.parentNode.insertBefore(navbar,placeholder.nextSibling);
+ window.scrollTo(0,0);
+}
+
+document.addEventListener("click",e=>{
+ const btn=e.target.closest("#partnerRegisterBtn");
+ if(!btn||btn.textContent.trim().toLowerCase()!=="continue application")return;
+ e.preventDefault();
+ e.stopImmediatePropagation();
+ showApplication(true);
+},true);
+
+window.addEventListener("foodnati:continue-application",()=>showApplication(true));
+window.addEventListener("popstate",e=>{
+ if(e.state?.[HISTORY_KEY])showApplication(false);
+ else showHome();
+});
+window.addEventListener("foodnati:logout",()=>{
+ if(history.state?.[HISTORY_KEY])history.back();
+ else showHome();
+});
+window.showFoodnatiApplication=()=>showApplication(true);
+window.closeFoodnatiApplication=()=>{
+ if(history.state?.[HISTORY_KEY])history.back();
+ else showHome();
+};
+window.addEventListener("resize",()=>{
+ if(document.body.classList.contains("foodnati-application-mode"))navHeight();
+});
+
+/* SAVE FORM DRAFT */
+function saveDraft(){
+ const data={locationMode};
+ fields.filter(id=>!["fnPan","fnHolder","fnBank","fnBranch","fnAccount","fnIFSC"].includes(id)).forEach(id=>data[id]=$(id).value);
+ try{localStorage.setItem(DRAFT_KEY,JSON.stringify(data));}catch{}
+}
+function restoreDraft(){
+ try{
+  const data=JSON.parse(localStorage.getItem(DRAFT_KEY)||"{}");
+  fields.forEach(id=>{
+   if(typeof data[id]==="string")$(id).value=data[id];
+  });
+  if(data.locationMode==="map")locationMode="map";
+ }catch{}
+}
+fields.forEach(id=>{
+ $(id).addEventListener("input",saveDraft);
+ $(id).addEventListener("change",saveDraft);
+});
+
+/* RESTAURANT TYPE */
+function updateOtherType(){
+ $("fnOtherWrap").classList.toggle("fn-hidden",v("fnType")!=="Others");
+ saveDraft();
+}
+$("fnType").addEventListener("change",updateOtherType);
+
+/* LOCATION MODE */
+function setLocationMode(mode){
+ locationMode=mode;
+ $("fnManualPanel").classList.toggle("fn-hidden",mode!=="manual");
+ $("fnMapPanel").classList.toggle("fn-hidden",mode!=="map");
+ $("fnManualBtn").classList.toggle("active",mode==="manual");
+ $("fnMapBtn").classList.toggle("active",mode==="map");
+ if(mode==="map"&&step===1)setTimeout(initMap,100);
+ saveDraft();
+}
+$("fnManualBtn").onclick=()=>setLocationMode("manual");
+$("fnMapBtn").onclick=()=>setLocationMode("map");
+
+/* ADDRESS & CITY SUGGESTIONS USING PHOTON */
+function setupSuggestions(inputId,boxId,isCity){
+ const input=$(inputId);
+ const box=$(boxId);
+ let timer=null,controller=null,sequence=0;
+
+ input.addEventListener("input",()=>{
+  clearTimeout(timer);
+  if(controller)controller.abort();
+  const query=input.value.trim();
+  const current=++sequence;
+  box.replaceChildren();
+  box.classList.remove("show");
+  if(query.length<3)return;
+
+  timer=setTimeout(async()=>{
+   controller=new AbortController();
+
+   try{
+    const url="https://photon.komoot.io/api/?q="+
+     encodeURIComponent(query)+
+     "&limit=6&lang=en";
+
+    const response=await fetch(url,{signal:controller.signal});
+    if(!response.ok)throw new Error("Suggestions unavailable");
+
+    const data=await response.json();
+    if(current!==sequence)return;
+
+    const seen=new Set();
+
+    (data.features||[]).forEach(feature=>{
+     const p=feature.properties||{};
+     const city=p.city||p.town||p.village||p.county||"";
+     const state=p.state||"";
+     const country=p.country||"";
+     const title=isCity
+      ?city
+      :[p.name,p.street,city,state].filter(Boolean).join(", ");
+
+     if(!title||seen.has(title))return;
+     seen.add(title);
+
+     const button=document.createElement("button");
+     button.type="button";
+     button.className="fn-suggestion";
+     button.textContent=isCity
+      ?[city,state,country].filter(Boolean).join(", ")
+      :title;
+
+     button.addEventListener("click",()=>{
+      input.value=isCity?city:title;
+
+      if(p.state)$("fnState").value=p.state;
+      if(p.postcode)$("fnPin").value=p.postcode;
+
+      if(!isCity&&city)$("fnCity").value=city;
+
+      if(!isCity&&feature.geometry?.coordinates){
+       const [lng,lat]=feature.geometry.coordinates;
+       $("fnLat").value=lat;
+       $("fnLng").value=lng;
+      }
+
+      box.classList.remove("show");
+      saveDraft();
+     });
+
+     box.appendChild(button);
+    });
+
+    if(box.children.length)box.classList.add("show");
+   }catch(e){
+    if(e.name!=="AbortError")console.warn(e.message);
+   }
+  },350);
+ });
+
+ input.addEventListener("blur",()=>{
+  setTimeout(()=>box.classList.remove("show"),180);
+ });
+}
+
+setupSuggestions("fnAddress","fnAddressSuggestions",false);
+setupSuggestions("fnCity","fnCitySuggestions",true);
+
+/* MAP */
+function initMap(){
+ if(typeof L==="undefined"){
+  message("Map could not load. Check your internet connection.");
+  return;
+ }
+
+ if(!map){
+  const lat=Number(v("fnLat"))||16.754;
+  const lng=Number(v("fnLng"))||81.681;
+
+  map=L.map("fnMap").setView([lat,lng],14);
+
+  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",{
+   attribution:"&copy; OpenStreetMap contributors",
+   maxZoom:19
+  }).addTo(map);
+
+  marker=L.marker([lat,lng],{draggable:true}).addTo(map);
+  map.on("click",e=>selectPoint(e.latlng.lat,e.latlng.lng));
+  marker.on("dragend",()=>{
+   const p=marker.getLatLng();
+   selectPoint(p.lat,p.lng);
+  });
+ }
+ map.invalidateSize();
+}
+
+async function selectPoint(lat,lng){
+ $("fnLat").value=lat.toFixed(6);
+ $("fnLng").value=lng.toFixed(6);
+ if(marker)marker.setLatLng([lat,lng]);
+
+ const request=++reverseId;
+ $("fnDetected").value="Finding address...";
+
+ try{
+  const url="https://nominatim.openstreetmap.org/reverse?format=json"+
+   "&lat="+encodeURIComponent(lat)+
+   "&lon="+encodeURIComponent(lng)+
+   "&addressdetails=1";
+
+  const response=await fetch(url);
+  if(!response.ok)throw new Error("Lookup failed");
+
+  const data=await response.json();
+  if(request!==reverseId)return;
+
+  const a=data.address||{};
+  $("fnDetected").value=data.display_name||"";
+  $("fnMapCity").value=a.city||a.town||a.village||"";
+  $("fnMapState").value=a.state||"Andhra Pradesh";
+  $("fnMapPin").value=a.postcode||"";
+  saveDraft();
+ }catch{
+  if(request!==reverseId)return;
+  $("fnDetected").value="Please enter your address below.";
+ }
+}
+
+$("fnLocate").addEventListener("click",()=>{
+ if(!navigator.geolocation){
+  message("Location is not supported.");
+  return;
+ }
+ navigator.geolocation.getCurrentPosition(
+  p=>{
+   initMap();
+   map?.setView([p.coords.latitude,p.coords.longitude],17);
+   selectPoint(p.coords.latitude,p.coords.longitude);
+  },
+  e=>message("Location unavailable: "+e.message),
+  {enableHighAccuracy:true,timeout:15000}
+ );
+});
+
+/* IMAGE UPLOAD PREVIEW */
+function renderImages(){
+ const grid=$("fnImages");
+ grid.replaceChildren();
+ $("fnImageCount").textContent=menuImages.length+" / 5 images selected";
+
+ menuImages.forEach((item,index)=>{
+  const card=document.createElement("div");
+  card.className="fn-image";
+
+  const img=document.createElement("img");
+  img.src=item.preview;
+  img.alt="Menu image";
+
+  const remove=document.createElement("button");
+  remove.type="button";
+  remove.innerHTML='<i class="fa-solid fa-xmark"></i>';
+  remove.onclick=()=>{
+   URL.revokeObjectURL(item.preview);
+   menuImages.splice(index,1);
+   renderImages();
+  };
+
+  const label=document.createElement("p");
+  label.textContent=item.file.name;
+
+  card.append(img,remove,label);
+  grid.appendChild(card);
+ });
+}
+
+$("fnMenuFiles").addEventListener("change",e=>{
+ const allowed=["image/jpeg","image/png","image/webp"];
+
+ for(const file of Array.from(e.target.files)){
+  if(menuImages.length>=5){message("Maximum 5 menu images allowed. Remove an image to add another.");break;}
+  if(!allowed.includes(file.type)){
+   message("Only JPG, PNG and WebP images are allowed.");
+   continue;
+  }
+  if(file.size>10*1024*1024){
+   message(file.name+" exceeds 10 MB.");
+   continue;
+  }
+  menuImages.push({file,preview:URL.createObjectURL(file)});
+ }
+
+ e.target.value="";
+ renderImages();
+});
+
+/* UPLOAD TO BACKEND */
+async function uploadImages(){
+ const urls=[];
+
+ for(const item of menuImages){
+  const form=new FormData();
+  form.append("file",item.file);
+
+  let response;
+  try {
+   const token = await window.foodnatiGetPartnerToken();
+   response=await fetch(UPLOAD,{method:"POST",headers:{"Authorization":"Bearer "+token},body:form});
+  } catch(error) {
+   throw new Error("Image upload connection failed. Check the upload API, CORS and server availability.");
+  }
+
+  const raw=await response.text();
+  let data;
+  try{data=JSON.parse(raw);}
+  catch{throw new Error("Upload server returned invalid JSON.");}
+
+  if(response.status===401)throw new Error("Login expired. Please verify your phone OTP again.");
+  if(!response.ok||data.success===false){
+   throw new Error(data.error||data.message||"Image upload failed.");
+  }
+
+  const url=data.path||data.url||data.image_url||data.public_url||data.data?.url;
+  if(!url)throw new Error("Upload response did not contain a storage path.");
+
+  urls.push(url);
+ }
+
+ return urls;
+}
+
+/* VALIDATION */
+function validate(){
+ if(step===0){
+  if(!v("fnName"))return "Enter restaurant name.";
+  if(!v("fnOwner"))return "Enter owner name.";
+  if(!mobile())return "Please log in again.";
+  if(!v("fnType"))return "Select restaurant type.";
+  if(v("fnType")==="Others"&&!v("fnOtherType"))
+   return "Enter your restaurant type.";
+ }
+
+ if(step===1){
+  const isMap=locationMode==="map";
+  const address=v(isMap?"fnMapStreet":"fnAddress");
+  const city=v(isMap?"fnMapCity":"fnCity");
+  const state=v(isMap?"fnMapState":"fnState");
+  const pin=v(isMap?"fnMapPin":"fnPin");
+
+  if(!address||!city||!state)return "Complete restaurant address.";
+  if(!/^\d{6}$/.test(pin))return "Enter a valid six-digit pincode.";
+
+  if(isMap&&(!v("fnLat")||!v("fnLng")))
+   return "Select your restaurant location on the map.";
+ }
+
+ if(step===2){
+  const pan=v("fnPan").toUpperCase();
+  const gst=v("fnGST").toUpperCase();
+  const ifsc=v("fnIFSC").toUpperCase();
+
+  if(pan&&!/^[A-Z]{5}[0-9]{4}[A-Z]$/.test(pan))
+   return "Enter a valid PAN number.";
+
+  if(gst&&!/^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z][1-9A-Z]Z[0-9A-Z]$/.test(gst))
+   return "Enter a valid GST number.";
+
+  if(ifsc&&!/^[A-Z]{4}0[A-Z0-9]{6}$/.test(ifsc))
+   return "Enter a valid IFSC code.";
+
+  const bank=["fnHolder","fnBank","fnAccount","fnIFSC"];
+  if(bank.some(id=>v(id))&&bank.some(id=>!v(id)))
+   return "Complete all bank account fields.";
+ }
+
+ return "";
+}
+
+/* APPLICATION PAYLOAD */
+function payload(imageURLs){
+ const isMap=locationMode==="map";
+
+ return {
+  restaurant_name:v("fnName"),
+  owner_name:v("fnOwner"),
+  mobile_number:mobile(),
+  food_menu_images:imageURLs,
+  fssai_number:v("fnFssai")||null,
+
+  location:{
+   address:v(isMap?"fnMapStreet":"fnAddress"),
+   city:v(isMap?"fnMapCity":"fnCity"),
+   state:v(isMap?"fnMapState":"fnState"),
+   pincode:v(isMap?"fnMapPin":"fnPin"),
+   latitude:v("fnLat")?Number(v("fnLat")):null,
+   longitude:v("fnLng")?Number(v("fnLng")):null
+  },
+
+  bank_account:{
+   account_holder_name:v("fnHolder"),
+   bank_name:v("fnBank"),
+   branch:v("fnBranch"),
+   account_number:v("fnAccount"),
+   ifsc_code:v("fnIFSC").toUpperCase()
+  },
+
+  pan_card:{
+   pan_number:v("fnPan").toUpperCase(),
+   pan_image_url:""
+  },
+
+  gst_number:v("fnGST").toUpperCase()||null,
+  gst_certificate_url:"",
+
+  restaurant_details:{
+   restaurant_type:v("fnType")==="Others"
+    ?v("fnOtherType")
+    :v("fnType"),
+   opening_time:v("fnOpen"),
+   closing_time:v("fnClose"),
+   description:v("fnDescription")
+  }
+ };
+}
+
+/* STEPS */
+function renderStep(){
+ app.querySelectorAll("[data-page]").forEach(el=>{
+  el.classList.toggle("fn-hidden",Number(el.dataset.page)!==step);
+ });
+
+ app.querySelectorAll("[data-indicator]").forEach(el=>{
+  const n=Number(el.dataset.indicator);
+  el.classList.toggle("active",n===step);
+  el.classList.toggle("done",n<step);
+ });
+
+ $("fnPrevious").classList.toggle("fn-hidden",step===0);
+ $("fnNext").textContent=step===2?"Submit Application":"Next";
+
+ if(step===1&&locationMode==="map")setTimeout(initMap,100);
+
+ clearMessage();
+ window.scrollTo(0,0);
+}
+
+/* REAL SUBMISSION */
+async function submitApplication(){
+ if(submitting||submitted)return;
+
+ submitting=true;
+ const next=$("fnNext");
+ const previous=$("fnPrevious");
+
+ next.disabled=true;
+ previous.disabled=true;
+ next.innerHTML='<i class="fa-solid fa-spinner fa-spin"></i> Submitting...';
+ clearMessage();
+
+ try{
+  const imageURLs=await uploadImages();
+
+  let response;
+  try {
+   response=await fetch(APPLY,{
+    method:"POST",
+    headers:{"Content-Type":"application/json","Authorization":"Bearer "+await window.foodnatiGetPartnerToken()},
+    body:JSON.stringify(payload(imageURLs))
+   });
+  } catch(error) {
+   throw new Error("Application API connection failed. Check CORS, backend availability and browser Network tab.");
+  }
+
+  const raw=await response.text();
+  let result;
+
+  try{result=JSON.parse(raw);}
+  catch{throw new Error("Application server returned invalid JSON.");}
+
+  if(response.status===401)throw new Error("Login expired. Please verify your phone OTP again.");
+  if(!response.ok||result.success===false||result.error){
+   throw new Error(result.error||result.message||"Submission failed.");
+  }
+
+  submitted=true;
+  localStorage.removeItem(DRAFT_KEY);
+
+  const id=result.application_id??result.id??result.data?.id;
+
+  $("fnActions").classList.add("fn-hidden");
+  app.querySelectorAll("[data-page]").forEach(el=>el.classList.add("fn-hidden"));
+  $("fnSuccess").style.display="block";
+
+  $("fnSuccessDetails").textContent=id
+   ?"Application ID: "+id
+   :"Your restaurant application has been received.";
+
+  app.querySelectorAll("[data-indicator]").forEach(el=>{
+   el.classList.remove("active");
+   el.classList.add("done");
+  });
+
+  window.scrollTo(0,0);
+
+ }catch(error){
+  console.error("Foodnati application error:",error);
+  message("Submission failed: "+error.message);
+  next.textContent="Submit Application";
+ }finally{
+  submitting=false;
+  next.disabled=false;
+  previous.disabled=false;
+ }
+}
+
+$("fnNext").addEventListener("click",async()=>{
+ const error=validate();
+ if(error){message(error);return;}
+
+ saveDraft();
+
+ if(step<2){
+  step++;
+  renderStep();
+ }else{
+  await submitApplication();
+ }
+});
+
+$("fnPrevious").addEventListener("click",()=>{
+ if(step>0){step--;renderStep();}
+});
+
+/* INIT */
+function init(){
+ prepareNavbar();
+ restoreDraft();
+ updateOtherType();
+
+ $("fnMobile").value=mobile();
+ setLocationMode(locationMode);
+
+ if(history.state?.[HISTORY_KEY])showApplication(false);
+
+ renderStep();
+}
+
+if(document.readyState==="loading"){
+ document.addEventListener("DOMContentLoaded",init,{once:true});
+}else{
+ init();
+}
 })();
 </script>
 
