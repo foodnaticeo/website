@@ -2716,6 +2716,7 @@ body.foodnati-application-mode>.partner-navbar{display:flex!important;position:f
 .fn-guide-footer .fn-guide-understood{margin:0;width:100%}
 @media(max-width:600px){.fn-guide-header{padding:18px 15px 0}.fn-guide-scroll{padding:15px 15px 10px}.fn-guide-footer{padding:12px 15px max(14px,env(safe-area-inset-bottom))}}
 
+.fn-guide-menu-photo{display:block;width:100%;max-width:520px;max-height:360px;object-fit:contain;margin:10px auto 4px;border-radius:12px;background:#f8fafc}
 /* Location guideline cards: Font Awesome icons and clear address tips */
 .fn-location-tip{display:flex;align-items:flex-start;gap:14px;padding:16px 0;border-bottom:1px dashed #dfe5ef}
 .fn-location-tip:last-child{border-bottom:0}
@@ -3316,14 +3317,23 @@ $("fnLocate").addEventListener("click",()=>{
 const fnGuides={
  name:{title:"Restaurant name guidelines",text:"Use your restaurant’s actual name as displayed on its signboard or menu. Follow these naming examples."},
  location:{title:"Restaurant location guidelines",text:"Please provide your exact restaurant location so delivery partners can find your pickup point and customers can receive accurate distance-based delivery fee estimates."},
- menu:{title:"Food menu image guidelines",text:"Upload up to five clear menu photos (JPG, PNG or WebP). Restaurant image is a separate photo of your shop or storefront."}
+ menu:{title:"Restaurant images guidelines",text:"Upload clear, original restaurant menu images so customers can easily read your food items and prices. Keep photos bright, sharp and fully visible. Avoid blurry images, unrelated pictures or promotional overlays."}
 };
 app.querySelectorAll('[data-guide]').forEach(button=>button.addEventListener('click',()=>{
  const info=fnGuides[button.dataset.guide];
  $('fnGuideTitle').textContent=info.title;
  $('fnGuideText').textContent=info.text;
  const examples=$('fnGuideExamples');
- examples.hidden=!(['name','location'].includes(button.dataset.guide));
+ examples.hidden=!(['name','location','menu'].includes(button.dataset.guide));
+ if(button.dataset.guide==='menu'){
+  examples.replaceChildren();
+  const photo=document.createElement('img');
+  photo.src='menu.jpg';
+  photo.alt='Example of a clear restaurant menu image';
+  photo.className='fn-guide-menu-photo';
+  photo.onerror=()=>{photo.style.display='none';};
+  examples.append(photo);
+ }
  if(button.dataset.guide==='location'){
   examples.replaceChildren();
   const tips=[
