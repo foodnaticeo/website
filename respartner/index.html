@@ -1934,6 +1934,11 @@ body > .partner-navbar,body > .partner-navbar.nav-scrolled{
 .fn-guide-dialog::backdrop{background:#0008}
 .fn-guide-dialog h3{margin:0 0 10px;color:#17243b}.fn-guide-dialog p{font-size:14px;line-height:1.7;color:#475569}
 @media(max-width:600px){.fn-image-upload-row{grid-template-columns:1fr}.fn-guideline{font-size:12px}}
+
+/* Smooth Referred by dropdown without blank space when collapsed */
+#fnReferralContent{overflow:hidden;max-height:0;opacity:0;transition:max-height .38s cubic-bezier(.22,1,.36,1),opacity .27s ease,padding .38s ease;}
+#fnReferralContent[hidden]{display:none!important;}
+@media (prefers-reduced-motion:reduce){#fnReferralContent{transition:none!important;}}
 </style>
 
 </head>
@@ -2823,20 +2828,18 @@ body.foodnati-application-mode>.partner-navbar{display:flex!important;position:f
 <div class="fn-card">
 <div class="fn-card-head fn-guided-head"><div><h2>Food menu images</h2><p>Upload up to 5 restaurant menu images</p></div><button type="button" class="fn-guideline" id="fnGuideMenu" data-guide="menu">Guidelines</button></div>
 <div class="fn-card-body">
-<label class="fn-upload"><i class="fa-solid fa-cloud-arrow-up"></i><strong>Choose menu images</strong><span>JPG, PNG, WebP — up to 5 images, maximum 10 MB each</span><input id="fnMenuFiles" type="file" accept="image/jpeg,image/png,image/webp" multiple></label>
+<label class="fn-upload"><i class="fa-solid fa-cloud-arrow-up"></i><strong>Choose menu images</strong><span>JPG, PNG, WebP — up to 5 images</span><input id="fnMenuFiles" type="file" accept="image/jpeg,image/png,image/webp" multiple></label>
 <p id="fnImageCount" style="font-size:12px;color:#64748b;margin:12px 0 0">0 / 5 images selected</p>
 <div id="fnImages" class="fn-images"></div>
 </div>
 </div>
 
 <div class="fn-card">
-<div class="fn-card-head"><h2>Restaurant image</h2><p>Upload one restaurant photo (JPG, PNG, WebP; max 10 MB)</p></div>
+<div class="fn-card-head"><h2>Restaurant image</h2><p>Upload one restaurant photo (JPG, PNG, WebP)</p></div>
 <div class="fn-card-body">
 <div class="fn-restaurant-choice-row">
-<label class="fn-btn fn-restaurant-choice" for="fnRestaurantImage"><i class="fa-regular fa-image"></i> Choose photo</label>
-<label class="fn-btn fn-restaurant-choice" for="fnRestaurantCamera"><i class="fa-solid fa-camera"></i> Use camera</label>
+<label class="fn-btn fn-restaurant-choice" for="fnRestaurantImage"><i class="fa-solid fa-cloud-arrow-up"></i> Upload file</label>
 <input id="fnRestaurantImage" type="file" accept="image/jpeg,image/png,image/webp" hidden>
-<input id="fnRestaurantCamera" type="file" accept="image/*" capture="environment" hidden>
 <button type="button" id="fnRestaurantSave" class="fn-btn fn-restaurant-save">Save image</button>
 </div>
 <img id="fnRestaurantPreview" class="fn-restaurant-preview" alt="Restaurant photo preview">
@@ -3043,7 +3046,20 @@ if(referralToggle&&referralContent){
  referralToggle.addEventListener('click',()=>{
   const expanded=referralToggle.getAttribute('aria-expanded')==='true';
   referralToggle.setAttribute('aria-expanded',String(!expanded));
-  referralContent.hidden=expanded;
+  if(expanded){
+   referralContent.style.maxHeight=referralContent.scrollHeight+'px';
+   requestAnimationFrame(()=>{referralContent.style.maxHeight='0px';referralContent.style.opacity='0';});
+  }else{
+   referralContent.hidden=false;
+   referralContent.style.maxHeight='0px';
+   referralContent.style.opacity='0';
+   requestAnimationFrame(()=>{referralContent.style.maxHeight=referralContent.scrollHeight+'px';referralContent.style.opacity='1';});
+  }
+ });
+ referralContent.addEventListener('transitionend',e=>{
+  if(e.propertyName!=='max-height')return;
+  if(referralToggle.getAttribute('aria-expanded')==='false')referralContent.hidden=true;
+  else referralContent.style.maxHeight='none';
  });
 }
 /* Profile > Restaurant Partner opens the application. */
@@ -3271,7 +3287,7 @@ $("fnLocate").addEventListener("click",()=>{
 const fnGuides={
  name:{title:"Restaurant name guidelines",text:"Enter the name displayed on your restaurant signboard. Use the correct spelling; avoid phone numbers, promotional text or misleading brand names."},
  location:{title:"Restaurant location guidelines",text:"Enter the full restaurant address, city, state and six-digit PIN code. You can also select the exact restaurant location using the map pin."},
- menu:{title:"Food menu image guidelines",text:"Upload up to five clear menu photos (JPG, PNG or WebP, maximum 10 MB each). Restaurant image is a separate photo of your shop or storefront."}
+ menu:{title:"Food menu image guidelines",text:"Upload up to five clear menu photos (JPG, PNG or WebP). Restaurant image is a separate photo of your shop or storefront."}
 };
 app.querySelectorAll('[data-guide]').forEach(button=>button.addEventListener('click',()=>{
  const info=fnGuides[button.dataset.guide];
@@ -3282,14 +3298,14 @@ app.querySelectorAll('[data-guide]').forEach(button=>button.addEventListener('cl
 $('fnGuideClose').addEventListener('click',()=>$('fnGuideDialog').close());
 
 /* Restaurant photo is saved on application submission, alongside menu photos. */
-['fnRestaurantImage','fnRestaurantCamera'].forEach(inputId=>$(inputId).addEventListener('change',e=>{
+$('fnRestaurantImage').addEventListener('change',e=>{
  const file=e.target.files[0];if(!file)return;
- if(!['image/jpeg','image/png','image/webp'].includes(file.type)||file.size>10*1024*1024){message('Choose a JPG, PNG or WebP restaurant image under 10 MB.');e.target.value='';return;}
+ if(!['image/jpeg','image/png','image/webp'].includes(file.type)){message('Choose a JPG, PNG or WebP restaurant image.');e.target.value='';return;}
  if(restaurantImage?.preview)URL.revokeObjectURL(restaurantImage.preview);
  restaurantImage={file,preview:URL.createObjectURL(file)};
  const preview=$('fnRestaurantPreview');preview.src=restaurantImage.preview;preview.style.display='block';
  $('fnRestaurantImageStatus').textContent='One image selected. Click Save image to confirm.';
-}));
+});
 $('fnRestaurantSave').addEventListener('click',()=>{
  $('fnRestaurantImageStatus').textContent=restaurantImage?'Restaurant image saved in this form. It uploads when you submit the application.':'Choose a restaurant image first.';
 });
@@ -3332,10 +3348,6 @@ $("fnMenuFiles").addEventListener("change",e=>{
   if(menuImages.length>=5){message("Maximum 5 menu images allowed. Remove an image to add another.");break;}
   if(!allowed.includes(file.type)){
    message("Only JPG, PNG and WebP images are allowed.");
-   continue;
-  }
-  if(file.size>10*1024*1024){
-   message(file.name+" exceeds 10 MB.");
    continue;
   }
   menuImages.push({file,preview:URL.createObjectURL(file)});
