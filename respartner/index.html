@@ -1786,6 +1786,13 @@ background 0.2s ease,
 }
 
 
+/* Referral details */
+.fn-referral-card{background:#fff;border:1px solid #f6d2df;border-radius:15px;padding:18px;margin-top:16px}
+.fn-referral-card h3{font-size:16px;margin:0 0 7px;color:#17243b}
+.fn-referral-card p{font-size:12px;color:#7a8492;line-height:1.5;margin:0 0 15px}
+.fn-referral-save{background:#f9c5d7!important;color:#8b1740!important;width:100%}
+.fn-referral-save:hover{background:#f5a9c4!important}
+.fn-referral-message{font-size:12px;color:#16814d;margin-top:10px;min-height:16px}
 /* Fixed transparent navigation; white background after scrolling */
 .partner-navbar {
   background: transparent;
@@ -2591,7 +2598,7 @@ body.foodnati-application-mode>.partner-navbar{display:flex!important;position:f
 .fn-field input:focus,.fn-field select:focus,.fn-field textarea:focus{border-color:#2563eb;box-shadow:0 0 0 3px #2563eb12}
 .fn-field small{font-size:11px;color:#8490a0}
 .fn-btn{border:0;border-radius:10px;padding:13px 23px;font-size:14px;font-weight:700;cursor:pointer}
-.fn-primary{background:#2563eb;color:#fff}
+.fn-primary{background:#f5b6cd;color:#76233f}.fn-primary:hover{background:#f19fbe}
 .fn-secondary{background:#fff;border:1px solid #dce2eb;color:#34445d}
 .fn-btn:disabled{opacity:.65;cursor:not-allowed}
 .fn-actions{display:flex;justify-content:flex-end;gap:12px;margin-top:15px}
@@ -2656,6 +2663,14 @@ body.foodnati-application-mode>.partner-navbar{display:flex!important;position:f
 <a href="/terms-and-conditions" target="_blank" rel="noopener"><span>Terms &amp; Conditions</span><i class="fa-solid fa-chevron-right"></i></a>
 <a href="/privacy-policy" target="_blank" rel="noopener"><span>Privacy Policy</span><i class="fa-solid fa-chevron-right"></i></a>
 <a href="/commission-policy" target="_blank" rel="noopener"><span>Commission Policy</span><i class="fa-solid fa-chevron-right"></i></a>
+</div>
+<div class="fn-referral-card">
+<h3>Referred by (optional)</h3>
+<p>Someone referred your restaurant? Add their details below.</p>
+<div class="fn-field"><label>Referrer name</label><input id="fnReferralName" autocomplete="off" maxlength="120" placeholder="Enter name"></div>
+<div class="fn-field"><label>Referrer mobile number</label><input id="fnReferralMobile" type="tel" inputmode="numeric" maxlength="10" placeholder="10-digit mobile number"></div>
+<button type="button" id="fnReferralSave" class="fn-btn fn-referral-save">Save referral</button>
+<div id="fnReferralMessage" class="fn-referral-message" aria-live="polite"></div>
 </div>
 </aside>
 
@@ -2847,7 +2862,8 @@ const fields=[
 "fnDescription","fnAddress","fnCity","fnState","fnPin",
 "fnLat","fnLng","fnDetected","fnMapStreet","fnMapCity",
 "fnMapState","fnMapPin","fnFssai","fnPan","fnGST",
-"fnHolder","fnBank","fnBranch","fnAccount","fnIFSC"
+"fnHolder","fnBank","fnBranch","fnAccount","fnIFSC",
+"fnReferralName","fnReferralMobile"
 ];
 
 function mobile(){
@@ -2981,6 +2997,22 @@ function restoreDraft(){
 fields.forEach(id=>{
  $(id).addEventListener("input",saveDraft);
  $(id).addEventListener("change",saveDraft);
+});
+
+/* Save referral in form draft; submitted with application to Supabase */
+$("fnReferralMobile").addEventListener("input",()=>{
+ $("fnReferralMobile").value=$("fnReferralMobile").value.replace(/\D/g,"").slice(0,10);
+});
+$("fnReferralSave").addEventListener("click",()=>{
+ const name=v("fnReferralName"), number=v("fnReferralMobile");
+ const status=$("fnReferralMessage");
+ if(!name&&!number){status.style.color="#b42342";status.textContent="Enter referral name and mobile number, or leave both empty.";return;}
+ if(!name||! /^[6-9]\d{9}$/.test(number)){
+  status.style.color="#b42342";status.textContent="Enter name and valid 10-digit mobile number.";return;
+ }
+ saveDraft();
+ status.style.color="#16814d";
+ status.textContent="Referral saved in form. It will be sent with your application.";
 });
 
 /* RESTAURANT TYPE */
@@ -3279,6 +3311,9 @@ function validate(){
  }
 
  if(step===2){
+  const refName=v("fnReferralName"),refPhone=v("fnReferralMobile");
+  if((refName||refPhone)&&(!refName||! /^[6-9]\d{9}$/.test(refPhone)))
+   return "Enter a valid referral name and 10-digit mobile number, or leave both blank.";
   const pan=v("fnPan").toUpperCase();
   const gst=v("fnGST").toUpperCase();
   const ifsc=v("fnIFSC").toUpperCase();
@@ -3337,6 +3372,7 @@ function payload(imageURLs){
   gst_certificate_url:"",
 
   restaurant_details:{
+   referral: (v("fnReferralName") && v("fnReferralMobile")) ? {name:v("fnReferralName"),mobile_number:v("fnReferralMobile")} : null,
    restaurant_type:v("fnType")==="Others"
     ?v("fnOtherType")
     :v("fnType"),
