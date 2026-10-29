@@ -1897,6 +1897,31 @@ body > .partner-navbar{position:fixed!important;top:0!important;left:0!important
 .fn-submitted-label.visible{display:block}
 .fn-profile-submitted{display:none;padding:8px 12px;color:#15945d;font-weight:700;font-size:12px}
 .fn-profile-submitted.visible{display:block}
+
+/* Persistent navbar: no scroll flashing; two-tone Foodnati logo */
+body > .partner-navbar,body > .partner-navbar.nav-scrolled{
+ position:fixed!important;top:0!important;left:0!important;right:0!important;
+ z-index:2147483000!important;background:#fff!important;box-shadow:0 2px 12px #17243b14!important;
+ opacity:1!important;visibility:visible!important;transform:none!important;
+ transition:none!important;will-change:auto!important;
+}
+.partner-navbar .partner-logo,.partner-navbar.nav-scrolled .partner-logo{color:#17243b!important;transition:none!important}
+.partner-navbar .fn-brand-pink,.partner-navbar.nav-scrolled .fn-brand-pink{color:#e82b65!important}
+.partner-navbar .fn-brand-dark,.partner-navbar.nav-scrolled .fn-brand-dark{color:#17243b!important}
+.partner-navbar .partner-brand-subtitle,.partner-navbar.nav-scrolled .partner-brand-subtitle{color:#17243b!important;transition:none!important}
+.partner-navbar .partner-login,.partner-navbar.nav-scrolled .partner-login{color:#17243b!important;border-color:#e82b65!important}
+.fn-step.done i{background:#e7f9ee!important;border-color:#16a34a!important;color:#16a34a!important}
+.fn-guideline{border:0;background:transparent;color:#2563eb;cursor:pointer;font:700 13px 'DM Sans',sans-serif;white-space:nowrap}
+.fn-guideline:hover{text-decoration:underline}
+.fn-card-head.fn-guided-head{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.fn-guide-copy{margin:0 0 13px;color:#64748b;font-size:12px;line-height:1.5}
+.fn-image-upload-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.fn-restaurant-preview{width:100%;max-height:170px;object-fit:contain;border-radius:10px;margin-top:10px;display:none}
+.fn-restaurant-save{margin-top:10px;background:#e82b65;color:white}
+.fn-guide-dialog{border:0;border-radius:15px;padding:24px;max-width:min(440px,92vw);margin:auto;box-shadow:0 15px 65px #0003}
+.fn-guide-dialog::backdrop{background:#0008}
+.fn-guide-dialog h3{margin:0 0 10px;color:#17243b}.fn-guide-dialog p{font-size:14px;line-height:1.7;color:#475569}
+@media(max-width:600px){.fn-image-upload-row{grid-template-columns:1fr}.fn-guideline{font-size:12px}}
 </style>
 
 </head>
@@ -1915,7 +1940,7 @@ body > .partner-navbar{position:fixed!important;top:0!important;left:0!important
 
     <div class="partner-brand">
 
-      <div class="partner-logo">Foodnati</div>
+      <div class="partner-logo"><span class="fn-brand-pink">Food</span><span class="fn-brand-dark">nati</span></div>
 
       <div class="partner-brand-subtitle">
 
@@ -2689,7 +2714,7 @@ body.foodnati-application-mode>.partner-navbar{display:flex!important;position:f
 <h1 class="fn-title">Restaurant information</h1>
 
 <div class="fn-card">
-<div class="fn-card-head"><h2>Restaurant name</h2><p>Customers will see this name on Foodnati</p></div>
+<div class="fn-card-head fn-guided-head"><div><h2>Restaurant name</h2><p>Customers will see this name on Foodnati</p></div><button type="button" class="fn-guideline" id="fnGuideName" data-guide="name">Guidelines</button></div>
 <div class="fn-card-body">
 <div class="fn-field"><label>Restaurant name *</label><input id="fnName" autocomplete="organization"><span id="fnSubmittedLabel" class="fn-submitted-label">✓ Already submitted</span></div>
 </div>
@@ -2738,7 +2763,7 @@ body.foodnati-application-mode>.partner-navbar{display:flex!important;position:f
 <h1 class="fn-title">Location & menu</h1>
 
 <div class="fn-card">
-<div class="fn-card-head"><h2>Restaurant location</h2><p>Enter address manually or select from map</p></div>
+<div class="fn-card-head fn-guided-head"><div><h2>Restaurant location</h2><p>Enter address manually or select from map</p></div><button type="button" class="fn-guideline" id="fnGuideLocation" data-guide="location">Guidelines</button></div>
 <div class="fn-card-body">
 
 <div class="fn-options">
@@ -2784,19 +2809,21 @@ body.foodnati-application-mode>.partner-navbar{display:flex!important;position:f
 </div>
 
 <div class="fn-card">
-<div class="fn-card-head"><h2>Food menu images</h2><p>Upload up to 5 restaurant menu images</p></div>
+<div class="fn-card-head fn-guided-head"><div><h2>Food menu images</h2><p>Upload up to 5 restaurant menu images</p></div><button type="button" class="fn-guideline" id="fnGuideMenu" data-guide="menu">Guidelines</button></div>
 <div class="fn-card-body">
-<label class="fn-upload">
+<div class="fn-image-upload-row"><div><label class="fn-upload">
 <i class="fa-solid fa-cloud-arrow-up"></i>
 <strong>Choose menu images</strong>
 <span>JPG, PNG, WebP — up to 5 images, maximum 10 MB each</span>
 <input id="fnMenuFiles" type="file" accept="image/jpeg,image/png,image/webp" multiple>
 </label>
 <p id="fnImageCount" style="font-size:12px;color:#64748b;margin:12px 0 0">0 / 5 images selected</p>
-<div id="fnImages" class="fn-images"></div>
+<div id="fnImages" class="fn-images"></div></div><div><label class="fn-upload" for="fnRestaurantImage"><i class="fa-solid fa-store"></i><strong>Restaurant image</strong><span>Upload restaurant photo (JPG, PNG, WebP; max 10 MB)</span><input id="fnRestaurantImage" type="file" accept="image/jpeg,image/png,image/webp"></label><img id="fnRestaurantPreview" class="fn-restaurant-preview" alt="Restaurant photo preview"><button type="button" id="fnRestaurantSave" class="fn-btn fn-restaurant-save">Save image</button><p id="fnRestaurantImageStatus" class="fn-guide-copy" aria-live="polite"></p></div></div>
 </div>
 </div>
 </section>
+
+<dialog id="fnGuideDialog" class="fn-guide-dialog"><h3 id="fnGuideTitle">Guidelines</h3><p id="fnGuideText"></p><button type="button" id="fnGuideClose" class="fn-btn fn-primary" style="margin-top:16px">Close</button></dialog>
 
 <!-- STEP 3: FINAL SUBMISSION -->
 <section data-page="2" class="fn-hidden">
@@ -2863,7 +2890,7 @@ const v=id=>$(id).value.trim();
 let navbar=null,placeholder=null;
 let step=0,locationMode="manual";
 let map=null,marker=null,reverseId=0;
-let menuImages=[],submitting=false,submitted=false;
+let menuImages=[],restaurantImage=null,restaurantImageUrl="",submitting=false,submitted=false;
 
 const fields=[
 "fnName","fnOwner","fnType","fnOtherType","fnOpen","fnClose",
@@ -3218,6 +3245,33 @@ $("fnLocate").addEventListener("click",()=>{
  );
 });
 
+/* Guidelines: three stable IDs */
+const fnGuides={
+ name:{title:"Restaurant name guidelines",text:"Enter the name displayed on your restaurant signboard. Use the correct spelling; avoid phone numbers, promotional text or misleading brand names."},
+ location:{title:"Restaurant location guidelines",text:"Enter the full restaurant address, city, state and six-digit PIN code. You can also select the exact restaurant location using the map pin."},
+ menu:{title:"Food menu image guidelines",text:"Upload up to five clear menu photos (JPG, PNG or WebP, maximum 10 MB each). Restaurant image is a separate photo of your shop or storefront."}
+};
+app.querySelectorAll('[data-guide]').forEach(button=>button.addEventListener('click',()=>{
+ const info=fnGuides[button.dataset.guide];
+ $('fnGuideTitle').textContent=info.title;
+ $('fnGuideText').textContent=info.text;
+ const dialog=$('fnGuideDialog');if(typeof dialog.showModal==='function')dialog.showModal();else dialog.setAttribute('open','');
+}));
+$('fnGuideClose').addEventListener('click',()=>$('fnGuideDialog').close());
+
+/* Restaurant photo is saved on application submission, alongside menu photos. */
+$('fnRestaurantImage').addEventListener('change',e=>{
+ const file=e.target.files[0];if(!file)return;
+ if(!['image/jpeg','image/png','image/webp'].includes(file.type)||file.size>10*1024*1024){message('Choose a JPG, PNG or WebP restaurant image under 10 MB.');e.target.value='';return;}
+ if(restaurantImage?.preview)URL.revokeObjectURL(restaurantImage.preview);
+ restaurantImage={file,preview:URL.createObjectURL(file)};
+ const preview=$('fnRestaurantPreview');preview.src=restaurantImage.preview;preview.style.display='block';
+ $('fnRestaurantImageStatus').textContent='Image selected. Click Save image to confirm.';
+});
+$('fnRestaurantSave').addEventListener('click',()=>{
+ $('fnRestaurantImageStatus').textContent=restaurantImage?'Restaurant image saved in this form. It uploads when you submit the application.':'Choose a restaurant image first.';
+});
+
 /* IMAGE UPLOAD PREVIEW */
 function renderImages(){
  const grid=$("fnImages");
@@ -3270,10 +3324,10 @@ $("fnMenuFiles").addEventListener("change",e=>{
 });
 
 /* UPLOAD TO BACKEND */
-async function uploadImages(){
+async function uploadImages(files=menuImages){
  const urls=[];
 
- for(const item of menuImages){
+ for(const item of files){
   const form=new FormData();
   form.append("file",item.file);
 
@@ -3357,7 +3411,7 @@ function validate(){
 }
 
 /* APPLICATION PAYLOAD */
-function payload(imageURLs){
+function payload(imageURLs,restaurantPhotoURL=""){
  const isMap=locationMode==="map";
 
  return {
@@ -3393,6 +3447,7 @@ function payload(imageURLs){
   gst_certificate_url:"",
 
   restaurant_details:{
+   restaurant_image_url:restaurantPhotoURL||null,
    referral: (v("fnReferralName") && v("fnReferralMobile")) ? {name:v("fnReferralName"),mobile_number:v("fnReferralMobile")} : null,
    restaurant_type:v("fnType")==="Others"
     ?v("fnOtherType")
@@ -3414,6 +3469,7 @@ function renderStep(){
   const n=Number(el.dataset.indicator);
   el.classList.toggle("active",n===step);
   el.classList.toggle("done",n<step);
+  const ico=el.querySelector("i");if(ico){if(!ico.dataset.originalClass)ico.dataset.originalClass=ico.className;ico.className=n<step?"fa-solid fa-check":ico.dataset.originalClass;}
  });
 
  $("fnPrevious").classList.toggle("fn-hidden",step===0);
@@ -3440,13 +3496,14 @@ async function submitApplication(){
 
  try{
   const imageURLs=await uploadImages();
+  restaurantImageUrl=restaurantImage?(await uploadImages([restaurantImage]))[0]:"";
 
   let response;
   try {
    response=await fetch(APPLY,{
     method:"POST",
     headers:{"Content-Type":"application/json","Authorization":"Bearer "+await window.foodnatiGetPartnerToken()},
-    body:JSON.stringify(payload(imageURLs))
+    body:JSON.stringify(payload(imageURLs,restaurantImageUrl))
    });
   } catch(error) {
    throw new Error("Application API connection failed. Check CORS, backend availability and browser Network tab.");
