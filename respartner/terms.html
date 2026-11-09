@@ -1,0 +1,906 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#ffffff">
+<meta name="description" content="Foodnati Restaurant Partner Terms of Service">
+<title>Terms of Service | Foodnati</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --primary: #ff3b82;
+  --primary-soft: #fff0f5;
+  --heading: #17243b;
+  --body: #475467;
+  --muted: #8992a3;
+  --border: #e9edf2;
+  --white: #ffffff;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 100px;
+}
+
+body {
+  background: var(--white);
+  font-family: "Poppins", sans-serif;
+  color: var(--body);
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  font-family: inherit;
+}
+
+/* NAVBAR */
+.fn-navbar {
+  height: 68px;
+  width: 100%;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: #fff;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 6%;
+  gap: 20px;
+}
+
+.fn-logo {
+  font-family: "Fredoka", sans-serif;
+  font-size: 29px;
+  font-weight: 600;
+  letter-spacing: -0.6px;
+  white-space: nowrap;
+}
+
+.fn-logo .food {
+  color: var(--heading);
+}
+
+.fn-logo .nati {
+  color: var(--primary);
+}
+
+.fn-nav-right {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.fn-nav-right a {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--body);
+  white-space: nowrap;
+  transition: color .2s;
+}
+
+.fn-nav-right a:hover {
+  color: var(--primary);
+}
+
+/* HERO */
+.fn-hero {
+  padding: 70px 24px 55px;
+  text-align: center;
+  background: linear-gradient(
+    180deg,
+    #fff6f9 0%,
+    #ffffff 100%
+  );
+}
+
+.fn-eyebrow {
+  color: var(--primary);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.fn-hero h1 {
+  font-family: "Fredoka", sans-serif;
+  font-size: clamp(34px, 5vw, 52px);
+  font-weight: 600;
+  color: var(--heading);
+  margin: 14px 0 0;
+}
+
+/* MAIN LAYOUT */
+.fn-layout {
+  max-width: 1220px;
+  margin: 0 auto;
+  padding: 40px 24px 100px;
+  display: grid;
+  grid-template-columns: 255px minmax(0, 1fr);
+  gap: 55px;
+  align-items: start;
+}
+
+/* TABLE OF CONTENTS */
+.fn-toc {
+  position: sticky;
+  top: 95px;
+  max-height: calc(100vh - 120px);
+  overflow-y: auto;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 22px 18px;
+  scrollbar-width: thin;
+}
+
+.fn-toc h3 {
+  font-family: "Fredoka", sans-serif;
+  font-size: 17px;
+  color: var(--heading);
+  margin-bottom: 16px;
+}
+
+.fn-toc a {
+  display: block;
+  font-size: 11px;
+  line-height: 1.6;
+  padding: 8px 10px;
+  border-radius: 7px;
+  color: #667085;
+  transition: .2s;
+}
+
+.fn-toc a:hover,
+.fn-toc a.active {
+  background: var(--primary-soft);
+  color: var(--primary);
+}
+
+/* TERMS CONTENT */
+.fn-content {
+  min-width: 0;
+}
+
+.fn-intro {
+  font-size: 13px;
+  line-height: 2.1;
+  margin-bottom: 30px;
+}
+
+.fn-section {
+  padding: 30px 0;
+  border-top: 1px solid var(--border);
+  scroll-margin-top: 100px;
+}
+
+.fn-section h2 {
+  font-family: "Fredoka", sans-serif;
+  font-weight: 500;
+  color: var(--heading);
+  font-size: 23px;
+  margin-bottom: 15px;
+  line-height: 1.4;
+}
+
+.fn-section p {
+  font-size: 12.5px;
+  line-height: 2.1;
+  margin-bottom: 14px;
+}
+
+.fn-section ul {
+  padding-left: 22px;
+  margin: 14px 0;
+}
+
+.fn-section li {
+  font-size: 12.5px;
+  line-height: 2;
+  padding-bottom: 8px;
+}
+
+.fn-section strong {
+  color: var(--heading);
+  font-weight: 600;
+}
+
+/* LAST UPDATED - AT BOTTOM */
+.fn-updated {
+  display: block;
+  margin-top: 40px;
+  padding: 20px 0 0;
+  border-top: 1px solid var(--border);
+  color: var(--muted);
+  font-size: 11px;
+  text-align: center;
+}
+
+/* FOOTER */
+.fn-footer {
+  background: #fafbfc;
+  border-top: 1px solid var(--border);
+  padding: 36px 24px;
+  text-align: center;
+}
+
+.fn-footer-logo {
+  font-family: "Fredoka", sans-serif;
+  font-size: 25px;
+  font-weight: 600;
+  color: var(--heading);
+}
+
+.fn-footer-logo span {
+  color: var(--primary);
+}
+
+.fn-footer p {
+  font-size: 11px;
+  color: #98a2b3;
+  margin-top: 10px;
+  line-height: 1.8;
+}
+
+/* BACK TO TOP */
+.fn-top-btn {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 43px;
+  height: 43px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--primary);
+  color: #fff;
+  font-size: 20px;
+  cursor: pointer;
+  box-shadow: 0 5px 18px #ff3b8233;
+  opacity: 0;
+  visibility: hidden;
+  transition: .25s;
+  z-index: 20;
+}
+
+.fn-top-btn.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* TABLET */
+@media(max-width: 900px) {
+  .fn-layout {
+    display: block;
+    max-width: 850px;
+  }
+
+  .fn-toc {
+    position: relative;
+    top: auto;
+    max-height: 260px;
+    margin-bottom: 36px;
+  }
+}
+
+/* MOBILE */
+@media(max-width: 600px) {
+  .fn-navbar {
+    height: 60px;
+    padding: 0 15px;
+    gap: 12px;
+  }
+
+  .fn-logo {
+    font-size: 23px;
+  }
+
+  .fn-nav-right {
+    gap: 12px;
+  }
+
+  .fn-nav-right a {
+    font-size: 10px;
+  }
+
+  .fn-hero {
+    padding: 48px 18px 38px;
+  }
+
+  .fn-hero h1 {
+    font-size: 35px;
+  }
+
+  .fn-layout {
+    padding: 25px 18px 75px;
+  }
+
+  .fn-section {
+    padding: 24px 0;
+  }
+
+  .fn-section h2 {
+    font-size: 20px;
+  }
+
+  .fn-section p,
+  .fn-section li {
+    font-size: 12px;
+  }
+
+  .fn-top-btn {
+    right: 17px;
+    bottom: 18px;
+  }
+}
+
+@media(max-width: 360px) {
+  .fn-logo {
+    font-size: 20px;
+  }
+
+  .fn-nav-right a {
+    font-size: 9px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<header class="fn-navbar">
+  <a href="https://foodnati.com" class="fn-logo">
+    <span class="food">food</span><span class="nati">nati</span>
+  </a>
+
+  <nav class="fn-nav-right" aria-label="Legal navigation">
+    <a href="privacy.html">Privacy Policy</a>
+    <a href="conduct.html">Code of Conduct</a>
+  </nav>
+</header>
+
+<!-- HERO: NO DESCRIPTION OR DATE -->
+<section class="fn-hero">
+  <div class="fn-eyebrow">
+    FOODNATI RESTAURANT PARTNER
+  </div>
+
+  <h1>Terms of Service</h1>
+</section>
+
+<div class="fn-layout">
+
+  <!-- CONTENTS -->
+  <aside class="fn-toc">
+    <h3>Contents</h3>
+    <nav id="fnTocLinks" aria-label="Terms sections"></nav>
+  </aside>
+
+  <!-- MAIN TERMS -->
+  <main class="fn-content">
+
+    <p class="fn-intro">
+      Welcome to Foodnati, a food ordering and delivery
+      platform operated by Cezonal Solutions Private Limited
+      ("Foodnati", "we", "us", or "our").
+
+      These Terms of Service ("Terms") set out the conditions
+      for restaurants, food establishments, business owners,
+      authorized representatives, and other approved partners
+      ("Restaurant Partners", "you", or "your") who register,
+      access, or use the Foodnati Restaurant Partner platform.
+
+      By accessing the platform or participating in its services,
+      you agree to follow these Terms, the applicable commercial
+      agreement, and relevant legal requirements.
+    </p>
+
+    <!-- ALL 40 SECTIONS GENERATED HERE -->
+    <div id="fnTermsSections"></div>
+
+    <!-- DATE ONLY AFTER ALL SECTIONS -->
+    <div class="fn-updated">
+      Last updated: 9 November 2026
+    </div>
+
+  </main>
+</div>
+
+<!-- FOOTER -->
+<footer class="fn-footer">
+  <div class="fn-footer-logo">
+    food<span>nati</span>
+  </div>
+
+  <p>
+    © <span id="fnYear"></span>
+    Cezonal Solutions Private Limited.
+    All rights reserved.
+  </p>
+
+  <p>Foodnati Restaurant Partner Platform</p>
+</footer>
+
+<button
+  class="fn-top-btn"
+  id="fnTopBtn"
+  aria-label="Back to top"
+>↑</button>
+
+<script>
+const terms = [
+  {
+    title: "Acceptance of Terms",
+    paragraphs: [
+      "By registering with Foodnati, accessing the Restaurant Partner dashboard, or accepting orders through the platform, you acknowledge that you have read and understood these Terms of Service.",
+      "The person accepting these Terms on behalf of a restaurant represents that they have the authority to enter into an agreement for that business.",
+      "Your continued use of the platform after applicable changes become effective may constitute acceptance of the updated Terms, subject to applicable law and any notice requirements."
+    ],
+    points: [
+      "Read the Terms before using the platform.",
+      "Provide accurate registration information.",
+      "Comply with applicable laws and platform policies.",
+      "Contact support if any provision requires clarification."
+    ]
+  },
+  {
+    title: "Definitions and Interpretation",
+    paragraphs: [
+      "Foodnati refers to the platform and related services operated by Cezonal Solutions Private Limited.",
+      "Restaurant Partner refers to an approved food business that lists, prepares, and supplies food through Foodnati.",
+      "Customer refers to a person placing an order through the platform. Delivery Partner refers to a person assigned to transport an order from the restaurant to the delivery location.",
+      "Order refers to a transaction initiated by a customer for food or related products. Restaurant Price, Customer Price, Platform Charge, and Settlement Amount have the meanings specified in the applicable commercial agreement."
+    ]
+  },
+  {
+    title: "Eligibility to Register",
+    paragraphs: [
+      "Restaurant Partners must be legally permitted to operate their food business in the relevant jurisdiction.",
+      "Individuals registering on behalf of an establishment must have appropriate authorization from the business owner or legal entity.",
+      "Foodnati may refuse, defer, or request additional information in connection with an application where legitimate operational, compliance, or verification concerns arise."
+    ],
+    points: [
+      "Maintain legally required business permissions.",
+      "Use accurate ownership and contact details.",
+      "Provide authentic supporting documentation.",
+      "Notify Foodnati of material changes."
+    ]
+  },
+  {
+    title: "Restaurant Registration",
+    paragraphs: [
+      "Restaurants must complete the required registration process and provide accurate business details.",
+      "Registration information may include the restaurant name, owner name, mobile number, business location, operating hours, food business license details, tax information where applicable, and bank account details.",
+      "Submitting an application does not automatically guarantee approval or activation."
+    ]
+  },
+  {
+    title: "Verification of Restaurant Information",
+    paragraphs: [
+      "Foodnati may review restaurant information and request reasonable supporting documents to verify identity, ownership, licensing, banking details, or business operations.",
+      "Restaurant Partners must not knowingly submit altered, forged, misleading, or outdated information.",
+      "Where verification cannot be completed, onboarding or continued access may be restricted in accordance with applicable law."
+    ]
+  },
+  {
+    title: "Licenses and Regulatory Compliance",
+    paragraphs: [
+      "Each Restaurant Partner is responsible for obtaining and maintaining licenses, permits, and registrations legally required for its food business.",
+      "This includes applicable food safety registrations or licenses, local business permissions, and tax registrations where required.",
+      "Restaurant Partners must promptly inform Foodnati if any material license or permission expires, is suspended, or is revoked."
+    ]
+  },
+  {
+    title: "Food Quality and Hygiene",
+    paragraphs: [
+      "Restaurant Partners are responsible for the quality, hygiene, safety, and suitability of food prepared at their premises.",
+      "Food must be prepared, stored, handled, and packaged in accordance with applicable food safety laws and appropriate hygiene practices.",
+      "Expired, contaminated, adulterated, unsafe, or otherwise unlawful food must not be supplied through the platform."
+    ],
+    points: [
+      "Maintain clean food preparation areas.",
+      "Use safe ingredients and storage conditions.",
+      "Train staff in appropriate food handling.",
+      "Prevent contamination during preparation.",
+      "Use packaging suitable for the food supplied."
+    ]
+  },
+  {
+    title: "Menu Listing Responsibilities",
+    paragraphs: [
+      "Restaurants must provide accurate names, descriptions, categories, and other relevant information for their menu items.",
+      "Information should be sufficient to help customers understand what they are ordering.",
+      "Foodnati may request corrections to inaccurate or misleading listings."
+    ]
+  },
+  {
+    title: "Vegetarian and Non-Vegetarian Classification",
+    paragraphs: [
+      "Restaurant Partners must correctly classify vegetarian and non-vegetarian items according to applicable requirements.",
+      "Incorrect food classification may cause significant customer concerns and must be treated seriously.",
+      "Restaurants should maintain appropriate preparation and handling procedures to reduce cross-contamination risks."
+    ]
+  },
+  {
+    title: "Ingredients and Allergen Information",
+    paragraphs: [
+      "Restaurants should provide accurate ingredient and allergen information where required by law or reasonably requested for customer safety.",
+      "Restaurant Partners must not knowingly provide misleading information about the composition of food.",
+      "Where an ingredient is substituted, the restaurant should ensure that the substitution is permitted and appropriately communicated."
+    ]
+  },
+  {
+    title: "Restaurant Menu Prices",
+    paragraphs: [
+      "Restaurant Partners are responsible for providing and maintaining the restaurant prices of listed menu items.",
+      "Restaurants should ensure that pricing information submitted to Foodnati is accurate and updated when changed.",
+      "The treatment of taxes, discounts, additional charges, and settlement values must follow the applicable commercial agreement and law."
+    ]
+  },
+  {
+    title: "Foodnati Customer-Facing Prices",
+    paragraphs: [
+      "Foodnati may display customer-facing selling prices that differ from the restaurant prices, where permitted under the commercial agreement and applicable law.",
+      "Any agreed platform margin, commission, service fee, or pricing adjustment should be reflected in the applicable commercial terms.",
+      "Restaurant Partners should not assume that the customer-facing price and restaurant settlement amount are identical."
+    ]
+  },
+  {
+    title: "Platform Charges and Commission",
+    paragraphs: [
+      "Applicable platform charges, commission rates, and other deductions will be governed by the commercial arrangement agreed with the Restaurant Partner.",
+      "Foodnati may introduce promotional arrangements or revised commercial terms subject to applicable notice and agreement requirements.",
+      "No specific commission percentage is established by this general Terms page unless separately agreed."
+    ]
+  },
+  {
+    title: "Restaurant Availability Status",
+    paragraphs: [
+      "Restaurants must accurately maintain their open or closed status through the partner platform.",
+      "A restaurant should not remain marked open if it cannot reasonably receive, prepare, or fulfill customer orders.",
+      "The availability toggle is an operational tool and does not replace the restaurant's responsibility to manage actual service availability."
+    ]
+  },
+  {
+    title: "Operating Hours",
+    paragraphs: [
+      "Restaurant Partners must provide accurate opening and closing times and update them when their schedule changes.",
+      "Restaurants should account for holidays, temporary closures, maintenance, staff shortages, and other operational circumstances.",
+      "Foodnati may use these details to determine when a restaurant appears available for ordering."
+    ]
+  },
+  {
+    title: "Order Notifications",
+    paragraphs: [
+      "Restaurant Partners should monitor the partner dashboard and relevant order notifications during operating hours.",
+      "Failure to review incoming orders may result in delays, missed orders, or customer dissatisfaction.",
+      "Restaurants are responsible for maintaining a suitable device, network connection, and operational process for managing orders."
+    ]
+  },
+  {
+    title: "Order Acceptance",
+    paragraphs: [
+      "Restaurants should accept orders only when they can reasonably fulfill them.",
+      "Acceptance indicates that the restaurant intends to prepare the requested items according to the order details.",
+      "Repeated acceptance of orders that cannot be fulfilled may be reviewed as an operational performance issue."
+    ]
+  },
+  {
+    title: "Order Preparation",
+    paragraphs: [
+      "Restaurant Partners must prepare accepted orders accurately, taking into account item names, quantities, preparation instructions, and relevant customer preferences.",
+      "Restaurants should use reasonable care to prevent missing items, incorrect items, and unnecessary delays.",
+      "Any preparation problem that may materially affect an order should be communicated through the available support or order-management process."
+    ]
+  },
+  {
+    title: "Preparation Time and Delays",
+    paragraphs: [
+      "Restaurants should provide reasonable preparation estimates and make commercially reasonable efforts to meet them.",
+      "Unexpected delays should be communicated promptly where the platform provides a suitable mechanism.",
+      "Preparation estimates are not guarantees, but repeated avoidable delays may affect customer experience and platform operations."
+    ]
+  },
+  {
+    title: "Food Packaging",
+    paragraphs: [
+      "Restaurant Partners are responsible for selecting packaging appropriate for the food being supplied.",
+      "Packaging should help maintain hygiene and minimize leakage, contamination, spillage, and damage during transport.",
+      "Restaurants should seal packages where appropriate and ensure that the package contents correspond to the accepted order."
+    ]
+  },
+  {
+    title: "Delivery Partner Order Verification",
+    paragraphs: [
+      "Before handing over an order, restaurant staff must verify the order ID or other approved identification details of the assigned Delivery Partner.",
+      "Restaurants should not hand over food solely because a person claims to be a delivery partner.",
+      "Where an order is handed to an unauthorized person without reasonable verification, responsibility may be assessed based on the circumstances, evidence, applicable agreement, and law."
+    ],
+    points: [
+      "Ask the Delivery Partner for the order ID.",
+      "Match the ID against the restaurant dashboard.",
+      "Confirm the correct order package.",
+      "Hand over only after reasonable verification.",
+      "Report suspicious collection attempts."
+    ]
+  },
+  {
+    title: "Order Handover",
+    paragraphs: [
+      "Restaurants should hand over prepared orders to the correctly assigned Delivery Partner through the approved operational process.",
+      "Where the platform supports handover confirmation, the restaurant should update the relevant status accurately.",
+      "Restaurants should cooperate in resolving genuine handover discrepancies."
+    ]
+  },
+  {
+    title: "Delivery Services",
+    paragraphs: [
+      "Foodnati may facilitate delivery through assigned Delivery Partners or other permitted delivery arrangements.",
+      "The allocation of delivery responsibilities and associated charges depends on the applicable service model and commercial terms.",
+      "Restaurants remain responsible for their own preparation and handover obligations."
+    ]
+  },
+  {
+    title: "Order Cancellation",
+    paragraphs: [
+      "Restaurants should avoid unnecessary cancellation of accepted orders.",
+      "A cancellation may be appropriate where an item is unavailable, the restaurant cannot safely prepare the food, or another legitimate operational problem arises.",
+      "Applicable cancellation charges, refunds, and settlement adjustments must follow the relevant policies, commercial terms, and law."
+    ]
+  },
+  {
+    title: "Customer Complaints",
+    paragraphs: [
+      "Restaurant Partners should cooperate with reasonable investigations of customer complaints relating to food preparation, quality, quantity, packaging, or incorrect items.",
+      "Foodnati may request order records or other relevant information to assess a complaint.",
+      "Complaints should be evaluated fairly and not treated as automatic proof of wrongdoing."
+    ]
+  },
+  {
+    title: "Refunds and Replacements",
+    paragraphs: [
+      "Refunds and replacements may be considered where an order has a verified problem or where required by applicable law.",
+      "Responsibility for a refund or replacement should be determined according to the cause of the issue, the applicable agreement, and relevant consumer protection obligations.",
+      "Restaurants should cooperate in resolving valid refund and replacement requests."
+    ]
+  },
+  {
+    title: "Payments and Restaurant Settlements",
+    paragraphs: [
+      "Restaurant settlement amounts will be calculated according to completed transactions and the applicable commercial agreement.",
+      "Relevant calculations may include restaurant item values, agreed commission, taxes, refunds, adjustments, and other agreed charges.",
+      "Settlement frequency, payment methods, and reconciliation procedures should be specified in the commercial arrangement or partner communications."
+    ]
+  },
+  {
+    title: "Bank Account Information",
+    paragraphs: [
+      "Restaurant Partners must provide accurate bank account information for receiving settlements.",
+      "Changes to bank details may require additional verification to reduce payment errors and fraud.",
+      "Foodnati may delay a settlement where a genuine verification or payment processing issue requires resolution, subject to applicable obligations."
+    ]
+  },
+  {
+    title: "Taxes and Invoices",
+    paragraphs: [
+      "Restaurant Partners are responsible for their own tax compliance, including registration, reporting, invoicing, and payment obligations where applicable.",
+      "The treatment of GST or other applicable taxes depends on the nature of the supply, relevant legislation, and the parties' legal responsibilities.",
+      "Restaurants should maintain appropriate transaction records and consult qualified tax professionals where necessary."
+    ]
+  },
+  {
+    title: "Discounts and Promotions",
+    paragraphs: [
+      "Foodnati may offer customer promotions, discounts, or marketing campaigns.",
+      "Any restaurant-funded discount or promotion should be governed by the applicable agreement or the restaurant's informed participation.",
+      "The allocation of promotional costs and settlement adjustments should be communicated clearly."
+    ]
+  },
+  {
+    title: "Customer Information and Privacy",
+    paragraphs: [
+      "Restaurant Partners may receive limited customer information necessary to fulfill orders.",
+      "Such information must be used only for legitimate order fulfillment, customer support, or other authorized purposes.",
+      "Restaurants must not sell, misuse, or disclose customer personal information without a valid legal basis."
+    ]
+  },
+  {
+    title: "Account Access and Security",
+    paragraphs: [
+      "Restaurant Partners are responsible for taking reasonable measures to secure their accounts, devices, passwords, and authentication credentials.",
+      "Unauthorized access, suspicious activity, or suspected account compromise should be reported promptly.",
+      "Restaurants should ensure that employees with account access are appropriately authorized."
+    ]
+  },
+  {
+    title: "Restaurant Staff Conduct",
+    paragraphs: [
+      "Restaurant Partners are responsible for promoting professional and respectful conduct among staff interacting with customers, Delivery Partners, and Foodnati representatives.",
+      "Harassment, threats, discrimination, intimidation, and abusive conduct are not permitted.",
+      "Restaurants should maintain appropriate internal procedures to address misconduct."
+    ]
+  },
+  {
+    title: "Prohibited Activities",
+    paragraphs: [
+      "Restaurant Partners must not use the platform for fraudulent, unlawful, abusive, or deceptive activities.",
+      "Foodnati may investigate suspected misuse and take proportionate action consistent with applicable law and contractual obligations."
+    ],
+    points: [
+      "Creating fraudulent or manipulated orders.",
+      "Providing false registration details.",
+      "Misrepresenting menu items or food quality.",
+      "Misusing customer personal information.",
+      "Attempting unauthorized access to systems.",
+      "Threatening customers or Delivery Partners.",
+      "Interfering with platform operations."
+    ]
+  },
+  {
+    title: "Intellectual Property",
+    paragraphs: [
+      "The Foodnati name, branding, platform design, software, and related materials may be protected by intellectual property laws.",
+      "Restaurant Partners may use Foodnati branding only as authorized and in accordance with applicable brand guidelines.",
+      "Restaurants remain responsible for ensuring that menu photographs, descriptions, and other materials they submit do not infringe third-party rights."
+    ]
+  },
+  {
+    title: "Menu Photographs and Content",
+    paragraphs: [
+      "Restaurant Partners must have appropriate rights or permissions to upload photographs, logos, descriptions, and other content.",
+      "Restaurants should not upload deceptive images that materially misrepresent the products offered.",
+      "Subject to the applicable agreement, submitted content may be used to display and promote restaurant listings on Foodnati."
+    ]
+  },
+  {
+    title: "Platform Maintenance and Availability",
+    paragraphs: [
+      "Foodnati may perform maintenance, upgrades, security changes, and other technical operations that temporarily affect service availability.",
+      "Internet failures, third-party outages, device problems, or unforeseen events may also interrupt platform access.",
+      "Foodnati will make reasonable efforts to maintain service reliability but cannot guarantee uninterrupted access."
+    ]
+  },
+  {
+    title: "Suspension of Restaurant Accounts",
+    paragraphs: [
+      "Foodnati may temporarily restrict access where reasonably necessary to investigate serious safety concerns, fraud, unauthorized activity, or significant policy violations.",
+      "Where appropriate and legally required, the Restaurant Partner may receive notice or an opportunity to respond.",
+      "Suspension decisions should be proportionate to the circumstances and applicable contractual requirements."
+    ]
+  },
+  {
+    title: "Termination of Partnership",
+    paragraphs: [
+      "A restaurant partnership may end according to the termination provisions of the applicable commercial agreement.",
+      "Outstanding settlement obligations, legitimate disputes, data retention requirements, and other surviving responsibilities may continue after termination.",
+      "Restaurants should follow the prescribed process for closing their accounts or ending participation."
+    ]
+  },
+  {
+    title: "Changes to These Terms",
+    paragraphs: [
+      "Foodnati may revise these Terms to reflect operational changes, legal requirements, security considerations, or changes to platform services.",
+      "Material changes should be communicated through appropriate channels where required.",
+      "Changes affecting agreed commercial rights or obligations will be handled according to the relevant agreement and applicable law."
+    ]
+  },
+  {
+    title: "Contact and Support",
+    paragraphs: [
+      "Restaurant Partners may contact Foodnati through the official support channels made available in the partner platform.",
+      "Questions regarding orders, account access, payments, settlement records, or these Terms should be directed to the relevant support team.",
+      "Foodnati is operated by Cezonal Solutions Private Limited."
+    ]
+  }
+];
+
+/* GENERATE ALL 40 TERMS */
+const sectionsContainer =
+  document.getElementById("fnTermsSections");
+
+const tocContainer =
+  document.getElementById("fnTocLinks");
+
+terms.forEach((term, index) => {
+  const id = "section-" + (index + 1);
+
+  const section = document.createElement("section");
+  section.className = "fn-section";
+  section.id = id;
+
+  const heading = document.createElement("h2");
+  heading.textContent = `${index + 1}. ${term.title}`;
+  section.appendChild(heading);
+
+  (term.paragraphs || []).forEach(content => {
+    const p = document.createElement("p");
+    p.textContent = content;
+    section.appendChild(p);
+  });
+
+  if (term.points && term.points.length) {
+    const list = document.createElement("ul");
+
+    term.points.forEach(content => {
+      const li = document.createElement("li");
+      li.textContent = content;
+      list.appendChild(li);
+    });
+
+    section.appendChild(list);
+  }
+
+  sectionsContainer.appendChild(section);
+
+  const link = document.createElement("a");
+  link.href = "#" + id;
+  link.textContent = `${index + 1}. ${term.title}`;
+  tocContainer.appendChild(link);
+});
+
+/* COPYRIGHT YEAR */
+document.getElementById("fnYear").textContent =
+  new Date().getFullYear();
+
+/* BACK TO TOP */
+const topButton =
+  document.getElementById("fnTopBtn");
+
+window.addEventListener("scroll", () => {
+  topButton.classList.toggle(
+    "show",
+    window.scrollY > 400
+  );
+}, { passive: true });
+
+topButton.addEventListener("click", () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+});
+
+/* ACTIVE TABLE OF CONTENTS */
+const tocLinks = [
+  ...tocContainer.querySelectorAll("a")
+];
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+
+    tocLinks.forEach(link => {
+      link.classList.toggle(
+        "active",
+        link.getAttribute("href") === "#" + entry.target.id
+      );
+    });
+  });
+}, {
+  rootMargin: "-110px 0px -65% 0px",
+  threshold: 0
+});
+
+document.querySelectorAll(".fn-section").forEach(section => {
+  observer.observe(section);
+});
+</script>
+
+</body>
+</html>
