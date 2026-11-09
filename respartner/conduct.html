@@ -1,0 +1,979 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#ffffff">
+<meta name="description" content="Foodnati Restaurant Partner Code of Conduct">
+<title>Code of Conduct | Foodnati</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --primary: #ff3b82;
+  --primary-soft: #fff0f5;
+  --heading: #17243b;
+  --body: #475467;
+  --muted: #8992a3;
+  --border: #e9edf2;
+  --white: #ffffff;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 100px;
+}
+
+body {
+  background: var(--white);
+  font-family: "Poppins", sans-serif;
+  color: var(--body);
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  font-family: inherit;
+}
+
+/* NAVBAR */
+.fn-navbar {
+  height: 68px;
+  width: 100%;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: #fff;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 6%;
+  gap: 20px;
+}
+
+.fn-logo {
+  font-family: "Fredoka", sans-serif;
+  font-size: 29px;
+  font-weight: 600;
+  letter-spacing: -0.6px;
+  white-space: nowrap;
+}
+
+.fn-logo .food {
+  color: var(--heading);
+}
+
+.fn-logo .nati {
+  color: var(--primary);
+}
+
+.fn-nav-right {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.fn-nav-right a {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--body);
+  white-space: nowrap;
+  transition: color .2s;
+}
+
+.fn-nav-right a:hover {
+  color: var(--primary);
+}
+
+/* HERO */
+.fn-hero {
+  padding: 70px 24px 55px;
+  text-align: center;
+  background: linear-gradient(
+    180deg,
+    #fff6f9 0%,
+    #ffffff 100%
+  );
+}
+
+.fn-eyebrow {
+  color: var(--primary);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.fn-hero h1 {
+  font-family: "Fredoka", sans-serif;
+  font-size: clamp(34px, 5vw, 52px);
+  font-weight: 600;
+  color: var(--heading);
+  margin: 14px 0 0;
+}
+
+/* MAIN LAYOUT */
+.fn-layout {
+  max-width: 1220px;
+  margin: 0 auto;
+  padding: 40px 24px 100px;
+  display: grid;
+  grid-template-columns: 255px minmax(0, 1fr);
+  gap: 55px;
+  align-items: start;
+}
+
+/* TABLE OF CONTENTS */
+.fn-toc {
+  position: sticky;
+  top: 95px;
+  max-height: calc(100vh - 120px);
+  overflow-y: auto;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 22px 18px;
+  scrollbar-width: thin;
+}
+
+.fn-toc h3 {
+  font-family: "Fredoka", sans-serif;
+  font-size: 17px;
+  color: var(--heading);
+  margin-bottom: 16px;
+}
+
+.fn-toc a {
+  display: block;
+  font-size: 11px;
+  line-height: 1.6;
+  padding: 8px 10px;
+  border-radius: 7px;
+  color: #667085;
+  transition: .2s;
+}
+
+.fn-toc a:hover,
+.fn-toc a.active {
+  background: var(--primary-soft);
+  color: var(--primary);
+}
+
+/* CONTENT */
+.fn-content {
+  min-width: 0;
+}
+
+.fn-intro {
+  font-size: 13px;
+  line-height: 2.1;
+  margin-bottom: 30px;
+}
+
+.fn-section {
+  padding: 30px 0;
+  border-top: 1px solid var(--border);
+  scroll-margin-top: 100px;
+}
+
+.fn-section h2 {
+  font-family: "Fredoka", sans-serif;
+  font-weight: 500;
+  color: var(--heading);
+  font-size: 23px;
+  margin-bottom: 15px;
+  line-height: 1.4;
+}
+
+.fn-section p {
+  font-size: 12.5px;
+  line-height: 2.1;
+  margin-bottom: 14px;
+}
+
+.fn-section ul {
+  padding-left: 22px;
+  margin: 14px 0;
+}
+
+.fn-section li {
+  font-size: 12.5px;
+  line-height: 2;
+  padding-bottom: 8px;
+}
+
+.fn-section strong {
+  color: var(--heading);
+  font-weight: 600;
+}
+
+/* LAST UPDATED */
+.fn-updated {
+  display: block;
+  margin-top: 40px;
+  padding: 20px 0 0;
+  border-top: 1px solid var(--border);
+  color: var(--muted);
+  font-size: 11px;
+  text-align: center;
+}
+
+/* FOOTER */
+.fn-footer {
+  background: #fafbfc;
+  border-top: 1px solid var(--border);
+  padding: 36px 24px;
+  text-align: center;
+}
+
+.fn-footer-logo {
+  font-family: "Fredoka", sans-serif;
+  font-size: 25px;
+  font-weight: 600;
+  color: var(--heading);
+}
+
+.fn-footer-logo span {
+  color: var(--primary);
+}
+
+.fn-footer p {
+  font-size: 11px;
+  color: #98a2b3;
+  margin-top: 10px;
+  line-height: 1.8;
+}
+
+/* BACK TO TOP */
+.fn-top-btn {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 43px;
+  height: 43px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--primary);
+  color: #fff;
+  font-size: 20px;
+  cursor: pointer;
+  box-shadow: 0 5px 18px #ff3b8233;
+  opacity: 0;
+  visibility: hidden;
+  transition: .25s;
+  z-index: 20;
+}
+
+.fn-top-btn.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* TABLET */
+@media(max-width: 900px) {
+  .fn-layout {
+    display: block;
+    max-width: 850px;
+  }
+
+  .fn-toc {
+    position: relative;
+    top: auto;
+    max-height: 260px;
+    margin-bottom: 36px;
+  }
+}
+
+/* MOBILE */
+@media(max-width: 600px) {
+  .fn-navbar {
+    height: 60px;
+    padding: 0 15px;
+    gap: 12px;
+  }
+
+  .fn-logo {
+    font-size: 23px;
+  }
+
+  .fn-nav-right {
+    gap: 12px;
+  }
+
+  .fn-nav-right a {
+    font-size: 10px;
+  }
+
+  .fn-hero {
+    padding: 48px 18px 38px;
+  }
+
+  .fn-hero h1 {
+    font-size: 35px;
+  }
+
+  .fn-layout {
+    padding: 25px 18px 75px;
+  }
+
+  .fn-section {
+    padding: 24px 0;
+  }
+
+  .fn-section h2 {
+    font-size: 20px;
+  }
+
+  .fn-section p,
+  .fn-section li {
+    font-size: 12px;
+  }
+
+  .fn-top-btn {
+    right: 17px;
+    bottom: 18px;
+  }
+}
+
+@media(max-width: 360px) {
+  .fn-logo {
+    font-size: 20px;
+  }
+
+  .fn-nav-right a {
+    font-size: 9px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<header class="fn-navbar">
+  <a href="https://foodnati.com" class="fn-logo">
+    <span class="food">food</span><span class="nati">nati</span>
+  </a>
+
+  <nav class="fn-nav-right" aria-label="Legal navigation">
+    <a href="terms.html">Terms of Service</a>
+    <a href="privacy.html">Privacy Policy</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="fn-hero">
+  <div class="fn-eyebrow">
+    FOODNATI RESTAURANT PARTNER
+  </div>
+
+  <h1>Code of Conduct</h1>
+</section>
+
+<!-- MAIN LAYOUT -->
+<div class="fn-layout">
+
+  <aside class="fn-toc">
+    <h3>Contents</h3>
+    <nav id="fnTocLinks" aria-label="Code of conduct sections"></nav>
+  </aside>
+
+  <main class="fn-content">
+
+    <p class="fn-intro">
+      Foodnati is committed to building a responsible,
+      trustworthy, and professional food delivery platform
+      for restaurants, customers, and Delivery Partners.
+
+      This Code of Conduct establishes the standards
+      expected from Restaurant Partners and their
+      authorized staff while using Foodnati services.
+
+      Restaurant Partners are expected to maintain
+      food safety, accurate order handling, respectful
+      communication, responsible business practices,
+      and compliance with applicable laws.
+    </p>
+
+    <div id="fnConductSections"></div>
+
+    <div class="fn-updated">
+      Last updated: 9 November 2026
+    </div>
+
+  </main>
+</div>
+
+<!-- FOOTER -->
+<footer class="fn-footer">
+  <div class="fn-footer-logo">
+    food<span>nati</span>
+  </div>
+
+  <p>
+    © <span id="fnYear"></span>
+    Cezonal Solutions Private Limited.
+    All rights reserved.
+  </p>
+
+  <p>Foodnati Restaurant Partner Platform</p>
+</footer>
+
+<button
+  class="fn-top-btn"
+  id="fnTopBtn"
+  aria-label="Back to top"
+>↑</button>
+
+<script>
+const conductSections = [
+  {
+    title: "Purpose of the Code of Conduct",
+    paragraphs: [
+      "This Code of Conduct establishes the professional, operational, ethical, and safety standards expected from restaurants participating in the Foodnati platform.",
+      "Its purpose is to promote safe food preparation, responsible order handling, respectful relationships, and fair business practices.",
+      "Restaurant Partners should ensure that relevant employees and representatives understand these standards and apply them during daily operations."
+    ],
+    points: [
+      "Maintain professional business conduct.",
+      "Protect customer interests.",
+      "Respect Delivery Partners and platform staff.",
+      "Follow applicable laws and platform requirements."
+    ]
+  },
+  {
+    title: "Applicability",
+    paragraphs: [
+      "This Code applies to approved Restaurant Partners, restaurant owners, managers, employees, and authorized representatives who interact with Foodnati services.",
+      "Restaurant Partners are responsible for communicating relevant requirements to personnel who manage orders, prepare food, or hand over deliveries.",
+      "The Code supplements the applicable Terms of Service and commercial agreement."
+    ]
+  },
+  {
+    title: "Professional Conduct",
+    paragraphs: [
+      "Restaurant Partners must conduct their business in a professional, honest, and responsible manner.",
+      "Interactions with customers, Delivery Partners, Foodnati representatives, and other stakeholders should remain courteous and appropriate.",
+      "Disagreements should be handled through constructive communication and the available dispute resolution channels."
+    ]
+  },
+  {
+    title: "Respect and Courtesy",
+    paragraphs: [
+      "Restaurant staff must treat customers, Delivery Partners, and Foodnati personnel with dignity and respect.",
+      "Verbal abuse, intimidation, threats, or intentionally humiliating behavior are unacceptable.",
+      "Restaurants should promote a working environment where concerns can be raised without fear of retaliation."
+    ],
+    points: [
+      "Use respectful language.",
+      "Avoid aggressive behavior.",
+      "Resolve disagreements calmly.",
+      "Cooperate with legitimate support requests."
+    ]
+  },
+  {
+    title: "Non-Discrimination",
+    paragraphs: [
+      "Restaurant Partners must not engage in unlawful discrimination when interacting with customers, Delivery Partners, or other individuals.",
+      "Service decisions should be based on legitimate operational, safety, or legal considerations rather than prohibited discriminatory grounds.",
+      "Restaurant management should address discriminatory conduct by employees appropriately."
+    ]
+  },
+  {
+    title: "Anti-Harassment",
+    paragraphs: [
+      "Harassment, bullying, sexual harassment, threats, stalking, and other abusive behavior are prohibited.",
+      "Restaurants should take reasonable steps to prevent harassment at pickup locations and during platform-related interactions.",
+      "Serious misconduct may result in investigation and appropriate action under the applicable agreement and law."
+    ]
+  },
+  {
+    title: "Compliance With Applicable Laws",
+    paragraphs: [
+      "Restaurant Partners must comply with laws and regulations applicable to their food business and platform activities.",
+      "Relevant obligations may include food safety, licensing, taxation, consumer protection, labor, and data protection requirements.",
+      "Restaurants should obtain professional advice when uncertain about a legal obligation."
+    ]
+  },
+  {
+    title: "Restaurant Registration Integrity",
+    paragraphs: [
+      "Restaurant Partners must provide truthful and accurate information during registration and verification.",
+      "False ownership claims, forged documents, misleading addresses, or fabricated business details are prohibited.",
+      "Material changes to restaurant information should be communicated or updated promptly."
+    ]
+  },
+  {
+    title: "Valid Licenses and Permissions",
+    paragraphs: [
+      "Restaurants must maintain licenses and registrations required by law for their operations.",
+      "Where applicable, food business licenses or registrations must remain valid throughout participation on the platform.",
+      "A restaurant should not continue activities that it is legally prohibited from carrying out."
+    ]
+  },
+  {
+    title: "Food Safety Responsibilities",
+    paragraphs: [
+      "Restaurants are responsible for preparing and supplying food that meets applicable food safety requirements.",
+      "Food must not be knowingly contaminated, adulterated, expired, or unsafe for consumption.",
+      "Food safety concerns should be investigated promptly and corrective action taken where necessary."
+    ],
+    points: [
+      "Use safe and suitable ingredients.",
+      "Maintain proper storage conditions.",
+      "Follow hygienic preparation practices.",
+      "Prevent contamination.",
+      "Dispose of unsafe food appropriately."
+    ]
+  },
+  {
+    title: "Kitchen Hygiene",
+    paragraphs: [
+      "Restaurants should maintain clean kitchens, preparation surfaces, equipment, and food storage areas.",
+      "Cleaning schedules and appropriate sanitation practices should be followed.",
+      "Food preparation environments should be maintained in accordance with applicable hygiene requirements."
+    ]
+  },
+  {
+    title: "Employee Personal Hygiene",
+    paragraphs: [
+      "Staff handling food should follow appropriate personal hygiene practices.",
+      "Restaurants should provide suitable hygiene facilities and ensure that food handlers are trained where required.",
+      "Employees who may pose a food safety risk should not be assigned food handling duties contrary to applicable safety requirements."
+    ]
+  },
+  {
+    title: "Ingredient Quality",
+    paragraphs: [
+      "Restaurant Partners must use ingredients suitable for human consumption and consistent with applicable food standards.",
+      "Ingredients should be stored according to their safety requirements and used within appropriate periods.",
+      "Restaurants should not knowingly substitute unsafe or materially inferior ingredients without proper disclosure."
+    ]
+  },
+  {
+    title: "Food Storage",
+    paragraphs: [
+      "Food ingredients and prepared items should be stored under conditions appropriate for their safety and quality.",
+      "Restaurants should follow applicable temperature control, labeling, separation, and storage requirements.",
+      "Food that has become unsafe due to improper storage must not be supplied."
+    ]
+  },
+  {
+    title: "Vegetarian and Non-Vegetarian Handling",
+    paragraphs: [
+      "Restaurants must accurately classify food items as vegetarian or non-vegetarian according to applicable rules.",
+      "Reasonable care should be taken to prevent incorrect preparation and unintended cross-contact.",
+      "Incorrect classification or preparation should be reported and addressed promptly."
+    ]
+  },
+  {
+    title: "Allergen Awareness",
+    paragraphs: [
+      "Restaurants should provide accurate allergen information where required or reasonably necessary for customer safety.",
+      "Staff should avoid making unsupported assurances about allergen-free preparation.",
+      "Where an allergen-related instruction cannot be fulfilled safely, the restaurant should communicate that limitation through appropriate channels."
+    ]
+  },
+  {
+    title: "Menu Accuracy",
+    paragraphs: [
+      "Restaurant Partners must maintain accurate menu names, descriptions, prices, categories, and availability information.",
+      "Customers should not be misled about ingredients, portion sizes, or the nature of food items.",
+      "Incorrect menu information should be corrected as soon as reasonably possible."
+    ]
+  },
+  {
+    title: "Food Photography Standards",
+    paragraphs: [
+      "Menu photographs should reasonably represent the food offered.",
+      "Restaurants must not use images in a manner that materially misleads customers.",
+      "Images uploaded to Foodnati must be owned, licensed, or otherwise authorized for use."
+    ]
+  },
+  {
+    title: "Transparent Restaurant Pricing",
+    paragraphs: [
+      "Restaurants must provide accurate restaurant menu prices and update them when changes occur.",
+      "Foodnati may display separate customer-facing prices according to the applicable commercial agreement and law.",
+      "Restaurants should not make misleading statements about the platform's pricing arrangements."
+    ]
+  },
+  {
+    title: "Restaurant Availability",
+    paragraphs: [
+      "Restaurants should keep their open or closed status accurate.",
+      "A restaurant should not remain available for orders when it cannot reasonably prepare or fulfill them.",
+      "Temporary closures should be reflected in the partner dashboard where supported."
+    ]
+  },
+  {
+    title: "Operating Hours",
+    paragraphs: [
+      "Restaurants should maintain accurate operating hours and update changes promptly.",
+      "Order availability should reflect actual service capacity.",
+      "Holiday closures and unusual operating schedules should be communicated through available platform features."
+    ]
+  },
+  {
+    title: "Order Notification Monitoring",
+    paragraphs: [
+      "Restaurant Partners should monitor incoming orders during their stated operating hours.",
+      "Staff should be assigned appropriate responsibility for reviewing and processing orders.",
+      "Technical or connectivity problems affecting order handling should be addressed promptly."
+    ]
+  },
+  {
+    title: "Responsible Order Acceptance",
+    paragraphs: [
+      "Restaurants should accept orders only when the requested items can reasonably be prepared.",
+      "Acceptance should not be used to create false preparation or availability information.",
+      "Repeated avoidable acceptance failures may be reviewed as an operational concern."
+    ]
+  },
+  {
+    title: "Order Accuracy",
+    paragraphs: [
+      "Restaurant Partners must take reasonable care to prepare the correct items and quantities.",
+      "Order details, special instructions, and food classifications should be checked before packaging.",
+      "Missing or incorrect items should be reported through the appropriate support process."
+    ],
+    points: [
+      "Verify the order ID.",
+      "Check ordered item names.",
+      "Confirm quantities.",
+      "Review relevant instructions.",
+      "Check packaging before handover."
+    ]
+  },
+  {
+    title: "Preparation Time",
+    paragraphs: [
+      "Restaurants should make reasonable efforts to prepare orders within the estimated preparation period.",
+      "Unnecessary delays should be avoided.",
+      "Where significant delays occur, restaurants should provide accurate updates through supported communication channels."
+    ]
+  },
+  {
+    title: "Food Packaging Standards",
+    paragraphs: [
+      "Food should be packaged securely and hygienically using suitable materials.",
+      "Packaging should reduce the risk of spillage, contamination, and damage during transport.",
+      "Restaurants should check that all ordered items are included before sealing the package."
+    ]
+  },
+  {
+    title: "Delivery Partner Verification",
+    paragraphs: [
+      "Restaurant staff must verify the assigned Delivery Partner's order ID or other approved pickup details before handing over food.",
+      "A restaurant must not hand over an order merely because someone claims to represent Foodnati.",
+      "Where verification is not possible, staff should seek assistance through the appropriate support channel."
+    ],
+    points: [
+      "Request the order ID.",
+      "Match it with the partner dashboard.",
+      "Confirm the order package.",
+      "Avoid handover to unauthorized persons.",
+      "Report suspicious pickup attempts."
+    ]
+  },
+  {
+    title: "Order Handover Responsibility",
+    paragraphs: [
+      "Restaurant Partners should hand over orders only after completing reasonable identification and order checks.",
+      "Where a handover dispute occurs, Foodnati may review available records and supporting information.",
+      "Responsibility for an incorrect handover will depend on the facts, contractual terms, and applicable law."
+    ]
+  },
+  {
+    title: "Respect for Delivery Partners",
+    paragraphs: [
+      "Delivery Partners should be treated professionally and respectfully during pickup.",
+      "Restaurants should not subject Delivery Partners to threats, abuse, or unnecessary obstruction.",
+      "Reasonable pickup coordination should be provided where operationally possible."
+    ]
+  },
+  {
+    title: "Customer Respect",
+    paragraphs: [
+      "Restaurants should treat customers fairly and professionally.",
+      "Customer complaints should be handled without harassment, intimidation, or abusive communication.",
+      "Restaurants must not misuse customer contact information for unrelated purposes."
+    ]
+  },
+  {
+    title: "Customer Complaint Cooperation",
+    paragraphs: [
+      "Restaurants should cooperate with reasonable investigations into complaints about food quality, missing items, incorrect orders, or preparation.",
+      "Relevant records should be provided where legitimately requested and legally permitted.",
+      "Complaint handling should be fair and based on available evidence."
+    ]
+  },
+  {
+    title: "Refunds and Replacements",
+    paragraphs: [
+      "Restaurants should cooperate with applicable refund or replacement procedures when an order problem is verified.",
+      "Financial responsibility should be determined according to the relevant policy, agreement, cause of the issue, and law.",
+      "Restaurants should not knowingly provide false information to avoid legitimate adjustments."
+    ]
+  },
+  {
+    title: "Order Cancellation Conduct",
+    paragraphs: [
+      "Restaurants should avoid unnecessary cancellations after accepting an order.",
+      "Legitimate cancellations may occur due to unavailable items, food safety concerns, or other genuine operational problems.",
+      "Restaurants should provide accurate cancellation reasons where the platform requests them."
+    ]
+  },
+  {
+    title: "Fraud Prevention",
+    paragraphs: [
+      "Restaurant Partners must not participate in fraudulent transactions or manipulate platform processes for improper financial gain.",
+      "Suspicious activity should be reported promptly.",
+      "Foodnati may investigate suspected fraud and take appropriate action consistent with applicable law."
+    ],
+    points: [
+      "Do not create fake orders.",
+      "Do not manipulate order status.",
+      "Do not submit forged documents.",
+      "Do not falsify settlement claims.",
+      "Do not impersonate customers or Delivery Partners."
+    ]
+  },
+  {
+    title: "Accurate Payment and Settlement Records",
+    paragraphs: [
+      "Restaurants should maintain accurate information relevant to settlements and financial reconciliation.",
+      "Disputes about payments should be raised through authorized channels.",
+      "Restaurants must not knowingly submit fabricated financial claims."
+    ]
+  },
+  {
+    title: "Bank Account Integrity",
+    paragraphs: [
+      "Restaurant Partners must provide bank details that they are authorized to use for business settlements.",
+      "Changes to settlement accounts should follow applicable verification procedures.",
+      "Suspected payment fraud or unauthorized changes should be reported immediately."
+    ]
+  },
+  {
+    title: "Tax and Invoice Compliance",
+    paragraphs: [
+      "Restaurants must comply with applicable tax and invoicing requirements.",
+      "Records should accurately reflect transactions and legally required information.",
+      "Restaurant Partners should not issue knowingly false invoices or tax documents."
+    ]
+  },
+  {
+    title: "Promotional Campaign Conduct",
+    paragraphs: [
+      "Restaurants participating in promotions must follow the agreed promotional conditions.",
+      "Promotional offers must not be presented in a misleading manner.",
+      "Restaurants should not manipulate availability or order records to obtain improper promotional benefits."
+    ]
+  },
+  {
+    title: "Customer Data Protection",
+    paragraphs: [
+      "Customer personal information must be used only for authorized order fulfillment and related legitimate purposes.",
+      "Restaurants must not sell, disclose, or misuse customer information.",
+      "Personal information should be protected from unauthorized access."
+    ]
+  },
+  {
+    title: "Delivery Partner Data Protection",
+    paragraphs: [
+      "Information relating to Delivery Partners should be used only for legitimate pickup and order coordination.",
+      "Restaurant staff must not misuse phone numbers, identity information, or other personal data.",
+      "Unnecessary retention or disclosure of such information should be avoided."
+    ]
+  },
+  {
+    title: "Account Security",
+    paragraphs: [
+      "Restaurant Partners must take reasonable steps to protect account access and authentication information.",
+      "Login credentials and verification codes should not be shared with unauthorized persons.",
+      "Suspicious account activity should be reported promptly."
+    ]
+  },
+  {
+    title: "Authorized Staff Access",
+    paragraphs: [
+      "Restaurant owners should ensure that only authorized personnel access the partner dashboard.",
+      "Staff access should be appropriate to their operational responsibilities.",
+      "Access should be reviewed when employees leave or no longer require it."
+    ]
+  },
+  {
+    title: "Responsible Platform Usage",
+    paragraphs: [
+      "Restaurant Partners must use the platform for lawful and authorized business purposes.",
+      "Attempts to disrupt, exploit, or gain unauthorized access to Foodnati systems are prohibited.",
+      "Technical issues should be reported rather than exploited."
+    ]
+  },
+  {
+    title: "Communication With Foodnati Support",
+    paragraphs: [
+      "Restaurant Partners should communicate accurately and respectfully with Foodnati support personnel.",
+      "Support requests should include relevant order or account details where appropriate.",
+      "Knowingly false reports or abusive communications are not acceptable."
+    ]
+  },
+  {
+    title: "Reporting Safety Concerns",
+    paragraphs: [
+      "Restaurants should promptly report serious food safety concerns, suspected fraud, threatening behavior, or other significant incidents affecting platform operations.",
+      "Relevant evidence should be preserved where lawful and reasonably necessary.",
+      "Immediate threats to personal safety should be addressed through appropriate emergency services."
+    ]
+  },
+  {
+    title: "Cooperation With Investigations",
+    paragraphs: [
+      "Restaurant Partners should cooperate with reasonable investigations relating to safety, fraud, order disputes, or serious policy violations.",
+      "Requests for information must remain proportionate and consistent with applicable law.",
+      "Restaurants should not intentionally destroy relevant records to obstruct legitimate investigations."
+    ]
+  },
+  {
+    title: "Consequences of Violations",
+    paragraphs: [
+      "Violations of this Code may result in warnings, requests for corrective action, temporary restrictions, suspension, or termination, depending on the circumstances.",
+      "Foodnati should consider the nature, severity, evidence, and repetition of the conduct.",
+      "Any action taken must remain consistent with applicable law and contractual obligations."
+    ]
+  },
+  {
+    title: "Continuous Improvement",
+    paragraphs: [
+      "Restaurant Partners are encouraged to improve food quality, service reliability, staff training, and customer experience.",
+      "Feedback may be used to identify operational improvements.",
+      "Restaurants should address recurring issues through appropriate corrective measures."
+    ]
+  },
+  {
+    title: "Changes to the Code of Conduct",
+    paragraphs: [
+      "Foodnati may revise this Code of Conduct to reflect operational developments, safety needs, or changes in applicable law.",
+      "Material changes should be communicated where appropriate or legally required.",
+      "Restaurant Partners should review updated policies and ensure that relevant staff understand applicable changes."
+    ]
+  },
+  {
+    title: "Contact and Support",
+    paragraphs: [
+      "Restaurant Partners may contact Foodnati through the official support channels available in the partner platform.",
+      "Questions concerning this Code, operational standards, or potential violations should be directed to the appropriate support team.",
+      "Foodnati is operated by Cezonal Solutions Private Limited."
+    ]
+  }
+];
+
+/* GENERATE SECTIONS */
+const sectionsContainer =
+  document.getElementById("fnConductSections");
+
+const tocContainer =
+  document.getElementById("fnTocLinks");
+
+conductSections.forEach((sectionData, index) => {
+  const id = "section-" + (index + 1);
+
+  const section = document.createElement("section");
+  section.className = "fn-section";
+  section.id = id;
+
+  const heading = document.createElement("h2");
+  heading.textContent = `${index + 1}. ${sectionData.title}`;
+  section.appendChild(heading);
+
+  (sectionData.paragraphs || []).forEach(content => {
+    const p = document.createElement("p");
+    p.textContent = content;
+    section.appendChild(p);
+  });
+
+  if (sectionData.points && sectionData.points.length) {
+    const list = document.createElement("ul");
+
+    sectionData.points.forEach(content => {
+      const li = document.createElement("li");
+      li.textContent = content;
+      list.appendChild(li);
+    });
+
+    section.appendChild(list);
+  }
+
+  sectionsContainer.appendChild(section);
+
+  const link = document.createElement("a");
+  link.href = "#" + id;
+  link.textContent = `${index + 1}. ${sectionData.title}`;
+  tocContainer.appendChild(link);
+});
+
+/* COPYRIGHT YEAR */
+document.getElementById("fnYear").textContent =
+  new Date().getFullYear();
+
+/* BACK TO TOP */
+const topButton =
+  document.getElementById("fnTopBtn");
+
+window.addEventListener("scroll", () => {
+  topButton.classList.toggle(
+    "show",
+    window.scrollY > 400
+  );
+}, { passive: true });
+
+topButton.addEventListener("click", () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+});
+
+/* ACTIVE TABLE OF CONTENTS */
+const tocLinks = [
+  ...tocContainer.querySelectorAll("a")
+];
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+
+    tocLinks.forEach(link => {
+      link.classList.toggle(
+        "active",
+        link.getAttribute("href") === "#" + entry.target.id
+      );
+    });
+  });
+}, {
+  rootMargin: "-110px 0px -65% 0px",
+  threshold: 0
+});
+
+document.querySelectorAll(".fn-section").forEach(section => {
+  observer.observe(section);
+});
+</script>
+
+</body>
+</html>
