@@ -1,0 +1,926 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#ffffff">
+<meta name="description" content="Foodnati Restaurant Partner Privacy Policy">
+<title>Privacy Policy | Foodnati</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --primary: #ff3b82;
+  --primary-soft: #fff0f5;
+  --heading: #17243b;
+  --body: #475467;
+  --muted: #8992a3;
+  --border: #e9edf2;
+  --white: #ffffff;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 100px;
+}
+
+body {
+  background: var(--white);
+  font-family: "Poppins", sans-serif;
+  color: var(--body);
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  font-family: inherit;
+}
+
+/* NAVBAR */
+.fn-navbar {
+  height: 68px;
+  width: 100%;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: #fff;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 6%;
+  gap: 20px;
+}
+
+.fn-logo {
+  font-family: "Fredoka", sans-serif;
+  font-size: 29px;
+  font-weight: 600;
+  letter-spacing: -0.6px;
+  white-space: nowrap;
+}
+
+.fn-logo .food {
+  color: var(--heading);
+}
+
+.fn-logo .nati {
+  color: var(--primary);
+}
+
+.fn-nav-right {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.fn-nav-right a {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--body);
+  white-space: nowrap;
+  transition: color .2s;
+}
+
+.fn-nav-right a:hover,
+.fn-nav-right a.active {
+  color: var(--primary);
+}
+
+/* HERO */
+.fn-hero {
+  padding: 70px 24px 55px;
+  text-align: center;
+  background: linear-gradient(
+    180deg,
+    #fff6f9 0%,
+    #ffffff 100%
+  );
+}
+
+.fn-eyebrow {
+  color: var(--primary);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.fn-hero h1 {
+  font-family: "Fredoka", sans-serif;
+  font-size: clamp(34px, 5vw, 52px);
+  font-weight: 600;
+  color: var(--heading);
+  margin: 14px 0 0;
+}
+
+/* MAIN LAYOUT */
+.fn-layout {
+  max-width: 1220px;
+  margin: 0 auto;
+  padding: 40px 24px 100px;
+  display: grid;
+  grid-template-columns: 255px minmax(0, 1fr);
+  gap: 55px;
+  align-items: start;
+}
+
+/* TABLE OF CONTENTS */
+.fn-toc {
+  position: sticky;
+  top: 95px;
+  max-height: calc(100vh - 120px);
+  overflow-y: auto;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 22px 18px;
+  scrollbar-width: thin;
+}
+
+.fn-toc h3 {
+  font-family: "Fredoka", sans-serif;
+  font-size: 17px;
+  color: var(--heading);
+  margin-bottom: 16px;
+}
+
+.fn-toc a {
+  display: block;
+  font-size: 11px;
+  line-height: 1.6;
+  padding: 8px 10px;
+  border-radius: 7px;
+  color: #667085;
+  transition: .2s;
+}
+
+.fn-toc a:hover,
+.fn-toc a.active {
+  background: var(--primary-soft);
+  color: var(--primary);
+}
+
+/* PRIVACY CONTENT */
+.fn-content {
+  min-width: 0;
+}
+
+.fn-intro {
+  font-size: 13px;
+  line-height: 2.1;
+  margin-bottom: 30px;
+}
+
+.fn-section {
+  padding: 30px 0;
+  border-top: 1px solid var(--border);
+  scroll-margin-top: 100px;
+}
+
+.fn-section h2 {
+  font-family: "Fredoka", sans-serif;
+  font-weight: 500;
+  color: var(--heading);
+  font-size: 23px;
+  margin-bottom: 15px;
+  line-height: 1.4;
+}
+
+.fn-section p {
+  font-size: 12.5px;
+  line-height: 2.1;
+  margin-bottom: 14px;
+}
+
+.fn-section ul {
+  padding-left: 22px;
+  margin: 14px 0;
+}
+
+.fn-section li {
+  font-size: 12.5px;
+  line-height: 2;
+  padding-bottom: 8px;
+}
+
+.fn-section strong {
+  color: var(--heading);
+  font-weight: 600;
+}
+
+/* LAST UPDATED */
+.fn-updated {
+  display: block;
+  margin-top: 40px;
+  padding: 20px 0 0;
+  border-top: 1px solid var(--border);
+  color: var(--muted);
+  font-size: 11px;
+  text-align: center;
+}
+
+/* FOOTER */
+.fn-footer {
+  background: #fafbfc;
+  border-top: 1px solid var(--border);
+  padding: 36px 24px;
+  text-align: center;
+}
+
+.fn-footer-logo {
+  font-family: "Fredoka", sans-serif;
+  font-size: 25px;
+  font-weight: 600;
+  color: var(--heading);
+}
+
+.fn-footer-logo span {
+  color: var(--primary);
+}
+
+.fn-footer p {
+  font-size: 11px;
+  color: #98a2b3;
+  margin-top: 10px;
+  line-height: 1.8;
+}
+
+/* BACK TO TOP */
+.fn-top-btn {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 43px;
+  height: 43px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--primary);
+  color: #fff;
+  font-size: 20px;
+  cursor: pointer;
+  box-shadow: 0 5px 18px #ff3b8233;
+  opacity: 0;
+  visibility: hidden;
+  transition: .25s;
+  z-index: 20;
+}
+
+.fn-top-btn.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* TABLET */
+@media(max-width: 900px) {
+  .fn-layout {
+    display: block;
+    max-width: 850px;
+  }
+
+  .fn-toc {
+    position: relative;
+    top: auto;
+    max-height: 260px;
+    margin-bottom: 36px;
+  }
+}
+
+/* MOBILE */
+@media(max-width: 600px) {
+  .fn-navbar {
+    height: 60px;
+    padding: 0 15px;
+    gap: 12px;
+  }
+
+  .fn-logo {
+    font-size: 23px;
+  }
+
+  .fn-nav-right {
+    gap: 12px;
+  }
+
+  .fn-nav-right a {
+    font-size: 10px;
+  }
+
+  .fn-hero {
+    padding: 48px 18px 38px;
+  }
+
+  .fn-hero h1 {
+    font-size: 35px;
+  }
+
+  .fn-layout {
+    padding: 25px 18px 75px;
+  }
+
+  .fn-section {
+    padding: 24px 0;
+  }
+
+  .fn-section h2 {
+    font-size: 20px;
+  }
+
+  .fn-section p,
+  .fn-section li {
+    font-size: 12px;
+  }
+
+  .fn-top-btn {
+    right: 17px;
+    bottom: 18px;
+  }
+}
+
+@media(max-width: 360px) {
+  .fn-logo {
+    font-size: 20px;
+  }
+
+  .fn-nav-right a {
+    font-size: 9px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<header class="fn-navbar">
+  <a href="https://foodnati.com" class="fn-logo">
+    <span class="food">food</span><span class="nati">nati</span>
+  </a>
+
+  <nav class="fn-nav-right" aria-label="Legal navigation">
+    <a href="terms.html">Terms of Service</a>
+    <a href="conduct.html">Code of Conduct</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="fn-hero">
+  <div class="fn-eyebrow">
+    FOODNATI RESTAURANT PARTNER
+  </div>
+
+  <h1>Privacy Policy</h1>
+</section>
+
+<!-- PAGE LAYOUT -->
+<div class="fn-layout">
+
+  <aside class="fn-toc">
+    <h3>Contents</h3>
+    <nav id="fnTocLinks" aria-label="Privacy policy sections"></nav>
+  </aside>
+
+  <main class="fn-content">
+
+    <p class="fn-intro">
+      Welcome to Foodnati, a food ordering and delivery
+      platform operated by Cezonal Solutions Private Limited
+      ("Foodnati", "we", "us", or "our").
+
+      This Privacy Policy explains how personal information
+      relating to restaurant owners, authorized representatives,
+      restaurant staff, and other users of the Foodnati
+      Restaurant Partner platform may be collected, used,
+      stored, shared, and protected.
+
+      It also explains the choices and rights available to
+      individuals in relation to their personal information,
+      subject to applicable law.
+    </p>
+
+    <!-- PRIVACY SECTIONS -->
+    <div id="fnPrivacySections"></div>
+
+    <!-- DATE AT BOTTOM -->
+    <div class="fn-updated">
+      Last updated: 9 November 2026
+    </div>
+
+  </main>
+</div>
+
+<!-- FOOTER -->
+<footer class="fn-footer">
+  <div class="fn-footer-logo">
+    food<span>nati</span>
+  </div>
+
+  <p>
+    © <span id="fnYear"></span>
+    Cezonal Solutions Private Limited.
+    All rights reserved.
+  </p>
+
+  <p>Foodnati Restaurant Partner Platform</p>
+</footer>
+
+<button
+  class="fn-top-btn"
+  id="fnTopBtn"
+  aria-label="Back to top"
+>↑</button>
+
+<script>
+const privacySections = [
+  {
+    title: "Introduction",
+    paragraphs: [
+      "Foodnati respects the privacy of individuals who interact with the Restaurant Partner platform. This Privacy Policy describes the personal information that may be processed in connection with restaurant onboarding, account management, order fulfillment, payment settlement, platform support, and related services.",
+      "The policy is intended to help Restaurant Partners understand the categories of personal data involved in operating the platform and the purposes for which that information may be used.",
+      "The actual processing of personal information is subject to the services used, the information supplied, the applicable contractual arrangements, and relevant law."
+    ]
+  },
+  {
+    title: "Scope of This Privacy Policy",
+    paragraphs: [
+      "This Privacy Policy applies to personal information processed in connection with the Foodnati Restaurant Partner website, application, registration forms, dashboard, and related support interactions.",
+      "It covers information relating to restaurant owners, authorized representatives, employees who use partner accounts, and other individuals whose information is provided for restaurant operations.",
+      "Separate privacy notices may apply to customers and Delivery Partners."
+    ]
+  },
+  {
+    title: "Who Operates the Platform",
+    paragraphs: [
+      "The Foodnati Restaurant Partner platform is operated by Cezonal Solutions Private Limited.",
+      "For purposes of this policy, references to Foodnati include the company and its authorized personnel acting in connection with platform operations.",
+      "The role of Foodnati in relation to specific personal data may depend on the applicable law and the nature of the processing activity."
+    ]
+  },
+  {
+    title: "Information Provided During Registration",
+    paragraphs: [
+      "During restaurant registration, Foodnati may collect the restaurant name, owner name, mobile number, business address, location details, operating hours, and other information necessary to review an application.",
+      "Additional information may be requested to verify business eligibility, confirm ownership, or enable restaurant services.",
+      "Restaurant Partners should ensure that personal information submitted during registration is accurate and provided through authorized means."
+    ],
+    points: [
+      "Restaurant and owner names.",
+      "Contact mobile numbers.",
+      "Restaurant address and location.",
+      "Business registration information.",
+      "Authorized representative details."
+    ]
+  },
+  {
+    title: "Restaurant Owner and Representative Information",
+    paragraphs: [
+      "Foodnati may process names, contact information, roles, and authorization details of restaurant owners or persons representing the business.",
+      "Such information may be used to establish a partner relationship, verify account ownership, communicate operational matters, and resolve account-related issues.",
+      "Restaurant Partners should not submit another person's information without appropriate authority or another valid legal basis."
+    ]
+  },
+  {
+    title: "Mobile Number and Contact Details",
+    paragraphs: [
+      "Mobile numbers may be collected for account identification, registration verification, authentication, support communications, and operational notifications.",
+      "Foodnati may use contact information to communicate about restaurant applications, orders, settlement issues, security alerts, and important platform changes.",
+      "Marketing communications, where used, should comply with applicable consent and communication requirements."
+    ]
+  },
+  {
+    title: "Account Authentication Information",
+    paragraphs: [
+      "Foodnati may process information necessary to authenticate users, such as mobile numbers, verification results, login sessions, and security-related account records.",
+      "One-time passwords should be treated as confidential and must not be shared with unauthorized persons.",
+      "Authentication information may be used to reduce unauthorized access and protect partner accounts."
+    ]
+  },
+  {
+    title: "Restaurant Business Information",
+    paragraphs: [
+      "Business information may include restaurant category, cuisine type, operating hours, menu details, business identifiers, and other information needed to display or manage restaurant listings.",
+      "Some business information may be displayed publicly to customers using Foodnati.",
+      "Personal information embedded in business records will be handled according to the applicable privacy requirements."
+    ]
+  },
+  {
+    title: "Restaurant Location Information",
+    paragraphs: [
+      "Foodnati may collect restaurant address information and geographic coordinates to identify the restaurant location and support delivery operations.",
+      "Location information may be used for serviceability checks, delivery distance calculations, order assignment, navigation, and operational support.",
+      "Restaurant location information is different from continuous personal device tracking. Any device-location collection should be explained according to the permissions and functionality actually used."
+    ]
+  },
+  {
+    title: "Identity Verification Information",
+    paragraphs: [
+      "Where reasonably necessary, Foodnati may request identity or business verification documents from restaurant owners or authorized representatives.",
+      "Such information may be used to verify legitimacy, prevent impersonation, and comply with applicable legal obligations.",
+      "Sensitive identification documents should be collected only where necessary, protected appropriately, and retained for no longer than justified by the relevant purpose and law."
+    ]
+  },
+  {
+    title: "PAN Information",
+    paragraphs: [
+      "PAN information may be requested where necessary for tax, identity verification, settlement, or other legitimate compliance purposes.",
+      "Foodnati should restrict access to PAN information to authorized personnel and service providers with a legitimate need.",
+      "PAN information should not be displayed publicly or used for unrelated marketing purposes."
+    ]
+  },
+  {
+    title: "GST Information",
+    paragraphs: [
+      "Where applicable, GST registration information may be collected to support invoicing, tax reporting, settlement calculations, and regulatory compliance.",
+      "Some GST registration details may constitute business information rather than personal information, depending on the circumstances.",
+      "Foodnati will treat any personal information associated with such records according to applicable privacy requirements."
+    ]
+  },
+  {
+    title: "FSSAI and Food Business Information",
+    paragraphs: [
+      "Food business registration or license information may be processed to review restaurant eligibility and support compliance with applicable food safety requirements.",
+      "Foodnati may verify submitted information using appropriate methods where legally permitted.",
+      "Information required for lawful public disclosure may be displayed where applicable."
+    ]
+  },
+  {
+    title: "Bank Account and Settlement Information",
+    paragraphs: [
+      "Foodnati may collect account holder names, bank names, account numbers, IFSC codes, and related settlement information to facilitate payments to Restaurant Partners.",
+      "Bank details may be shared with authorized payment processors, banking partners, or service providers where necessary to process settlements.",
+      "Foodnati should apply appropriate access restrictions and safeguards to bank account information."
+    ]
+  },
+  {
+    title: "Menu and Product Information",
+    paragraphs: [
+      "Restaurant Partners may submit menu item names, descriptions, prices, food classifications, availability information, and photographs.",
+      "This information may be used to create restaurant listings, display items to customers, and manage orders.",
+      "Menu content that includes personal information will be handled according to the applicable processing purpose."
+    ]
+  },
+  {
+    title: "Restaurant Images and Uploaded Files",
+    paragraphs: [
+      "Foodnati may process restaurant photographs, menu images, and documents uploaded during onboarding or account management.",
+      "Images intended for public restaurant listings may be displayed to customers, while verification documents should be subject to more restricted access.",
+      "Restaurant Partners should avoid uploading unnecessary personal information or photographs of individuals without appropriate authorization."
+    ]
+  },
+  {
+    title: "Order Information",
+    paragraphs: [
+      "Foodnati may process order identifiers, ordered items, quantities, prices, preparation status, acceptance times, and fulfillment information.",
+      "This information may be used to coordinate orders, support restaurant operations, maintain transaction records, and investigate service issues.",
+      "Order information may also be used to calculate settlements and prepare operational reports."
+    ]
+  },
+  {
+    title: "Customer Information Shared With Restaurants",
+    paragraphs: [
+      "Restaurant Partners may receive limited customer information necessary to prepare and fulfill an order.",
+      "The information available may vary depending on the order-management features and service requirements.",
+      "Restaurant Partners must use customer personal information only for authorized order-related purposes and must not misuse it for unrelated communications or marketing."
+    ]
+  },
+  {
+    title: "Delivery Partner Information",
+    paragraphs: [
+      "Restaurant Partners may receive limited information about assigned Delivery Partners, such as identifying or contact details necessary for order coordination.",
+      "Such information should be used only to verify handovers, resolve delivery issues, and coordinate legitimate restaurant operations.",
+      "Restaurant Partners must not retain or disclose Delivery Partner personal information for unrelated purposes."
+    ]
+  },
+  {
+    title: "Order History and Transaction Records",
+    paragraphs: [
+      "Foodnati may maintain records of completed, cancelled, refunded, or disputed orders.",
+      "These records may support settlement reconciliation, customer support, fraud prevention, accounting, and compliance obligations.",
+      "Retention periods depend on operational necessity, contractual requirements, and applicable law."
+    ]
+  },
+  {
+    title: "Payment and Financial Records",
+    paragraphs: [
+      "Payment-related information may include settlement amounts, transaction references, adjustments, refunds, payment status, and reconciliation details.",
+      "Such records may be used for accounting, financial reporting, payment processing, dispute resolution, and legally required recordkeeping.",
+      "Foodnati may share relevant financial information with authorized financial service providers where necessary."
+    ]
+  },
+  {
+    title: "Device and Technical Information",
+    paragraphs: [
+      "When a Restaurant Partner uses the website or application, Foodnati may process technical information necessary for security, troubleshooting, and service operation.",
+      "This may include browser type, device characteristics, operating system, IP address, application version, and diagnostic events where collected.",
+      "The precise categories collected depend on the technology and services actually implemented."
+    ]
+  },
+  {
+    title: "Log Files and Diagnostic Data",
+    paragraphs: [
+      "Technical logs may be generated when users access the platform or encounter errors.",
+      "Logs may help identify application failures, suspicious activity, connectivity issues, and performance problems.",
+      "Access to diagnostic records should be limited to personnel or service providers who require the information for legitimate operational purposes."
+    ]
+  },
+  {
+    title: "Cookies and Similar Technologies",
+    paragraphs: [
+      "The Foodnati website may use cookies, local storage, session storage, or similar technologies where implemented to maintain sessions and support website functionality.",
+      "Certain technologies may be necessary for login, security, user preferences, and platform operation.",
+      "Any non-essential tracking technologies should be disclosed and managed in accordance with applicable law."
+    ]
+  },
+  {
+    title: "Local Storage and Login Sessions",
+    paragraphs: [
+      "The Restaurant Partner website may store session-related information on a user's device to support account access and continuity.",
+      "Restaurant Partners should avoid using shared or unsecured devices for sensitive account activities.",
+      "Foodnati may invalidate sessions or require reauthentication where reasonably necessary for security."
+    ]
+  },
+  {
+    title: "How We Use Personal Information",
+    paragraphs: [
+      "Foodnati may use personal information to register Restaurant Partners, provide account access, manage restaurant listings, coordinate orders, process settlements, and respond to support requests.",
+      "Information may also be processed to maintain platform security, detect fraudulent activity, improve reliability, and meet legal obligations.",
+      "Foodnati should not use personal information for purposes incompatible with the applicable notice, consent, or other valid legal basis."
+    ],
+    points: [
+      "Restaurant onboarding and verification.",
+      "Account authentication and security.",
+      "Order processing and fulfillment.",
+      "Restaurant settlement and accounting.",
+      "Customer and partner support.",
+      "Fraud prevention and compliance."
+    ]
+  },
+  {
+    title: "Legal Basis and Consent",
+    paragraphs: [
+      "Personal information will be processed according to the legal grounds available under applicable law, including valid consent or other legally permitted grounds where relevant.",
+      "Where consent is required, Foodnati should provide appropriate information about the purpose of processing and offer applicable choices.",
+      "Withdrawal of consent may affect services that depend on the relevant information, subject to lawful retention and processing requirements."
+    ]
+  },
+  {
+    title: "Operational Communications",
+    paragraphs: [
+      "Foodnati may communicate with Restaurant Partners about registration status, order activity, account security, service interruptions, settlements, and important policy updates.",
+      "Communications may be delivered through the application, website, phone, SMS, email, or other supported channels.",
+      "Operational communications should be limited to legitimate service-related purposes."
+    ]
+  },
+  {
+    title: "Promotional Communications",
+    paragraphs: [
+      "Where permitted, Foodnati may send information about new features, promotional opportunities, partner programs, or marketing initiatives.",
+      "Restaurant Partners should be provided with applicable choices for non-essential marketing communications.",
+      "Marketing preferences do not necessarily prevent important transactional or security communications."
+    ]
+  },
+  {
+    title: "Sharing With Delivery Partners",
+    paragraphs: [
+      "Limited restaurant and order information may be shared with assigned Delivery Partners to enable pickup and delivery.",
+      "Information shared should be proportionate to the delivery task and may include pickup location, order identification, and relevant coordination details.",
+      "Delivery Partners should not use shared information for unauthorized purposes."
+    ]
+  },
+  {
+    title: "Sharing With Payment Service Providers",
+    paragraphs: [
+      "Foodnati may share relevant settlement or payment information with banks, payment gateways, and authorized payment service providers.",
+      "Such sharing may be necessary to process payments, verify transactions, prevent fraud, or resolve financial discrepancies.",
+      "Service providers should be required to handle information according to applicable contractual and legal obligations."
+    ]
+  },
+  {
+    title: "Cloud Hosting and Database Providers",
+    paragraphs: [
+      "Foodnati may use third-party infrastructure, hosting, storage, and database providers to operate the Restaurant Partner platform.",
+      "Information stored or processed through these services should be protected through appropriate technical, contractual, and organizational safeguards.",
+      "The identity and location of service providers may change as platform infrastructure evolves."
+    ]
+  },
+  {
+    title: "Third-Party Services",
+    paragraphs: [
+      "The platform may rely on external services for communications, authentication, maps, payments, hosting, or other operational functions.",
+      "Third-party services may process information necessary to provide their functions, subject to applicable privacy notices and agreements.",
+      "Foodnati should assess relevant privacy and security considerations when engaging service providers."
+    ]
+  },
+  {
+    title: "Disclosure Required by Law",
+    paragraphs: [
+      "Foodnati may disclose information where legally required by a valid court order, statutory obligation, or lawful request from an authorized public authority.",
+      "Any disclosure should be limited to what is legally necessary and permitted.",
+      "Where appropriate and legally allowed, Foodnati may review or challenge requests that appear invalid or excessive."
+    ]
+  },
+  {
+    title: "Information Security",
+    paragraphs: [
+      "Foodnati aims to use reasonable technical and organizational safeguards to protect personal information against unauthorized access, misuse, alteration, loss, and disclosure.",
+      "Safeguards may include access restrictions, secure communications, authentication controls, and monitoring appropriate to the risks involved.",
+      "No digital system can guarantee absolute security, and users should also protect their devices and account credentials."
+    ]
+  },
+  {
+    title: "Access Controls",
+    paragraphs: [
+      "Access to personal information should be limited to authorized individuals and service providers with a legitimate operational need.",
+      "Foodnati may maintain access permissions and review them as necessary to support confidentiality and security.",
+      "Restaurant Partners are responsible for controlling employee access to their own accounts."
+    ]
+  },
+  {
+    title: "Data Retention",
+    paragraphs: [
+      "Foodnati may retain personal information for as long as necessary to provide services, maintain records, resolve disputes, and comply with applicable legal obligations.",
+      "Different categories of information may require different retention periods.",
+      "Where information is no longer required, it should be deleted, anonymized, or otherwise handled according to applicable retention requirements."
+    ]
+  },
+  {
+    title: "Account Closure and Data Deletion",
+    paragraphs: [
+      "Restaurant Partners may request account closure through the official support channels.",
+      "Account closure does not necessarily require immediate deletion of all information, as some records may need to be retained for accounting, dispute resolution, security, or legal compliance.",
+      "Requests for deletion of personal information will be reviewed according to applicable rights and lawful retention obligations."
+    ]
+  },
+  {
+    title: "Accuracy and Correction of Information",
+    paragraphs: [
+      "Restaurant Partners should keep their personal and business information accurate and up to date.",
+      "Where supported, information may be updated through the partner dashboard or by contacting support.",
+      "Requests to correct personal information will be handled according to applicable legal requirements."
+    ]
+  },
+  {
+    title: "Privacy Rights and Requests",
+    paragraphs: [
+      "Individuals may have rights under applicable data protection laws concerning access to information about processing, correction, erasure, grievance redressal, withdrawal of consent, and other matters.",
+      "The availability and scope of these rights depend on the law in force and the circumstances of the request.",
+      "Foodnati should provide an appropriate channel for receiving and responding to valid privacy requests."
+    ]
+  },
+  {
+    title: "Withdrawal of Consent",
+    paragraphs: [
+      "Where personal information is processed on the basis of consent, individuals may withdraw that consent through an available and appropriate mechanism.",
+      "Withdrawal does not necessarily affect processing that was lawful before withdrawal or processing permitted or required by law.",
+      "Certain account features may no longer function if information essential to those features cannot be processed."
+    ]
+  },
+  {
+    title: "Grievance Redressal",
+    paragraphs: [
+      "Privacy-related complaints and concerns may be submitted through Foodnati's designated support or grievance channels.",
+      "Foodnati should acknowledge and address grievances according to applicable legal requirements.",
+      "Before publication, the company should identify and publish the appropriate privacy contact or grievance officer details required by law."
+    ]
+  },
+  {
+    title: "Children's Personal Information",
+    paragraphs: [
+      "The Restaurant Partner platform is intended for individuals authorized to operate or represent restaurant businesses.",
+      "It is not designed for use by children acting independently as Restaurant Partners.",
+      "Where information relating to children is processed, applicable child data protection requirements must be followed."
+    ]
+  },
+  {
+    title: "Cross-Border Data Processing",
+    paragraphs: [
+      "Some technology providers may process or store information in locations outside India.",
+      "Any international transfer or processing of personal information must comply with applicable legal restrictions and requirements.",
+      "Foodnati should assess relevant safeguards and provider arrangements where cross-border processing occurs."
+    ]
+  },
+  {
+    title: "Changes to This Privacy Policy",
+    paragraphs: [
+      "Foodnati may update this Privacy Policy to reflect changes in technology, services, processing activities, or applicable legal requirements.",
+      "Material changes should be communicated through appropriate notices where required.",
+      "The updated version will indicate its effective or last-updated date."
+    ]
+  },
+  {
+    title: "Contact Information",
+    paragraphs: [
+      "For privacy questions, personal information requests, or concerns about this policy, Restaurant Partners may use the official support channels provided by Foodnati.",
+      "Foodnati is operated by Cezonal Solutions Private Limited.",
+      "The company's designated privacy contact information should be published here before this policy is made publicly available."
+    ]
+  }
+];
+
+/* GENERATE PRIVACY SECTIONS */
+const sectionsContainer =
+  document.getElementById("fnPrivacySections");
+
+const tocContainer =
+  document.getElementById("fnTocLinks");
+
+privacySections.forEach((sectionData, index) => {
+  const id = "section-" + (index + 1);
+
+  const section = document.createElement("section");
+  section.className = "fn-section";
+  section.id = id;
+
+  const heading = document.createElement("h2");
+  heading.textContent = `${index + 1}. ${sectionData.title}`;
+  section.appendChild(heading);
+
+  (sectionData.paragraphs || []).forEach(content => {
+    const p = document.createElement("p");
+    p.textContent = content;
+    section.appendChild(p);
+  });
+
+  if (sectionData.points && sectionData.points.length) {
+    const list = document.createElement("ul");
+
+    sectionData.points.forEach(content => {
+      const li = document.createElement("li");
+      li.textContent = content;
+      list.appendChild(li);
+    });
+
+    section.appendChild(list);
+  }
+
+  sectionsContainer.appendChild(section);
+
+  const link = document.createElement("a");
+  link.href = "#" + id;
+  link.textContent = `${index + 1}. ${sectionData.title}`;
+  tocContainer.appendChild(link);
+});
+
+/* COPYRIGHT YEAR */
+document.getElementById("fnYear").textContent =
+  new Date().getFullYear();
+
+/* BACK TO TOP */
+const topButton =
+  document.getElementById("fnTopBtn");
+
+window.addEventListener("scroll", () => {
+  topButton.classList.toggle(
+    "show",
+    window.scrollY > 400
+  );
+}, { passive: true });
+
+topButton.addEventListener("click", () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+});
+
+/* ACTIVE TABLE OF CONTENTS */
+const tocLinks = [
+  ...tocContainer.querySelectorAll("a")
+];
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+
+    tocLinks.forEach(link => {
+      link.classList.toggle(
+        "active",
+        link.getAttribute("href") === "#" + entry.target.id
+      );
+    });
+  });
+}, {
+  rootMargin: "-110px 0px -65% 0px",
+  threshold: 0
+});
+
+document.querySelectorAll(".fn-section").forEach(section => {
+  observer.observe(section);
+});
+</script>
+
+</body>
+</html>
